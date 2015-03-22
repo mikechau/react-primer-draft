@@ -35,6 +35,12 @@
 
 ## Intro to React
 
+`React` is a `JavaScript` library by `Facebook`, it describes itself as *__a javascript library for building user interfaces__*.
+
+Developers often call it the `V in MVC`, or talk about the its `virtual DOM` (not to be confused with the `shadow DOM`). I like `React` for its `declartive` style, `lifecycle event hooks`, and the fact that a `React` `component` describes its view at anytime. By breaking down the `view` into `components`, writing `React` starts to become very natural and a pleasure to work with, as you no longer need to understand the entire flow of the application at once, you can start at a `component` and work your way up or down.
+
+This `primer` is a means to get you rapidly ready to start working with a `React` application. Its goal is not to teach and explain everything, but merely introduce concepts and help you form the right questions to ask and to have an idea of where to look for an answer. It is OK if you do not understand everything at first, just keep working at by commiting the code you see to muscle memory and reading up on the documentation. Hopefully through `reflection`, and `incubation`, the concepts here will start to make sense. 
+
 ### React JSX
 
 ### React Props
