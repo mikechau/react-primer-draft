@@ -63,20 +63,17 @@ Don't be afraid of `React` either.  It may seem `complex` but it is quite simple
 >
 > ---
 > My favorite part of React is what I loved about MooTools: to use it effectively you learn JavaScript, not a DSL: useful your whole career.
->
-> ~ [Ryan Florence (@ryanflorence)](https://twitter.com/ryanflorence/status/577685415919898625)
+> -  [Ryan Florence (@ryanflorence)](https://twitter.com/ryanflorence/status/577685415919898625)
 >
 > ---
 >
 > `#reactjs` Haven’t been so excited about programming since learned Rails: http://facebook.github.io/react ! Kudos [@floydophone](https://twitter.com/floydophone) & FB team!
->
-> ~ [Justin Gordon (@railsonmaui)](https://twitter.com/railsonmaui/status/503626150149492736)
+> - [Justin Gordon (@railsonmaui)](https://twitter.com/railsonmaui/status/503626150149492736)
 >
 > ---
 >
 > “It wasn’t my intention to use React for everything, but I found myself moving so quickly that I found I’d used it everywhere… had a blast”
->
-> ~ [Alan Hogan (@AlanHogan)](https://twitter.com/alanhogan/status/507307487062544384)
+> - [Alan Hogan (@AlanHogan)](https://twitter.com/alanhogan/status/507307487062544384)
 >
 > ---
 >
@@ -418,12 +415,18 @@ $('#dislike').on('click', function(e) {
 });
 ```
 
-Looks simple enough right? We want to update the response with either `like` or `dislike`. As you can imagine, if this started to become more complex, the code eventually becomes a lot harder to follow, because there be events all over the place modifying the `DOM` and you wouldn't be able to tell without going through all the logic, having to take in the entire flow of the application at once.
+Looks simple enough right? We want to update the response with either `like` or `dislike`. As you can imagine, thing start to get more complicated as we add more event logic. The code eventually becomes a lot harder to follow, because there be events all over the place modifying the `DOM` and you wouldn't be able to tell without going through all the logic. It's no fun having to take in the entire flow of the application at once.
 
 Let's take a look at how this would look in `React`.
 
 ```js
 var LikeComponent = React.createClass({
+	getInitialState: function() {
+		return {
+			response: ''
+		};
+	},
+
 	render: function() {
 		return (
 			<div>
@@ -431,7 +434,7 @@ var LikeComponent = React.createClass({
 
 				<br /><br />
 
-				Response: I {this.state.response} fishsticks.
+				Response: I {this.state.response || '_____'} fishsticks.
 
 				<br /><br />
 
@@ -442,18 +445,40 @@ var LikeComponent = React.createClass({
 	},
 
 	handleLike: function(e) {
+		e.preventDefault();
+
 		this.setState({
 			response: 'like'
 		});
 	},
 
 	handleDislike: function(e) {
+		e.preventDefault();
+
 		this.setState({
 			response: 'dislike'
 		});
 	}
 });
 ```
+
+[JS Bin](http://jsbin.com/naruvavaqi/3/edit?html,js,output)
+
+You can see a few new methods here. Let's start with `getInitialState`, it works similiar to `getDefaultProps`. 
+
+Before we can call `this.state` inside our `render` `function`, we need to use `getInitialState` to set up the `default` `values`, once we set it up we can call things like `this.state.response`, much like `this.props`.
+
+** NOTE: ** Don't use `props` to set your `initial state`. It's a `anti-pattern` and it is only `acceptable`, when you do something like call the `prop` something like: `initialCount`. 
+
+Key Point:
+
+> #### [Props in getInitialState Is an Anti-Pattern](https://facebook.github.io/react/tips/props-in-getInitialState-as-anti-pattern.html)
+>
+> ---
+>
+> Using props, passed down from parent, to generate state in getInitialState often leads to duplication of "source of truth", i.e. where the real data is. Whenever possible, compute values on-the-fly to ensure that they don't get out of sync later on and cause maintenance trouble.
+
+Read more: [Props in getInitialState Is an Anti-Pattern](https://facebook.github.io/react/tips/props-in-getInitialState-as-anti-pattern.html), please review this to see acceptable usage patterns.
 
 Read more: [State](https://facebook.github.io/react/docs/interactivity-and-dynamic-uis.html)
 
