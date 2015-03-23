@@ -91,13 +91,13 @@ A key point from the `React` documentation:
 >
 > In React, you simply update a component's state, and then render a new UI based on this new state. React takes care of updating the DOM for you in the most efficient way.
 
-Read more: [https://facebook.github.io/react/docs/interactivity-and-dynamic-uis.html](https://facebook.github.io/react/docs/interactivity-and-dynamic-uis.html)
+Read more: [Interactivity and Dynamic UIs](https://facebook.github.io/react/docs/interactivity-and-dynamic-uis.html)
 
 ### React JSX
 
 `JSX` is pretty interesting. It basically, allows us to write `HTML` / `XML` like syntax within our `React` `components`. Of course this wouldn't work if you tried to do that then serve it. Choosing to write your `React` `component` in `JSX` requires a `transform` process. This is typically handled through a `build` process or tool, like `webpack`.
 
-```javascript
+```js
 var Button = React.createClass({
 	render: function() {
 		return (
@@ -111,13 +111,147 @@ Here you can see a `React` `component` has a `render` `function`, which outputs 
 
 [JS Bin](http://jsbin.com/tapupafeqe/1/edit?html,js,output)
 
-Read more: [https://facebook.github.io/react/docs/jsx-in-depth.html](https://facebook.github.io/react/docs/jsx-in-depth.html)
+Read more: [JSX in Depth](https://facebook.github.io/react/docs/jsx-in-depth.html)
+
+### React Supported Attributes
+
+`React`, works with most common `HTML` elements, for example:
+
+```js
+var Link = React.createClass({
+	render: function() {
+		return (
+			<a href="http://google.com">Google</a>
+		);
+	}
+});
+
+```
+
+You just made a `a` tag. It can now be called via `<Link />`.
+
+[JS Bin](http://jsbin.com/vahezonoyi/1/edit?html,js,output)
+
+Read more: [React Tags and Attributes](http://facebook.github.io/react/docs/tags-and-attributes.html)
+
+### React Supported Events
+
+`React` also supports `browser` events.  Lets go back to our `Link` example:
+
+```js
+var Link = React.createClass({
+	render: function() {
+		return (
+			<a href="http://google.com" onClick={this.handleClick}>Google</a>
+		);
+	},
+
+	handleClick: function(e) {
+		e.preventDefault();
+
+		alert('You clicked me!');
+	}
+});
+
+```
+
+[JS Bin](http://jsbin.com/vahezonoyi/2/edit?html,js,output)
+
+Now, I know what you're thinking. `Inline events`, isn't that bad? It looks like its `inline` but its really not. `React` will attach the event for you via `event delegation`. So now we have a very declarative well to associate events to `DOM` elements. Now there's no confusion as to what `elements` have what `events` and there is no hassle for `managing` `ids`.
+
+Here's a key point from the `React` documentation:
+
+> #### [Event Handling and Synthetic Events](http://facebook.github.io/react/docs/interactivity-and-dynamic-uis.html#event-handling-and-synthetic-events)
+> With React you simply pass your event handler as a camelCased prop similar to how you'd do it in normal HTML. React ensures that all events behave identically in IE8 and above by implementing a synthetic event system. That is, React knows how to bubble and capture events according to the spec, and the events passed to your event handler are guaranteed to be consistent with the W3C spec, regardless of which browser you're using.
+>
+> If you'd like to use React on a touch device such as a phone or tablet, simply call `React.initializeTouchEvents(true);` to enable touch event handling.
+>
+> ---
+>
+> #### [Under the Hood: Autobinding and Event Delegation](http://facebook.github.io/react/docs/interactivity-and-dynamic-uis.html#under-the-hood-autobinding-and-event-delegation)
+>
+> **Autobinding:** When creating callbacks in JavaScript, you usually need to explicitly bind a method to its instance such that the value of this is correct. With React, every method is automatically bound to its component instance. React caches the bound method such that it's extremely CPU and memory efficient. It's also less typing!
+>
+> **Event delegation:** React doesn't actually attach event handlers to the nodes themselves. When React starts up, it starts listening for all events at the top level using a single event listener. When a component is mounted or unmounted, the event handlers are simply added or removed from an internal mapping. When an event occurs, React knows how to dispatch it using this mapping. When there are no event handlers left in the mapping, React's event handlers are simple no-ops. To learn more about why this is fast, see David Walsh's excellent blog post.
+
+In the example, we define a function, and simply pass the function to the `onClick` property.
+
+When the `click event` occurs, we receive back a `synthetic event`, can do with it as we please. `e.preventDefault()` to stop the `event propagation`, or get things like `e.target`.
+
+Read more: [React Events](http://facebook.github.io/react/docs/events.html)
+
+#### React Supported Events Continued
+
+You might find yourself wanting to get back a `value` or do something like add a custom `data-attribute`,  a common pattern from the `jQuery` days.
+
+```js
+var Link = React.createClass({
+	render: function() {
+		return (
+			<div>
+				<a href="http://google.com" onClick={this.handleClick} data-link="Google">Google</a>
+                <br />
+				<a href="http://facebook.com" onClick={this.handleClick} data-link="Facebook">Facebook</a>
+			</div>
+		);
+	},
+
+	handleClick: function(e) {
+		e.preventDefault();
+
+		alert('You clicked ' + e.target.getAttribute('data-link'));
+	}
+});
+
+```
+
+[JS Bin](http://jsbin.com/vahezonoyi/3/edit?html,js,output)
+
+It's actually totally unnecessary to do that. You can instead do `currying`. It looks something like this:
+
+```js
+var Link = React.createClass({
+	render: function() {
+		return (
+			<div>
+				<a href="http://google.com" onClick={this.handleClick.bind(null, 'Google')}>Google</a>
+                <br />
+				<a href="http://facebook.com" onClick={this.handleClick.bind(null, 'Facebook')}>Facebook</a>
+			</div>
+		);
+	},
+
+	handleClick: function(linkName, e) {
+		e.preventDefault();
+
+		alert('You clicked ' + linkName);
+	}
+});
+```
+
+[JS Bin](http://jsbin.com/vahezonoyi/4/edit?html,js,output)
+
+`JavaScript Is Sexy` describes `currying` as follows:
+
+> Function Currying, also known as partial function application, is the use of a function (that accept one or more arguments) that returns a new function with some of the arguments already set. The function that is returned has access to the stored arguments and variables of the outer function. This sounds way more complex than it actually is, so let’s code.
+
+We apply `null` instead of `this`, because we are only passing `values` that do not rely on `this`. When the `link` gets clicked, it will return the `value` from the `bind` and then the last argument will be our `event`.
+
+Another Key point from `JavaScript Is Sexy`:
+
+> When we use the bind () method for currying, all the parameters of the greet () function, except the last (rightmost) argument, are preset. So it is the rightmost argument that we are changing when we call the new functions that were curried from the greet () function. Again, I discuss currying at length in a separate blog post, and you will see how we can easily create very powerful functions with Currying and Compose, two Functional JavaScript concepts.
+
+Read more: [Currying](http://javascriptissexy.com/javascript-apply-call-and-bind-methods-are-essential-for-javascript-professionals/)
+
+Read more: [Understand Javascript's "this" with Clarity and Master It](http://javascriptissexy.com/understand-javascripts-this-with-clarity-and-master-it/)
+
+Read more: [React Autobinding](http://facebook.github.io/react/docs/interactivity-and-dynamic-uis.html#under-the-hood-autobinding-and-event-delegation)
 
 ### React Props
 
-`Props` are `properties`. They are `immutable`, and useful for passing data from a `parent` to a `child`. One thing to note about `props` is that they are `immutable`, that means the `component` **cannot** **change** them. Only the `parent` that is passing down the `props` to the `child` can  **change** them. `Props` flow downward like a waterfall.
+`Props` are `properties`. They are `immutable`, and useful for passing data from a `parent` to a `child`. One thing to note about `props` is that they are `immutable`, that means the `component` **cannot** **change** them. To change the `props`, the `Parent` must trigger a `render`, where it passes `new props` to the `child component`. `Props` flow downward like a waterfall.
 
-```
+```js
 // Parent Component
 var LikeList = React.createClass({
 	render: function() {
@@ -148,14 +282,177 @@ Here we have the `Parent Component`, `LikeList`, render a `unordered list`, with
 
 [JS Bin](http://jsbin.com/rerazageku/1/edit?html,js,output)
 
-Read more: [https://facebook.github.io/react/docs/transferring-props.html](https://facebook.github.io/react/docs/transferring-props.html)
+Read more: [Transferring Props](https://facebook.github.io/react/docs/transferring-props.html)
+
+#### getDefaultProps
+
+If we do not pass down `props` from the `Parent`, we can have the `child` set some `default` `props` with the `getDefaultProps` method.
+
+```js
+// Parent Component
+var LikeList = React.createClass({
+	render: function() {
+		return (
+			<ul>
+				<LikeListItem />
+			</ul>
+		);
+	}
+});
+
+
+// Child Component
+var LikeListItem = React.createClass({
+    getDefaultProps: function() {
+      return {
+        text: 'N/A'
+      };
+    },
+
+	render: function() {
+		return (
+			<li>
+				{this.props.text}
+			</li>
+		);
+	}
+});
+```
+
+If no `props` is set for `text`, we give it a `default` `value` of `N/A`. Inside the function we must `return` a `object {}`.
+
+[JS Bin](http://jsbin.com/volisofase/2/edit?html,js,output)
+
+Read more: [Default Prop Values](https://facebook.github.io/react/docs/reusable-components.html#default-prop-values)
+
+#### propTypes
+
+A useful way of documenting your `React` `components` that use `props`, is `propTypes`. When `Prop Validation` fails, you will get a notice inside your `dev console`. Check the `Read more` link to see all the available options.
+
+A key point from the `React` `documentation`:
+
+> ##### [Prop Validation](https://facebook.github.io/react/docs/reusable-components.html#prop-validation)
+> As your app grows it's helpful to ensure that your components are used correctly. We do this by allowing you to specify propTypes. React.PropTypes exports a range of validators that can be used to make sure the data you receive is valid. When an invalid value is provided for a prop, a warning will be shown in the JavaScript console. Note that for performance reasons propTypes is only checked in development mode. Here is an example documenting the different validators provided:
+> ...
+
+Example:
+
+```js
+// Child Component
+var LikeListItem = React.createClass({
+	propTypes: {
+		text: React.PropTypes.string
+	},
+
+	getDefaultProps: function() {
+ 		return {
+ 			text: 'N/A'
+      		};
+    	},
+
+	render: function() {
+		return (
+			<li>
+				{this.props.text}
+			</li>
+		);
+	}
+});
+```
+
+Here we declare that the `text` property, must  be a `string`.
+
+If we wanted to`require` the `text` `prop`, we can chain it with `isRequired`, like so:
+
+```js
+// Child Component
+var LikeListItem = React.createClass({
+	propTypes: {
+		text: React.PropTypes.string.isRequired
+	},
+...
+```
+
+Read more: [Prop Validation](https://facebook.github.io/react/docs/reusable-components.html#prop-validation)
 
 ### React State
 
-As `Pete Hunt` would say, `state` is the root of all evil. But it's a necessary one... unfortunately. In `React`, `state` is `mutable`, that means you can change it. When `state` changes, the `component` will trigger a `render`, and the whole tree will `rerender`, but don't worry. `React` has pretty good performance out of the box and does intelligent things like `diffing` the `virtual DOM`, so only the differences are applied.
+As `Pete Hunt` would say, *__state is the root of all evil__*. But it's a necessary one... unfortunately. In `React`, `state` is `mutable`, that means you can change it. When `state` changes, the `component` will trigger a `render`, and the whole tree will `rerender`, but don't worry. `React` has pretty good performance out of the box and does intelligent things like `diffing` the `virtual DOM`, so only the differences are applied.
 
+Where might state be useful?
 
-Read more: [https://facebook.github.io/react/docs/interactivity-and-dynamic-uis.html](https://facebook.github.io/react/docs/interactivity-and-dynamic-uis.html)
+Good question, let's consider a simple example... with something everyone should know: `jQuery`.
+
+```html
+<!--  index.html -->
+<body>
+  Do you like fish sticks?
+  
+  <br /><br />
+  
+  Response: I <span id="response">______</span> fishsticks.
+  
+  <br /><br />
+  
+  <a id="like" class="btn btn-success">I like it.</a>
+  <a id="dislike" class="btn btn-danger">I dislike it.</a>  
+</body>
+
+```
+
+```js
+// logic.js
+$('#like').on('click', function(e) {
+  e.preventDefault();
+
+  $('#response').text('like');
+});
+
+$('#dislike').on('click', function(e) {
+  e.preventDefault();
+
+  $('#response').text('dislike');
+});
+```
+
+Looks simple enough right? We want to update the response with either `like` or `dislike`. As you can imagine, if this started to become more complex, the code eventually becomes a lot harder to follow, because there be events all over the place modifying the `DOM` and you wouldn't be able to tell without going through all the logic, having to take in the entire flow of the application at once.
+
+Let's take a look at how this would look in `React`.
+
+```js
+var LikeComponent = React.createClass({
+	render: function() {
+		return (
+			<div>
+				Do you like fish sticks?
+
+				<br /><br />
+
+				Response: I {this.state.response} fishsticks.
+
+				<br /><br />
+
+				<a className="btn btn-success" onClick={this.handleLike}>I like it.</a>
+				<a className="btn btn-danger" onClick={this.handleDislike}>I dislike it.</a>
+			</div>
+		);
+	},
+
+	handleLike: function(e) {
+		this.setState({
+			response: 'like'
+		});
+	},
+
+	handleDislike: function(e) {
+		this.setState({
+			response: 'dislike'
+		});
+	}
+});
+```
+
+Read more: [State](https://facebook.github.io/react/docs/interactivity-and-dynamic-uis.html)
 
 ### React Lifecycle Events
 
