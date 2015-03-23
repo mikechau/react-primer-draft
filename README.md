@@ -1,7 +1,7 @@
 # react-primer-draft
 
 ## Table of Contents
-
+- [Author's Note](#authors-note)
 - [Part 1: Intro to React](#intro-to-react)
   - [0.0: What People are saying about React](#what-people-are-saying-about-react)
   - [1.0: React Component](#react-component)
@@ -23,29 +23,38 @@
       - [1.7.7: Unmounting: componentWillUnmount](#unmounting-componentwillunmount)
   - [1.8: React Dynamic Children](#react-dynamic-children)
   - [1.9: React Nested Views](#react-nested-views)
-  - [1.10: React Pure Render](#react-pure-render)
-  - [1.11: React and 3rd Party Libraries](#react-and-3rd-party-libraries)
-  - [1.12: React Developer Tools](#react-dev-tools)
+  - [1.10: React Mixins](#react-mixins)
+  - [1.11: React Pure Render](#react-pure-render)
+  - [1.12: React and 3rd Party Libraries](#react-and-3rd-party-libraries)
+  - [1.13: React Developer Tools](#react-dev-tools)
 - [Part 2: Harmony AKA ES6 AKA ES2015](#es2015)
   - [2.1: CONST and LET](#const-and-let)
   - [2.2: Fat Arrow](#fat-arrow)
   - [2.3: Classes](#classes)
   - [2.4: Babel](#babel)
 - [Part 3: Useful Libraries](#useful-libraries)
-  - [3.1: Superagent](#superagent)
-  - [3.2: Bluebird](#bluebird)
-  - [3.3: lodash](#lodash)
+    - [3.1: Superagent](#superagent)
+    - [3.2: Bluebird](#bluebird)
+    - [3.3: lodash](#lodash)
 - [Part 4: Webpack](#webpack)
-  - [4.1: Hot Module Replacement and Hot Reloading](#hot-module-replacement-and-hot-reloading)
+    - [4.1: Hot Module Replacement and Hot Reloading](#hot-module-replacement-and-hot-reloading)
 - [Part 5: React Router](#react-router)
 - [Part 6: Flux](#flux)
-  - [6.1: Alt](#alt)
-    - [6.1.1: Alt Actions](#alt-actions)
-    - [6.1.2: Alt Stores](#alt-stores)
+    - [6.1: Alt](#alt)
+      - [6.1.1: Alt Actions](#alt-actions)
+      - [6.1.2: Alt Stores](#alt-stores)
 - [Part 7: Testing](#testing)
     - [7.1: Mocha](#mocha)
 
 ---
+
+## Authors Note
+
+This primer makes use of several libraries, but it is by *__no__* means a "_React the right way_", or anything like that. It's just introduction to how I am building my own `React` applications. The goal of this primer to help developers interested in `React`, get familiar and dive right in. Maybe you will come up with approaches that work with better for you and I hope that you share them with the community! Or if you're already well versed, help improve this document so others in the community can benefit.
+
+This guide is dedicated to the engineers at `Jellyvision`, we are [hiring](http://www.jellyvision.com/jobs/) so check us out. :D
+
+~ Michael Chau (gh: [@mikechau](https://github.com/mikechau), twtr: [@money_mikec](https://twitter.com/money_mikec))
 
 ## Intro to React
 
@@ -129,6 +138,29 @@ React.render(<Button />, document.body);
 Here you can see a `React` `component` has a `render` `function`, which outputs the `markup`. We can easily see, at a glance exactly what the output will be.
 
 [JS Bin](http://jsbin.com/tapupafeqe/1/edit?html,js,output)
+
+**NOTE:** Your `React` `component` needs to always return a single `tag`.
+
+For example, you cannot do something like:
+
+```js
+return (
+	<div>Test</div>
+	<div>Tet 2</div>
+);
+``` 
+
+It has to be: 
+
+```js
+return (
+	<div>
+		<div>Test</div>
+		<div>Test 2</div>
+	</div>
+);
+```
+
 
 To render a `React` `component` in the body all you need to do is:
 
@@ -858,15 +890,46 @@ Alright this example a bit verbose, but hopefully it drives home how you can bui
 So let's summarize what is happening here:
 
 1. The `state` is initialized, `this.state.animals` set to an `empty` `array`.
-2. The component will mount, we do nothing here
-3. The component did mount, we call `this._fetchRemoteData()`
-4. When `this._fetchRemoteData()` is triggered, `this.setState(..)` is called and a `render` happens! The `update` `lifecycle events` are also triggered. 
+2. The component will mount, we do nothing here.
+3. When `render` is called, we check if there is anything inside `this.state.animals`, if there is nothing, we render a `div` that says `No animals!`. This could probably be a loading indicator if you are fetching data as soon as the `componentDidMount`.
+4. The component did mount, we call `this._fetchRemoteData()`
+5. When `this._fetchRemoteData()` is triggered, `this.setState(..)` is called and a `render` happens! The `update` `lifecycle events` are also triggered. 
 
-There are also `buttons` that trigger a `reset` or `fetch`. Pretty self explanatory.
+There are also `buttons` that trigger a `reset` or `fetch`, just look at the `handler` `methods`, to see how they `update` the `state`. Changing `state`, tells `React` to `rerender`.
+
+So, to sum it all up, to render `children`, simply `map` over your `collection` and `return` the `components` you want rendered by passing in the `collections` `item` `attributes` as `props`.
+
+Read more: [React vs. Ember by Alex Matchneer](https://docs.google.com/presentation/d/1afMLTCpRxhJpurQ97VBHCZkLbR1TEsRnd3yyxuSQ5YY/edit#slide=id.p)
+
+---
+
+### React Nested Views
+
+`React` is great for working with trees.
+
+---
+
+### React Mixins
 
 ---
 
 ### React Pure Render
+
+A simple performance boost you can get out of `React` is through the `PureRenderMixin`.
+
+Per the `React` documentation:
+
+> If your React component's render function is "pure" (in other words, it renders the same result given the same props and state), you can use this mixin for a performance boost in some cases.
+>
+> Under the hood, the mixin implements shouldComponentUpdate, in which it compares the current props and state with the next ones and returns false if the equalities pass.
+>
+> **Note:**
+> This only shallowly compares the objects. If these contain complex data structures, it may produce false-negatives for deeper differences. Only mix into components which have simple props and state, or use forceUpdate() when you know deep data structures have changed. Or, consider using immutable objects to facilitate fast comparisons of nested data.
+> Furthermore, shouldComponentUpdate skips updates for the whole component subtree. Make sure all the children components are also "pure".
+
+
+
+Read more: [PureRenderMixin](https://facebook.github.io/react/docs/pure-render-mixin.html)
 
 ---
 
