@@ -3,6 +3,7 @@
 ## Table of Contents
 
 - [Part 1: Intro to React](#intro-to-react)
+  - [1.0: React Component](#react-component)
   - [1.1: React JSX](#react-jsx)
   - [1.1: React Props](#react-props)
   - [1.2: React State](#react-state)
@@ -41,7 +42,36 @@ Developers often call it the `V in MVC`, or talk about the its `virtual DOM` (no
 
 This `primer` is a means to get you rapidly ready to start working with a `React` application. Its goal is not to teach and explain everything, but merely introduce concepts and help you form the right questions to ask and to have an idea of where to look for an answer. It is OK if you do not understand everything at first, just keep working at by commiting the code you see to muscle memory and reading up on the documentation. Hopefully through `reflection`, and `incubation`, the concepts here will start to make sense. 
 
+### React Component
+
+A `React` component encapsulates everything. It does not seperate the `view` from the `view logic`, but rather merges the two together. The seperation of concerns does not really make sense when building a `ui`, the `view` and its `view logic` are inevitably tightly coupuled. Rather than jumping between a `template file` and some sort of `view-controller` it makes sense to keep them together. `React` `components` are usually small enough that this is not a big deal to have the two together, and if it does get to be too large you can break down your `component` into smaller `components`.  
+
+A key point from the `React` documentation:
+
+> ## Components are Just State Machines
+> React thinks of UIs as simple state machines. By thinking of a UI as being in various states and rendering those states, it's easy to keep your UI consistent.
+>
+> In React, you simply update a component's state, and then render a new UI based on this new state. React takes care of updating the DOM for you in the most efficient way.
+
+Read more: [https://facebook.github.io/react/docs/interactivity-and-dynamic-uis.html](https://facebook.github.io/react/docs/interactivity-and-dynamic-uis.html)
+
 ### React JSX
+
+`JSX` is pretty interesting. It basically, allows us to write `HTML` / `XML` like syntax within our `React` `components`. Of course this wouldn't work if you tried to do that then serve it. Choosing to write your `React` `component` in `JSX` requires a `transform` process. This is typically handled through a `build` process or tool, like `webpack`.
+
+```javascript
+var Button = React.createClass({
+	render: function() {
+		return (
+ 			<a className="btn btn-default">I am a button! Click me!</a>
+		);
+ 	}
+});
+```
+
+[JS Bin](http://jsbin.com/tapupafeqe/1/edit?html,js,output)
+
+Read more: [https://facebook.github.io/react/docs/jsx-in-depth.html](https://facebook.github.io/react/docs/jsx-in-depth.html)
 
 ### React Props
 
