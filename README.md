@@ -257,18 +257,25 @@ var Link = React.createClass({
 `JavaScript Is Sexy` describes `currying` as follows:
 
 > Function Currying, also known as partial function application, is the use of a function (that accept one or more arguments) that returns a new function with some of the arguments already set. The function that is returned has access to the stored arguments and variables of the outer function. This sounds way more complex than it actually is, so let’s code.
+> ...
 
-We apply `null` instead of `this`, because we are only passing `values` that do not rely on `this`. When the `link` gets clicked, it will return the `value` from the `bind` and then the last argument will be our `event`.
+An explanation of `.bind('this', ...)` vs `.bind(null, ...)` by `Morhaus` on `#reactjs`:
 
-Another Key point from `JavaScript Is Sexy`:
+> React autobinds methods in the object you pass to `React.createClass()` to the component instance, so using `this.handleClick.bind(null, 'test')` will ensure that behavior is not messed with
+> ...
+>  pass null instead, unless you're not using `React.createClass()` but `class extends React.Component`, in which case methods are not auto bound
 
-> When we use the bind () method for currying, all the parameters of the greet () function, except the last (rightmost) argument, are preset. So it is the rightmost argument that we are changing when we call the new functions that were curried from the greet () function. Again, I discuss currying at length in a separate blog post, and you will see how we can easily create very powerful functions with Currying and Compose, two Functional JavaScript concepts.
+`this` can be passed to preserve the `context`, or we can pass `null`, if it is not necessary. In this case, since we are using `React.createClass`, `React` will `autobind` for us, so we can just pass `null` and the arguments we want to pass.
 
 Read more: [Currying](http://javascriptissexy.com/javascript-apply-call-and-bind-methods-are-essential-for-javascript-professionals/)
 
 Read more: [Understand Javascript's "this" with Clarity and Master It](http://javascriptissexy.com/understand-javascripts-this-with-clarity-and-master-it/)
 
 Read more: [React Autobinding](http://facebook.github.io/react/docs/interactivity-and-dynamic-uis.html#under-the-hood-autobinding-and-event-delegation)
+
+Read more: [bind(): React component methods may only be bound to the component instance](https://groups.google.com/forum/#!topic/reactjs/Xv9_kVoJJOw)
+
+Read more: [Partial application in JavasScript with `bind`](https://coderwall.com/p/nw9cxg/partial-application-in-javascript-with-bind)
 
 ---
 
@@ -599,6 +606,8 @@ Read more: [componentWillUnmount](https://facebook.github.io/react/docs/componen
 ---
 
 ### React Dynamic Children
+
+
 
 ---
 
