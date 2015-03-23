@@ -262,7 +262,9 @@ var Link = React.createClass({
 An explanation of `.bind('this', ...)` vs `.bind(null, ...)` by `Morhaus` on `#reactjs`:
 
 > React autobinds methods in the object you pass to `React.createClass()` to the component instance, so using `this.handleClick.bind(null, 'test')` will ensure that behavior is not messed with
+>
 > ...
+>
 >  pass null instead, unless you're not using `React.createClass()` but `class extends React.Component`, in which case methods are not auto bound
 
 `this` can be passed to preserve the `context`, or we can pass `null`, if it is not necessary. In this case, since we are using `React.createClass`, `React` will `autobind` for us, so we can just pass `null` and the arguments we want to pass.
