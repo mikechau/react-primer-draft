@@ -27,7 +27,7 @@
   - [1.11: React Pure Render](#react-pure-render)
   - [1.12: React and 3rd Party Libraries](#react-and-3rd-party-libraries)
   - [1.13: React Developer Tools](#react-dev-tools)
-- [Part 2: Harmony AKA ES6 AKA ES2015](#es2015)
+- [Part 2: Harmony aka ES6 aka ES2015](#es2015)
   - [2.1: CONST and LET](#const-and-let)
   - [2.2: Fat Arrow](#fat-arrow)
   - [2.3: Classes](#classes)
@@ -482,6 +482,30 @@ var LikeListItem = React.createClass({
 
 Read more: [Prop Validation](https://facebook.github.io/react/docs/reusable-components.html#prop-validation)
 
+#### className
+
+When trying to set the `class` in a element, you need to use `className`, as there are issues using the `class` keyword.
+
+Review: [Tags and Attributes](https://facebook.github.io/react/docs/tags-and-attributes.html) for more details on the supported `HTML` tags and `attributes`.
+
+Review: [Events](https://facebook.github.io/react/docs/events.html) for the supported browser events.
+
+#### Passing a Prop
+
+If you are are passing down a `prop` and it is a `boolean`, you can simply just add the key.
+
+```js
+// SomeComponent.jsx
+var SomeComponent = React.createClass({
+	render: function() {
+		return (
+			<AnotherComponent checked />
+		);
+	}
+});
+```
+`AnotherComponent`'s `this.props.checked` would resolve to true.
+
 ---
 
 ### React State
@@ -905,11 +929,86 @@ Read more: [React vs. Ember by Alex Matchneer](https://docs.google.com/presentat
 
 ### React Nested Views
 
-`React` is great for working with trees.
+`React` is great for working with a tree structure like `HTML`. You can nest to your hearts content, it's encouraged. Remember everything is a `component`. It's just like working in `HTML`, so it should start to come naturally to you.
+
+Consider this, we have a `component` known as `App`:
+
+```js
+React.render(<App />, document.getElementById('#content'));
+```
+
+We render it to `#content`.
+
+Inside the `App` component its `render` could have an assortment of `components`. Maybe it looks like this:
+
+```js
+// App.jsx
+...
+render: function() {
+	return (
+		<div>
+			<SubNavBar />
+
+			<MainContent>
+		</div>
+	);
+}
+...
+
+// SubNavBar.jsx
+...
+render: function() {
+	return (
+		<Nav>
+			<SearchBar />
+			<NavMenuDropdown>
+				<NavItemLink name='Edit Profile' to='/edit' />
+				<NavItemLink name='Logout' to='/logout' />
+			<NavMenuDropdown>
+		</Nav>
+	);
+}
+...
+
+// MainContent.jsx
+...
+render: function() {
+	return (
+		<Grid fluid>
+			<Col md={3}>
+				<Sidebar />
+			</Col>
+
+			<Col md={9}>
+				<Dashboard />
+			</Col>
+		</Grid>
+	);
+}
+...
+
+```
+
+Each `component`, could keep going. Eventually you'd reach a point it actually returns the `HTML`, for example, `Grid` might actually just be an `abstraction` for:
+
+```js
+// Grid.jsx
+render: function() {
+	return (
+		<div className={this._classNames()}>
+			{this.props.children}
+		</div>
+	);
+}
+```
 
 ---
 
 ### React Mixins
+
+`Mixins` are a way of sharing resuable functionality between components.
+
+Read more: [Mixins](https://facebook.github.io/react/docs/reusable-components.html#mixins)
 
 ---
 
