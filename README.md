@@ -14,6 +14,13 @@
       - [1.5.2: propTypes](#proptypes)
   - [1.6: React State](#react-state)
   - [1.7: React Lifecycle Events](#react-lifecycle-events)
+      - [1.7.1: Mounting: componentWillMount](#mounting-componentwillmount)
+      - [1.7.2: Mounting: componentDidMount](#mounting-componentdidmount)
+      - [1.7.3: Updating: componentWillReceiveProps](#updating-componentwillreceiveprops)
+      - [1.7.4: Updating: shouldComponentUpdate](#updating-shouldcomponentupdate)
+      - [1.7.5: Updating: componentWillUpdate](#updating-componentwillupdate)
+      - [1.7.6: Updating: componentDidUpdate](#updating-componentdidupdate)
+      - [1.7.7: Unmounting: componentWillUnmount](#unmounting-componentwillunmount)
   - [1.8: React Dynamic Children](#react-dynamic-children)
   - [1.9: React Nested Views](#react-nested-views)
   - [1.10: React Pure Render](#react-pure-render)
@@ -36,7 +43,7 @@
     - [6.1.1: Alt Actions](#alt-actions)
     - [6.1.2: Alt Stores](#alt-stores)
 - [Part 7: Testing](#testing)
-    - [7.1: Mocha](#mocha) 
+    - [7.1: Mocha](#mocha)
 
 ---
 
@@ -67,7 +74,6 @@ Don't be afraid of `React` either.  It may seem `complex` but it is quite simple
 
 ### What people are saying about React:
 
->
 > ---
 > My favorite part of React is what I loved about MooTools: to use it effectively you learn JavaScript, not a DSL: useful your whole career.
 > -  [Ryan Florence (@ryanflorence)](https://twitter.com/ryanflorence/status/577685415919898625)
@@ -110,11 +116,11 @@ Read more: [Interactivity and Dynamic UIs](https://facebook.github.io/react/docs
 
 ```js
 var Button = React.createClass({
-  render: function() {
-    return (
-      <a className="btn btn-default">I am a button! Click me!</a>
-    );
-  }
+	render: function() {
+		return (
+ 			<a className="btn btn-default">I am a button! Click me!</a>
+		);
+ 	}
 });
 ```
 
@@ -132,12 +138,13 @@ Read more: [JSX in Depth](https://facebook.github.io/react/docs/jsx-in-depth.htm
 
 ```js
 var Link = React.createClass({
-  render: function() {
-    return (
-      <a href="http://google.com">Google</a>
-    );
-  }
+	render: function() {
+		return (
+			<a href="http://google.com">Google</a>
+		);
+	}
 });
+
 ```
 
 You just made a `a` tag. It can now be called via `<Link />`.
@@ -154,18 +161,19 @@ Read more: [React Tags and Attributes](http://facebook.github.io/react/docs/tags
 
 ```js
 var Link = React.createClass({
-  render: function() {
-    return (
-      <a href="http://google.com" onClick={this.handleClick}>Google</a>
-    );
-  },
+	render: function() {
+		return (
+			<a href="http://google.com" onClick={this.handleClick}>Google</a>
+		);
+	},
 
-  handleClick: function(e) {
-    e.preventDefault();
+	handleClick: function(e) {
+		e.preventDefault();
 
-    alert('You clicked me!');
-  }
+		alert('You clicked me!');
+	}
 });
+
 ```
 
 [JS Bin](http://jsbin.com/vahezonoyi/2/edit?html,js,output)
@@ -201,21 +209,21 @@ You might find yourself wanting to get back a `value` or do something like add a
 
 ```js
 var Link = React.createClass({
-  render: function() {
-    return (
-      <div>
-        <a href="http://google.com" onClick={this.handleClick} data-link="Google">Google</a>
-        <br />
-        <a href="http://facebook.com" onClick={this.handleClick} data-link="Facebook">Facebook</a>
-      </div>
-    );
-  },
+	render: function() {
+		return (
+			<div>
+				<a href="http://google.com" onClick={this.handleClick} data-link="Google">Google</a>
+                <br />
+				<a href="http://facebook.com" onClick={this.handleClick} data-link="Facebook">Facebook</a>
+			</div>
+		);
+	},
 
-  handleClick: function(e) {
-    e.preventDefault();
+	handleClick: function(e) {
+		e.preventDefault();
 
-    alert('You clicked ' + e.target.getAttribute('data-link'));
-  }
+		alert('You clicked ' + e.target.getAttribute('data-link'));
+	}
 });
 
 ```
@@ -226,21 +234,21 @@ It's actually totally unnecessary to do that. You can instead do `currying`. It 
 
 ```js
 var Link = React.createClass({
-  render: function() {
-    return (
-      <div>
-        <a href="http://google.com" onClick={this.handleClick.bind(null, 'Google')}>Google</a>
-        <br />
-        <a href="http://facebook.com" onClick={this.handleClick.bind(null, 'Facebook')}>Facebook</a>
-      </div>
-    );
-  },
+	render: function() {
+		return (
+			<div>
+				<a href="http://google.com" onClick={this.handleClick.bind(null, 'Google')}>Google</a>
+                <br />
+				<a href="http://facebook.com" onClick={this.handleClick.bind(null, 'Facebook')}>Facebook</a>
+			</div>
+		);
+	},
 
-  handleClick: function(linkName, e) {
-    e.preventDefault();
+	handleClick: function(linkName, e) {
+		e.preventDefault();
 
-    alert('You clicked ' + linkName);
-  }
+		alert('You clicked ' + linkName);
+	}
 });
 ```
 
@@ -271,27 +279,29 @@ Read more: [React Autobinding](http://facebook.github.io/react/docs/interactivit
 ```js
 // Parent Component
 var LikeList = React.createClass({
-  render: function() {
-    return (
-      <ul>
-        <LikeListItem text='turtles.' />
-      </ul>
-    );
-  }
+	render: function() {
+		return (
+			<ul>
+				<LikeListItem text='turtles.' />
+			</ul>
+		);
+	}
 });
 
 
 // Child Component
 var LikeListItem = React.createClass({
-  render: function() {
-    return (
-      <li>{this.props.text}</li>
-    );
-  }
+	render: function() {
+		return (
+			<li>
+				{this.props.text}
+			</li>
+		);
+	}
 });
 ```
 
-Here we have the `Parent Component`, `LikeList`, render a `unordered list`, with one `child`, a `LikeListItem`. In the `LikeListItem`, we pass a property known as `text`. 
+Here we have the `Parent Component`, `LikeList`, render a `unordered list`, with one `child`, a `LikeListItem`. In the `LikeListItem`, we pass a property known as `text`.
 
 `Props` are avaliable within a `component` via `this.props`. To access `text` we do `this.props.text`. Here we simply call it in our `render` `function`.
 
@@ -306,13 +316,13 @@ If we do not pass down `props` from the `Parent`, we can have the `child` set so
 ```js
 // Parent Component
 var LikeList = React.createClass({
-  render: function() {
-    return (
-      <ul>
-        <LikeListItem />
-      </ul>
-    );
-  }
+	render: function() {
+		return (
+			<ul>
+				<LikeListItem />
+			</ul>
+		);
+	}
 });
 
 
@@ -324,11 +334,13 @@ var LikeListItem = React.createClass({
       };
     },
 
-  render: function() {
-    return (
-      <li>{this.props.text}</li>
-    );
-  }
+	render: function() {
+		return (
+			<li>
+				{this.props.text}
+			</li>
+		);
+	}
 });
 ```
 
@@ -353,21 +365,23 @@ Example:
 ```js
 // Child Component
 var LikeListItem = React.createClass({
-  propTypes: {
-    text: React.PropTypes.string
-  },
+	propTypes: {
+		text: React.PropTypes.string
+	},
 
-  getDefaultProps: function() {
-    return {
-      text: 'N/A'
-          };
-      },
+	getDefaultProps: function() {
+ 		return {
+ 			text: 'N/A'
+      		};
+    	},
 
-  render: function() {
-    return (
-      <li>{this.props.text}</li>
-    );
-  }
+	render: function() {
+		return (
+			<li>
+				{this.props.text}
+			</li>
+		);
+	}
 });
 ```
 
@@ -434,53 +448,54 @@ Let's take a look at how this would look in `React`.
 
 ```js
 var LikeComponent = React.createClass({
-  getInitialState: function() {
-    return {
-      response: ''
-    };
-  },
+	getInitialState: function() {
+		return {
+			response: ''
+		};
+	},
 
-  render: function() {
-    return (
-      <div>
-        Do you like fish sticks?
-        <br />
-        <br />
-        Response: I {this.state.response || '_____'} fishsticks.
-        <br />
-        <br />
+	render: function() {
+		return (
+			<div>
+				Do you like fish sticks?
 
-        <a className="btn btn-success" onClick={this.handleLike}>I like it.</a>
-        <a className="btn btn-danger" onClick={this.handleDislike}>I dislike it.</a>
-      </div>
-    );
-  },
+				<br /><br />
 
-  handleLike: function(e) {
-    e.preventDefault();
+				Response: I {this.state.response || '_____'} fishsticks.
 
-    this.setState({
-      response: 'like'
-    });
-  },
+				<br /><br />
 
-  handleDislike: function(e) {
-    e.preventDefault();
+				<a className="btn btn-success" onClick={this.handleLike}>I like it.</a>
+				<a className="btn btn-danger" onClick={this.handleDislike}>I dislike it.</a>
+			</div>
+		);
+	},
 
-    this.setState({
-      response: 'dislike'
-    });
-  }
+	handleLike: function(e) {
+		e.preventDefault();
+
+		this.setState({
+			response: 'like'
+		});
+	},
+
+	handleDislike: function(e) {
+		e.preventDefault();
+
+		this.setState({
+			response: 'dislike'
+		});
+	}
 });
 ```
 
 [JS Bin](http://jsbin.com/naruvavaqi/3/edit?html,js,output)
 
-You can see a few new methods here. Let's start with `getInitialState`, it works similiar to `getDefaultProps`. 
+You can see a few new methods here. Let's start with `getInitialState`, it works similiar to `getDefaultProps`.
 
 Before we can call `this.state` inside our `render` `function`, we need to use `getInitialState` to set up the `default` `values`, once we set it up we can call things like `this.state.response`, much like `this.props`.
 
-** NOTE: ** Don't use `props` to set your `initial state`. It's a `anti-pattern` and it is only `acceptable`, when you do something like call the `prop` something like: `initialCount`. 
+** NOTE: ** Don't use `props` to set your `initial state`. It's a `anti-pattern` and it is only `acceptable`, when you do something like call the `prop` something like: `initialCount`.
 
 Key Point:
 
@@ -497,6 +512,89 @@ Read more: [State](https://facebook.github.io/react/docs/interactivity-and-dynam
 ---
 
 ### React Lifecycle Events
+
+`React` has several lifecycle events. This lets you do things at specific points of a `components` lifecycle. The `React` documentation covers this section very well, so we will just quote it and show you some examples of how they work.
+
+Read more: [Component Specs and Lifecycle Events](https://facebook.github.io/react/docs/component-specs.html)
+
+#### Mounting: componentWillMount
+
+`componentWillMount()`
+
+> Invoked once, both on the client and server, immediately before the initial rendering occurs. If you call `setState` within this method, `render()` will see the updated state and will be executed only once despite the state change.
+
+Read more: [componentWillMount](https://facebook.github.io/react/docs/component-specs.html#mounting-componentwillmount)
+
+#### Mounting: componentDidMount
+
+`componentDidMount()`
+
+> Invoked once, only on the client (not on the server), immediately after the initial rendering occurs. At this point in the lifecycle, the component has a DOM representation which you can access via `React.findDOMNode(this) [React 0.13+]` or `this.getDOMNode() [React 0.12.x]`.
+>
+> If you want to integrate with other JavaScript frameworks, set timers using setTimeout or setInterval, or send AJAX requests, perform those operations in this method.
+
+Read more: [componentDidMount](https://facebook.github.io/react/docs/component-specs.html#mounting-componentdidmount)
+
+#### Updating: componentWillReceiveProps
+
+`componentWillReceiveProps(object nextProps)`
+
+> Invoked when a component is receiving new props. This method is not called for the initial render.
+>
+> Use this as an opportunity to react to a prop transition before `render()` is called by updating the state using `this.setState()`. The old props can be accessed via `this.props`. Calling `this.setState()` within this function will not trigger an additional render.
+>
+>  **NOTE:**
+> There is no analogous method `componentWillReceiveState`. An incoming prop transition may cause a state change, but the opposite is not true. If you need to perform operations in response to a state change, use `componentWillUpdate`.
+
+Read more: [componentWillReceiveProps](https://facebook.github.io/react/docs/component-specs.html#updating-componentwillreceiveprops)
+
+#### Updating: shouldComponentUpdate
+
+`boolean shouldComponentUpdate(object nextProps, object nextState)`
+
+> Invoked before rendering when new props or state are being received. This method is not called for the initial render or when `forceUpdate` is used.
+>
+> Use this as an opportunity to `return false` when you're certain that the transition to the new props and state will not require a component update.
+>
+> If `shouldComponentUpdate` `returns` `false`, then `render()` will be completely skipped until the next state change. (In addition, `componentWillUpdate` and `componentDidUpdate` will not be called.)
+> 
+> By default, `shouldComponentUpdate` always `returns` `true` to prevent subtle bugs when state is mutated in place, but if you are careful to always treat state as immutable and to read only from props and state in `render()` then you can override `shouldComponentUpdate` with an implementation that compares the old props and state to their replacements.
+>
+> If performance is a bottleneck, especially with dozens or hundreds of components, use `shouldComponentUpdate` to speed up your app.
+
+#### Updating: componentWillUpdate
+
+`componentWillUpdate(object nextProps, object nextState)`
+
+> Invoked immediately before rendering when new props or state are being received. This method is not called for the initial render.
+>
+> Use this as an opportunity to perform preparation before an update occurs.
+>
+> **Note:**
+> You cannot use `this.setState()` in this method. If you need to update state in response to a prop change, use `componentWillReceiveProps` instead.
+
+
+Read more: [componentWillUpdate](https://facebook.github.io/react/docs/component-specs.html#updating-componentwillupdate)
+
+#### Updating: componentDidUpdate
+
+`componentDidUpdate(object prevProps, object prevState)`
+
+> Invoked immediately after the component's updates are flushed to the DOM. This method is not called for the initial render.
+>
+> Use this as an opportunity to operate on the DOM when the component has been updated.
+
+Read more: [componentDidUpdate](https://facebook.github.io/react/docs/component-specs.html#updating-componentdidupdate)
+
+#### Unmounting: componentWillUnmount
+
+`componentWillUnmount()`
+
+> Invoked immediately before a component is unmounted from the DOM.
+>
+> Perform any necessary cleanup in this method, such as invalidating timers or cleaning up any DOM elements that were created in componentDidMount.
+
+Read more: [componentWillUnmount](https://facebook.github.io/react/docs/component-specs.html#unmounting-componentwillunmount)
 
 ---
 
@@ -523,7 +621,7 @@ Read more: [State](https://facebook.github.io/react/docs/interactivity-and-dynam
 
 ---
 
-## 
+##
 
 ---
 
