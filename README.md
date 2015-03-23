@@ -6,14 +6,19 @@
   - [0.0: What People are saying about React](#what-people-are-saying-about-react)
   - [1.0: React Component](#react-component)
   - [1.1: React JSX](#react-jsx)
-  - [1.1: React Props](#react-props)
-  - [1.2: React State](#react-state)
-  - [1.3: React Lifecycle Events](#react-lifecycle-events)
-  - [1.4: React Dynamic Children](#react-dynamic-children)
-  - [1.5: React Nested Views](#react-nested-views)
-  - [1.6: React Pure Render](#react-pure-render)
-  - [1.7: React and 3rd Party Libraries](#react-and-3rd-party-libraries)
-  - [1.8: React Developer Tools](#react-dev-tools)
+  - [1.2: React Supported Attributes](#react-supported-attributes)
+  - [1.3: React Supported Events](#react-supported-events)
+  - [1.4: React Supported Events Continued](#react-supported-events-continued)
+  - [1.5: React Props](#react-props)
+      - [1.5.1: getDefaultProps](#getdefaultprops)
+      - [1.5.2: propTypes](#proptypes)
+  - [1.6: React State](#react-state)
+  - [1.7: React Lifecycle Events](#react-lifecycle-events)
+  - [1.8: React Dynamic Children](#react-dynamic-children)
+  - [1.9: React Nested Views](#react-nested-views)
+  - [1.10: React Pure Render](#react-pure-render)
+  - [1.11: React and 3rd Party Libraries](#react-and-3rd-party-libraries)
+  - [1.12: React Developer Tools](#react-dev-tools)
 - [Part 2: Harmony AKA ES6 AKA ES2015](#es2015)
   - [2.1: CONST and LET](#const-and-let)
   - [2.2: Fat Arrow](#fat-arrow)
@@ -58,6 +63,8 @@ Don't be afraid of `React` either.  It may seem `complex` but it is quite simple
 11. `componentDidUpdate`
 12. `componentWillUnmount`
 
+---
+
 ### What people are saying about React:
 
 >
@@ -80,18 +87,22 @@ Don't be afraid of `React` either.  It may seem `complex` but it is quite simple
 
 [Remember to just give it 5 minutes](https://signalvnoise.com/posts/3124-give-it-five-minutes).
 
+---
+
 ### React Component
 
 A `React` component encapsulates everything. It does not seperate the `view` from the `view logic`, but rather merges the two together. The seperation of concerns does not really make sense when building a `ui`, the `view` and its `view logic` are inevitably tightly coupuled. Rather than jumping between a `template file` and some sort of `view-controller` it makes sense to keep them together. `React` `components` are usually small enough that this is not a big deal to have the two together, and if it does get to be too large you can break down your `component` into smaller `components`.  
 
-A key point from the `React` documentation:
+A key point from the `React` `documentation`:
 
-> ## Components are Just State Machines
+> #### [Components are Just State Machines](https://facebook.github.io/react/docs/interactivity-and-dynamic-uis.html#components-are-just-state-machines)
 > React thinks of UIs as simple state machines. By thinking of a UI as being in various states and rendering those states, it's easy to keep your UI consistent.
 >
 > In React, you simply update a component's state, and then render a new UI based on this new state. React takes care of updating the DOM for you in the most efficient way.
 
 Read more: [Interactivity and Dynamic UIs](https://facebook.github.io/react/docs/interactivity-and-dynamic-uis.html)
+
+---
 
 ### React JSX
 
@@ -99,11 +110,11 @@ Read more: [Interactivity and Dynamic UIs](https://facebook.github.io/react/docs
 
 ```js
 var Button = React.createClass({
-	render: function() {
-		return (
- 			<a className="btn btn-default">I am a button! Click me!</a>
-		);
- 	}
+  render: function() {
+    return (
+      <a className="btn btn-default">I am a button! Click me!</a>
+    );
+  }
 });
 ```
 
@@ -113,19 +124,20 @@ Here you can see a `React` `component` has a `render` `function`, which outputs 
 
 Read more: [JSX in Depth](https://facebook.github.io/react/docs/jsx-in-depth.html)
 
+---
+
 ### React Supported Attributes
 
 `React`, works with most common `HTML` elements, for example:
 
 ```js
 var Link = React.createClass({
-	render: function() {
-		return (
-			<a href="http://google.com">Google</a>
-		);
-	}
+  render: function() {
+    return (
+      <a href="http://google.com">Google</a>
+    );
+  }
 });
-
 ```
 
 You just made a `a` tag. It can now be called via `<Link />`.
@@ -134,25 +146,26 @@ You just made a `a` tag. It can now be called via `<Link />`.
 
 Read more: [React Tags and Attributes](http://facebook.github.io/react/docs/tags-and-attributes.html)
 
+---
+
 ### React Supported Events
 
 `React` also supports `browser` events.  Lets go back to our `Link` example:
 
 ```js
 var Link = React.createClass({
-	render: function() {
-		return (
-			<a href="http://google.com" onClick={this.handleClick}>Google</a>
-		);
-	},
+  render: function() {
+    return (
+      <a href="http://google.com" onClick={this.handleClick}>Google</a>
+    );
+  },
 
-	handleClick: function(e) {
-		e.preventDefault();
+  handleClick: function(e) {
+    e.preventDefault();
 
-		alert('You clicked me!');
-	}
+    alert('You clicked me!');
+  }
 });
-
 ```
 
 [JS Bin](http://jsbin.com/vahezonoyi/2/edit?html,js,output)
@@ -180,27 +193,29 @@ When the `click event` occurs, we receive back a `synthetic event`, can do with 
 
 Read more: [React Events](http://facebook.github.io/react/docs/events.html)
 
+---
+
 #### React Supported Events Continued
 
 You might find yourself wanting to get back a `value` or do something like add a custom `data-attribute`,  a common pattern from the `jQuery` days.
 
 ```js
 var Link = React.createClass({
-	render: function() {
-		return (
-			<div>
-				<a href="http://google.com" onClick={this.handleClick} data-link="Google">Google</a>
-                <br />
-				<a href="http://facebook.com" onClick={this.handleClick} data-link="Facebook">Facebook</a>
-			</div>
-		);
-	},
+  render: function() {
+    return (
+      <div>
+        <a href="http://google.com" onClick={this.handleClick} data-link="Google">Google</a>
+        <br />
+        <a href="http://facebook.com" onClick={this.handleClick} data-link="Facebook">Facebook</a>
+      </div>
+    );
+  },
 
-	handleClick: function(e) {
-		e.preventDefault();
+  handleClick: function(e) {
+    e.preventDefault();
 
-		alert('You clicked ' + e.target.getAttribute('data-link'));
-	}
+    alert('You clicked ' + e.target.getAttribute('data-link'));
+  }
 });
 
 ```
@@ -211,21 +226,21 @@ It's actually totally unnecessary to do that. You can instead do `currying`. It 
 
 ```js
 var Link = React.createClass({
-	render: function() {
-		return (
-			<div>
-				<a href="http://google.com" onClick={this.handleClick.bind(null, 'Google')}>Google</a>
-                <br />
-				<a href="http://facebook.com" onClick={this.handleClick.bind(null, 'Facebook')}>Facebook</a>
-			</div>
-		);
-	},
+  render: function() {
+    return (
+      <div>
+        <a href="http://google.com" onClick={this.handleClick.bind(null, 'Google')}>Google</a>
+        <br />
+        <a href="http://facebook.com" onClick={this.handleClick.bind(null, 'Facebook')}>Facebook</a>
+      </div>
+    );
+  },
 
-	handleClick: function(linkName, e) {
-		e.preventDefault();
+  handleClick: function(linkName, e) {
+    e.preventDefault();
 
-		alert('You clicked ' + linkName);
-	}
+    alert('You clicked ' + linkName);
+  }
 });
 ```
 
@@ -247,6 +262,8 @@ Read more: [Understand Javascript's "this" with Clarity and Master It](http://ja
 
 Read more: [React Autobinding](http://facebook.github.io/react/docs/interactivity-and-dynamic-uis.html#under-the-hood-autobinding-and-event-delegation)
 
+---
+
 ### React Props
 
 `Props` are `properties`. They are `immutable`, and useful for passing data from a `parent` to a `child`. One thing to note about `props` is that they are `immutable`, that means the `component` **cannot** **change** them. To change the `props`, the `Parent` must trigger a `render`, where it passes `new props` to the `child component`. `Props` flow downward like a waterfall.
@@ -254,25 +271,23 @@ Read more: [React Autobinding](http://facebook.github.io/react/docs/interactivit
 ```js
 // Parent Component
 var LikeList = React.createClass({
-	render: function() {
-		return (
-			<ul>
-				<LikeListItem text='turtles.' />
-			</ul>
-		);
-	}
+  render: function() {
+    return (
+      <ul>
+        <LikeListItem text='turtles.' />
+      </ul>
+    );
+  }
 });
 
 
 // Child Component
 var LikeListItem = React.createClass({
-	render: function() {
-		return (
-			<li>
-				{this.props.text}
-			</li>
-		);
-	}
+  render: function() {
+    return (
+      <li>{this.props.text}</li>
+    );
+  }
 });
 ```
 
@@ -291,13 +306,13 @@ If we do not pass down `props` from the `Parent`, we can have the `child` set so
 ```js
 // Parent Component
 var LikeList = React.createClass({
-	render: function() {
-		return (
-			<ul>
-				<LikeListItem />
-			</ul>
-		);
-	}
+  render: function() {
+    return (
+      <ul>
+        <LikeListItem />
+      </ul>
+    );
+  }
 });
 
 
@@ -309,13 +324,11 @@ var LikeListItem = React.createClass({
       };
     },
 
-	render: function() {
-		return (
-			<li>
-				{this.props.text}
-			</li>
-		);
-	}
+  render: function() {
+    return (
+      <li>{this.props.text}</li>
+    );
+  }
 });
 ```
 
@@ -340,23 +353,21 @@ Example:
 ```js
 // Child Component
 var LikeListItem = React.createClass({
-	propTypes: {
-		text: React.PropTypes.string
-	},
+  propTypes: {
+    text: React.PropTypes.string
+  },
 
-	getDefaultProps: function() {
- 		return {
- 			text: 'N/A'
-      		};
-    	},
+  getDefaultProps: function() {
+    return {
+      text: 'N/A'
+          };
+      },
 
-	render: function() {
-		return (
-			<li>
-				{this.props.text}
-			</li>
-		);
-	}
+  render: function() {
+    return (
+      <li>{this.props.text}</li>
+    );
+  }
 });
 ```
 
@@ -375,6 +386,8 @@ var LikeListItem = React.createClass({
 
 Read more: [Prop Validation](https://facebook.github.io/react/docs/reusable-components.html#prop-validation)
 
+---
+
 ### React State
 
 As `Pete Hunt` would say, *__state is the root of all evil__*. But it's a necessary one... unfortunately. In `React`, `state` is `mutable`, that means you can change it. When `state` changes, the `component` will trigger a `render`, and the whole tree will `rerender`, but don't worry. `React` has pretty good performance out of the box and does intelligent things like `diffing` the `virtual DOM`, so only the differences are applied.
@@ -387,13 +400,13 @@ Good question, let's consider a simple example... with something everyone should
 <!--  index.html -->
 <body>
   Do you like fish sticks?
-  
+
   <br /><br />
-  
+
   Response: I <span id="response">______</span> fishsticks.
-  
+
   <br /><br />
-  
+
   <a id="like" class="btn btn-success">I like it.</a>
   <a id="dislike" class="btn btn-danger">I dislike it.</a>  
 </body>
@@ -421,44 +434,43 @@ Let's take a look at how this would look in `React`.
 
 ```js
 var LikeComponent = React.createClass({
-	getInitialState: function() {
-		return {
-			response: ''
-		};
-	},
+  getInitialState: function() {
+    return {
+      response: ''
+    };
+  },
 
-	render: function() {
-		return (
-			<div>
-				Do you like fish sticks?
+  render: function() {
+    return (
+      <div>
+        Do you like fish sticks?
+        <br />
+        <br />
+        Response: I {this.state.response || '_____'} fishsticks.
+        <br />
+        <br />
 
-				<br /><br />
+        <a className="btn btn-success" onClick={this.handleLike}>I like it.</a>
+        <a className="btn btn-danger" onClick={this.handleDislike}>I dislike it.</a>
+      </div>
+    );
+  },
 
-				Response: I {this.state.response || '_____'} fishsticks.
+  handleLike: function(e) {
+    e.preventDefault();
 
-				<br /><br />
+    this.setState({
+      response: 'like'
+    });
+  },
 
-				<a className="btn btn-success" onClick={this.handleLike}>I like it.</a>
-				<a className="btn btn-danger" onClick={this.handleDislike}>I dislike it.</a>
-			</div>
-		);
-	},
+  handleDislike: function(e) {
+    e.preventDefault();
 
-	handleLike: function(e) {
-		e.preventDefault();
-
-		this.setState({
-			response: 'like'
-		});
-	},
-
-	handleDislike: function(e) {
-		e.preventDefault();
-
-		this.setState({
-			response: 'dislike'
-		});
-	}
+    this.setState({
+      response: 'dislike'
+    });
+  }
 });
 ```
 
@@ -482,13 +494,23 @@ Read more: [Props in getInitialState Is an Anti-Pattern](https://facebook.github
 
 Read more: [State](https://facebook.github.io/react/docs/interactivity-and-dynamic-uis.html)
 
+---
+
 ### React Lifecycle Events
+
+---
 
 ### React Dynamic Children
 
+---
+
 ### React Pure Render
 
+---
+
 ### React and 3rd Party Libraries
+
+---
 
 ### React Developer Tools
 
