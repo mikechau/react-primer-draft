@@ -63,17 +63,20 @@ Don't be afraid of `React` either.  It may seem `complex` but it is quite simple
 >
 > ---
 > My favorite part of React is what I loved about MooTools: to use it effectively you learn JavaScript, not a DSL: useful your whole career.
-> -  [Ryan Florence (@ryanflorence)](https://twitter.com/ryanflorence/status/577685415919898625)
+>
+> ~ [Ryan Florence (@ryanflorence)](https://twitter.com/ryanflorence/status/577685415919898625)
 >
 > ---
 >
 > `#reactjs` Haven’t been so excited about programming since learned Rails: http://facebook.github.io/react ! Kudos [@floydophone](https://twitter.com/floydophone) & FB team!
-> - [Justin Gordon (@railsonmaui)](https://twitter.com/railsonmaui/status/503626150149492736)
+>
+> ~ [Justin Gordon (@railsonmaui)](https://twitter.com/railsonmaui/status/503626150149492736)
 >
 > ---
 >
 > “It wasn’t my intention to use React for everything, but I found myself moving so quickly that I found I’d used it everywhere… had a blast”
-> - [Alan Hogan (@AlanHogan)](https://twitter.com/alanhogan/status/507307487062544384)
+>
+> ~ [Alan Hogan (@AlanHogan)](https://twitter.com/alanhogan/status/507307487062544384)
 >
 > ---
 >
