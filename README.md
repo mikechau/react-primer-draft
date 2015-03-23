@@ -122,11 +122,43 @@ var Button = React.createClass({
 		);
  	}
 });
+
+React.render(<Button />, document.body);
 ```
 
 Here you can see a `React` `component` has a `render` `function`, which outputs the `markup`. We can easily see, at a glance exactly what the output will be.
 
 [JS Bin](http://jsbin.com/tapupafeqe/1/edit?html,js,output)
+
+To render a `React` `component` in the body all you need to do is:
+
+```js
+React.render(<Button />, document.body);
+```
+
+Simply call the `render` method, pass in the `component`, and the `DOM` node you want to render to.
+
+**NOTE:** These examples use `document.body`, but you should avoid using it can there can be subtle bugs.
+
+When `rendering` a `React` `component`, `React` wants complete ownership of the `DOM` node.
+
+So just create a `<div id="content"></div>` and then use `document.getElementById('content')`.
+
+Like so:
+
+```html
+<!-- index.html -->
+
+<body>
+  <div id="content"></div>
+</body>
+```
+
+```js
+// App.jsx
+
+React.render(<App />, document.getElementById('content'));
+```
 
 Read more: [JSX in Depth](https://facebook.github.io/react/docs/jsx-in-depth.html)
 
@@ -145,6 +177,7 @@ var Link = React.createClass({
 	}
 });
 
+React.render(<Link />, document.body);
 ```
 
 You just made a `a` tag. It can now be called via `<Link />`.
@@ -174,6 +207,7 @@ var Link = React.createClass({
 	}
 });
 
+React.render(<Link />, document.body);
 ```
 
 [JS Bin](http://jsbin.com/vahezonoyi/2/edit?html,js,output)
@@ -226,9 +260,10 @@ var Link = React.createClass({
 	}
 });
 
+React.render(<Link />, document.body);
 ```
 
-[JS Bin](http://jsbin.com/vahezonoyi/3/edit?html,js,output)
+[JS Bin](http://jsbin.com/ducavuvoka/1/edit?html,js,output)
 
 It's actually totally unnecessary to do that. You can instead do `currying`. It looks something like this:
 
@@ -250,9 +285,11 @@ var Link = React.createClass({
 		alert('You clicked ' + linkName);
 	}
 });
+
+React.render(<Link />, document.body);
 ```
 
-[JS Bin](http://jsbin.com/vahezonoyi/4/edit?html,js,output)
+[JS Bin](http://jsbin.com/vuhozilibu/1/edit?html,js,output)
 
 `JavaScript Is Sexy` describes `currying` as follows:
 
@@ -308,6 +345,8 @@ var LikeListItem = React.createClass({
 		);
 	}
 });
+
+React.render(<LikeList />, document.body);
 ```
 
 Here we have the `Parent Component`, `LikeList`, render a `unordered list`, with one `child`, a `LikeListItem`. In the `LikeListItem`, we pass a property known as `text`.
@@ -351,6 +390,8 @@ var LikeListItem = React.createClass({
 		);
 	}
 });
+
+React.render(<LikeList />, document.body);
 ```
 
 If no `props` is set for `text`, we give it a `default` `value` of `N/A`. Inside the function we must `return` a `object {}`.
@@ -496,6 +537,8 @@ var LikeComponent = React.createClass({
 		});
 	}
 });
+
+React.render(<LikeComponent />, document.body);
 ```
 
 [JS Bin](http://jsbin.com/naruvavaqi/3/edit?html,js,output)
@@ -609,7 +652,217 @@ Read more: [componentWillUnmount](https://facebook.github.io/react/docs/componen
 
 ### React Dynamic Children
 
+`React` is great for rendering dynamic children. It's never been so easy.
 
+Let's take the example:
+
+```js
+var AnimalsList = React.createClass({
+  getInitialState: function() {
+    return {
+      animals: []
+    };
+  },
+
+  render: function() {
+    if (!this.state.animals.length) {
+      return (
+        <div>No animals!</div>
+      );
+    }
+  
+    return (
+      <ul>
+        {
+          this.state.animals.map(function(animal, index) {
+            return (
+              <li key={index}>
+                {animal.name} the { animal.animal }!
+              </li>
+            );
+          })
+        }
+      </ul>
+    );
+  }
+});
+
+React.render(<AnimalsList />, document.body);
+```
+
+[JS Bin](http://jsbin.com/webamabaso/2/edit?html,js,output)
+
+In this example, we will be fetching the data from a remote source. So the data will be stored inside `state`. You should just as easily create a `component` that uses `props`, and have a `Parent` `container` do the fetching and pass it down as `props`.
+
+Anyway, upon the first `render`, we get back `No animals!`. Why? Well because our `this.state.animals` is `empty`!
+
+In our `render` method, you can see we check if our `this.state.animals` passes a `.length` condition. If it fails, we render a `div` that says `No Animals!`.
+
+If the condition passes, we render the `list`.
+
+So lets add in the data fetching. For the purposes of this example, we mock the functionality with a `setTimeout` and a local `var`. But if you were actually going to do a `remote` request, you can use your favorite `AJAX` library, whether it's `jQuery`'s `ajax` or something like `superagent` or `fetch`.
+
+```js
+var animalsListData = [
+  { id: 1, animal: 'tiger', name: 'Vee' },
+  { id: 2, animal: 'lion', name: 'Simba' },
+  { id: 3, animal: 'dog', name: 'Buck' },
+  { id: 4, animal: 'sealion', name: 'Seel' }
+];
+
+var AnimalsList = React.createClass({
+  getInitialState: function() {
+    return {
+      animals: []
+    };
+  },
+
+  componentDidMount: function() {
+    setTimeout(function() {
+      this.setState({
+        animals: animalsListData
+      });
+    }.bind(this), 2000);
+  },
+
+  render: function() {
+    if (!this.state.animals.length) {
+      return (
+        <div>No animals!</div>
+      );
+    }
+  
+    return (
+      <ul>
+        {
+          this.state.animals.map(function(animal, index) {
+            return (
+              <li key={index}>
+                {animal.name} the { animal.animal }!
+              </li>
+            );
+          })
+        }
+      </ul>
+    );
+  }
+});
+
+React.render(<AnimalsList />, document.body);
+```
+
+[JS Bin](http://jsbin.com/webamabaso/3/edit?html,js,output)
+
+So what's going on here? As soon as the `component` `mounts`, we tell it to fetch the `remote` `data`. This is simulated with a `setTimeout`, but you could just as easily do it with `$.ajax(...)`. Heck, we could even move it into a another method, like `this._fetchRemoteData`, and then call it on `componentDidMount`, and then add in a button, that calls the method via `onClick`.
+
+It could look something like this:
+
+```js
+var animalsListData = [
+  { id: 1, animal: 'tiger', name: 'Vee' },
+  { id: 2, animal: 'lion', name: 'Simba' },
+  { id: 3, animal: 'dog', name: 'Buck' },
+  { id: 4, animal: 'sealion', name: 'Seel' }
+];
+
+
+var AnimalsList = React.createClass({
+  getInitialState: function() {
+    return {
+      animals: []
+    };
+  },
+
+  componentDidMount: function() {
+    this._fetchRemoteData();
+  },
+
+  render: function() {
+    if (!this.state.animals.length) {
+      return (
+        <div>
+          No animals!
+          <br />
+          <a
+            href="#fetch"
+            className="btn btn-primary"
+            onClick={this.handleFetchClick}
+          >
+            Fetch
+          </a>        
+        </div>
+      );
+    }
+  
+    return (
+      <div>
+        <ul>
+          {
+            this.state.animals.map(function(animal, index) {
+              return (
+                <li key={index}>
+                  {animal.name} the { animal.animal }!
+                </li>
+              );
+            })
+          }
+        </ul>
+        
+        <a
+          href="#fetch"
+          className="btn btn-primary"
+          onClick={this.handleFetchClick}
+        >
+          Fetch
+        </a>
+
+        <a
+          href="#reset"
+          className="btn btn-danger"
+          onClick={this.handleResetClick}
+        >
+          Reset
+        </a>
+      </div>
+    );
+  },
+
+  handleResetClick: function(e) {
+    e.preventDefault();
+    this.setState({
+      animals: []
+    });
+  },
+
+  handleFetchClick: function(e) {
+    e.preventDefault();
+    this._fetchRemoteData();
+  },
+
+  _fetchRemoteData: function() {
+    setTimeout(function() {
+      this.setState({
+        animals: animalsListData
+      });
+    }.bind(this), 2000);
+  }
+});
+
+React.render(<AnimalsList />, document.body);
+```
+
+[JS Bin](http://jsbin.com/hapubiceta/1/edit?html,js,output)
+
+Alright this example a bit verbose, but hopefully it drives home how you can build your components. Do you see how intertwined your `view` and `view logic` end up being? Right from the `render` method, you can see exactly what it is going to output and what `events` are attached to what.
+
+So let's summarize what is happening here:
+
+1. The `state` is initialized, `this.state.animals` set to an `empty` `array`.
+2. The component will mount, we do nothing here
+3. The component did mount, we call `this._fetchRemoteData()`
+4. When `this._fetchRemoteData()` is triggered, `this.setState(..)` is called and a `render` happens! The `update` `lifecycle events` are also triggered. 
+
+There are also `buttons` that trigger a `reset` or `fetch`. Pretty self explanatory.
 
 ---
 
