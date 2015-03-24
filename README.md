@@ -1285,7 +1285,7 @@ Read more: [PureRenderMixin](https://facebook.github.io/react/docs/pure-render-m
 
 ### React and 3rd Party Libraries
 
-The neat thing about `React` is you don't hve you commit your whole application to using it. You can sprinkle it in and eventually... you'll want to write to everything in `React`.
+The neat thing about `React` is you don't have to commit your whole application to using it. You can sprinkle it in and eventually... you'll want to write to everything in `React`. ;)
 
 You can use third party libraries with `React`, even if they were not specifically written for `React`. Considering something like `jQueryUI` or some sort of charting library or even something like `DataTables`. We will use `DataTables` as an example, of how you could use it with `React`. 
 
