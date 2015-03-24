@@ -4,6 +4,7 @@
 - [Author's Note](#authors-note)
 - [Part 1: Intro to React](#intro-to-react)
   - [0.0: What People are saying about React](#what-people-are-saying-about-react)
+  - [0.5: React Documentation](#react-documentation)
   - [1.0: React Component](#react-component)
   - [1.1: React JSX](#react-jsx)
   - [1.2: React Supported Attributes](#react-supported-attributes)
@@ -103,6 +104,12 @@ Don't be afraid of `React` either.  It may seem `complex` but it is quite simple
 [Remember to just give it 5 minutes](https://signalvnoise.com/posts/3124-give-it-five-minutes).
 
 ---
+
+### React Documentation
+
+The `React` documentation is very good. Use this primer as a introduction and then read more about `React` by viewing the official documentation:
+
+[React Documentation](https://facebook.github.io/react/docs/getting-started.html)
 
 ### React Component
 
