@@ -43,8 +43,10 @@
     - [3.1: Superagent](#superagent)
     - [3.2: Bluebird](#bluebird)
     - [3.3: lodash](#lodash)
+    - [3.4: normalizr](#normalizr)
 - [Part 4: Webpack](#webpack)
     - [4.1: Hot Module Replacement and Hot Reloading](#hot-module-replacement-and-hot-reloading)
+    - [4.2: AST Transformations](#ast-transformations)
 - [Part 5: React Router](#react-router)
 - [Part 6: Flux](#flux)
     - [6.1: Alt](#alt)
@@ -52,7 +54,11 @@
       - [6.1.2: Alt Stores](#alt-stores)
 - [Part 7: Testing](#testing)
     - [7.1: Mocha](#mocha)
-
+- [Part 8: Rails](#rails)
+    - [8.1: React Rails](#react-rails)
+    - [8.2: Writing an API](#writing-an-api)
+    - [8.3: Session Handling in React](#session-handling-in-react)
+    - [8.4: Rails and React Build Process](#rails-and-react-build-process)
 ---
 
 ## Authors Note
