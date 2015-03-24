@@ -1435,10 +1435,16 @@ React has a handy developer debug tool, for *Chrome*, check it out: [React Devel
 ## Useful Libraries
 
 ### Superagent
+[SuperAgent](https://github.com/visionmedia/superagent) is a small progressive client-side HTTP request library, and Node.js module with the same API, sporting many high-level HTTP client features.
 
 ### Bluebird
+[Bluebird](https://github.com/petkaantonov/bluebird) is a fully featured promise library with a focus on innovative features and performance.
 
 ### lodash
+[lodash](https://lodash.com/) is a JavaScript utility library delivering consistency, modularity, performance, & extras.
+
+### normalizr
+[normalizr](https://github.com/gaearon/normalizr) normalizes deeply nested JSON API responses according to a schema for Flux applications.
 
 ---
 
