@@ -146,7 +146,7 @@ There's also a ton of resources at: [Awesome React](https://github.com/enaqx/awe
 
 ### React Component
 
-A React component encapsulates everything. It does not seperate the *view* from the *view logic*, but rather merges the two together. Separating these does not really make sense when building a user interface: the view and its logic are inevitably tightly coupled. Rather than jumping between a template file and some sort of view-controller it makes sense to keep them together. React *components* are usually small enough that this is not a big deal to have the two together, and if it does get to be too large you can break down your component into smaller components.  
+A React component encapsulates everything. It does not separate the *view* from the *view logic*, but rather merges the two together. Separating these does not really make sense when building a user interface: the view and its logic are inevitably tightly coupled. Rather than jumping between a template file and some sort of view-controller it makes sense to keep them together. React *components* are usually small enough that this is not a big deal to have the two together, and if it does get to be too large you can break down your component into smaller components.  
 
 A key point from [the React documentation](http://facebook.github.io/react/docs/):
 
