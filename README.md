@@ -316,7 +316,7 @@ Read more: [React Events](http://facebook.github.io/react/docs/events.html)
 
 #### React Supported Events Continued
 
-To use the same event handler in multiple bindings and contexts, you may want to attach custom data to DOM nodes as you'd to in native javascript:
+To use the same event handler in multiple bindings and contexts, you may want to attach custom data to DOM nodes as you'd do in native javascript:
 
 ```js
 var Link = React.createClass({
