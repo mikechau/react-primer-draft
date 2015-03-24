@@ -67,34 +67,34 @@ A *primer* for building `Single Page Applications` with `React`.
 
 ## Authors Note
 
-This primer makes use of several libraries, but it is by *__no__* means a "_React the right way_", or anything like that. It's just a introduction to how I am building my own `React` applications. The goal of this primer to help developers get familiar with `React` and dive right in. Maybe you will come up with approaches that work with better for you and I hope that you share them with the community! Or if you're already well versed, help improve this document so others in the community can benefit. Sharing is caring!
+This primer makes use of several libraries, but it is by no means a "_React the right way_". It's just a introduction to how I am building my own React applications. The goal of this primer to help developers get familiar with React and dive right in. Maybe you will come up with approaches that work with better for you and I hope that you share them with the community! Or if you're already well versed, help improve this document so others in the community can benefit. Sharing is caring!
 
-This guide is dedicated to the engineers at `Jellyvision`, we are [hiring](http://www.jellyvision.com/jobs/) so check us out. :D
+This guide is dedicated to the engineers at [Jellyvision](http://jellyvision.com), we are [hiring](http://www.jellyvision.com/jobs/) so check us out. :D
 
 ~ Michael Chau (gh: [@mikechau](https://github.com/mikechau), twtr: [@money_mikec](https://twitter.com/money_mikec))
 
 ## Intro to React
 
-`React` is a `JavaScript` library by `Facebook`, it describes itself as *__a javascript library for building user interfaces__*.
+React is a JavaScript library by Facebook, it describes itself as *__a javascript library for building user interfaces__*.
 
-Developers often call it the `V in MVC`, or talk about the its `virtual DOM` (not to be confused with the `shadow DOM`). I like `React` for its `declarative` style, `lifecycle event hooks`, and the fact that a `React` `component` describes its view at anytime. By breaking down the `view` into `components`, writing `React` starts to become very natural. `React`  has been a pleasure to work with. You no longer need to understand the entire flow of the application at once, you can start at a `component` and work your way up or down.
+Developers often call it *the V in MVC*, or talk about the *virtual DOM* (not to be confused with the *shadow DOM*). I like React for its declarative style, lifecycle event hooks, and the fact that a React *component* describes its view at anytime. By breaking down the view into components, writing React starts to become very natural. React  has been a pleasure to work with. You no longer need to understand the entire flow of the application at once, you can start at a component and work your way up or down.
 
-This `primer` is a means to get you rapidly ready to start working with a `React` application. Its goal is not to teach and explain everything, but merely introduce concepts and help you form the right questions to ask and to have an idea of where to look for an answer. It is OK if you do not understand everything at first, just keep working at it by commiting the code you see to muscle memory and reading up on the documentation. Hopefully through `reflection`, and `incubation`, the concepts here will start to make sense.
+This primer is meant to get you rapidly ready to start working with a React application. Its goal is not to teach and explain everything, but merely introduce concepts and help you form the right questions to ask and to have an idea of where to look for an answer. It is OK if you do not understand everything at first, just keep working at it by commiting the code you see to muscle memory and reading up on the documentation. Hopefully through reflection, and incubation, the concepts here will start to make sense.
 
-Don't be afraid of `React` either.  It may seem `complex` but it is quite simple, the `API` is very small, there is only like ~12 methods you will really actually ever use:
+Don't be afraid of React either.  It may *seem* complex but is quite simple with a very small API of a dozen "essential" methods:
 
-1. `render`
-2. `getInitialState`
-3. `getDefaultProps`
-4. `propTypes`
-5. `mixins`
-6. `componentWillMount`
-7. `componentDidMount`
-8. `componentWillReceiveProps`
-9. `shouldComponentUpdate`
-10. `componentWillUpdate`
-11. `componentDidUpdate`
-12. `componentWillUnmount`
+1. [render](http://facebook.github.io/react/docs/component-specs.html#render)
+2. [getInitialState](http://facebook.github.io/react/docs/component-specs.html#getinitialstate)
+3. [getDefaultProps](http://facebook.github.io/react/docs/component-specs.html#getdefaultprops)
+4. [propTypes](http://facebook.github.io/react/docs/component-specs.html#proptypes)
+5. [mixins](http://facebook.github.io/react/docs/component-specs.html#mixins)
+6. [componentWillMount](http://facebook.github.io/react/docs/component-specs.html#mounting-componentwillmount)
+7. [componentDidMount](http://facebook.github.io/react/docs/component-specs.html#mounting-componentdidmount)
+8. [componentWillReceiveProps](http://facebook.github.io/react/docs/component-specs.html#updating-componentwillreceiveprops)
+9. [shouldComponentUpdate](http://facebook.github.io/react/docs/component-specs.html#updating-shouldcomponentupdate)
+10. [componentWillUpdate](http://facebook.github.io/react/docs/component-specs.html#updating-componentwillupdate)
+11. [componentDidUpdate](http://facebook.github.io/react/docs/component-specs.html#updating-componentdidupdate)
+12. [componentWillUnmount](http://facebook.github.io/react/docs/component-specs.html#unmounting-componentwillunmount)
 
 ---
 
@@ -123,11 +123,11 @@ Don't be afraid of `React` either.  It may seem `complex` but it is quite simple
 
 ### React Community
 
-The `React` community is super friendly!
+The React community is super friendly!
 
-Connect with other `React` developers at:
+Connect with other React developers at:
 
-- [Reactiflux](https://reactiflux.slack.com/) - Slack for `React` developers
+- [Reactiflux](https://reactiflux.slack.com/) - Slack for React developers
 - [#reactjs on irc.freenode.net](irc://chat.freenode.net/reactjs)
 - [Google Groups](http://groups.google.com/group/reactjs)
 - [Stack Overflow](http://stackoverflow.com/questions/tagged/reactjs)
@@ -138,7 +138,7 @@ Connect with other `React` developers at:
 
 ### React Documentation
 
-The `React` documentation is very good. Use this primer as a introduction and then read more about `React` by viewing the official documentation:
+The React documentation is very good. Use this primer as a introduction and then read more about React by viewing the official documentation:
 
 [React Documentation](https://facebook.github.io/react/docs/getting-started.html)
 
@@ -146,9 +146,9 @@ There's also a ton of resources at: [Awesome React](https://github.com/enaqx/awe
 
 ### React Component
 
-A `React` component encapsulates everything. It does not seperate the `view` from the `view logic`, but rather merges the two together. The seperation of concerns does not really make sense when building a `ui`, the `view` and its `view logic` are inevitably tightly coupuled. Rather than jumping between a `template file` and some sort of `view-controller` it makes sense to keep them together. `React` `components` are usually small enough that this is not a big deal to have the two together, and if it does get to be too large you can break down your `component` into smaller `components`.  
+A React component encapsulates everything. It does not seperate the *view* from the *view logic*, but rather merges the two together. Separating these does not really make sense when building a user interface: the view and its logic are inevitably tightly coupled. Rather than jumping between a template file and some sort of view-controller it makes sense to keep them together. React *components* are usually small enough that this is not a big deal to have the two together, and if it does get to be too large you can break down your component into smaller components.  
 
-A key point from the `React` `documentation`:
+A key point from [the React documentation](http://facebook.github.io/react/docs/):
 
 > #### [Components are Just State Machines](https://facebook.github.io/react/docs/interactivity-and-dynamic-uis.html#components-are-just-state-machines)
 > React thinks of UIs as simple state machines. By thinking of a UI as being in various states and rendering those states, it's easy to keep your UI consistent.
@@ -161,7 +161,7 @@ Read more: [Interactivity and Dynamic UIs](https://facebook.github.io/react/docs
 
 ### React JSX
 
-`JSX` is pretty interesting. It basically, allows us to write `HTML` / `XML` like syntax within our `React` `components`. Of course this wouldn't work if you tried to do that then serve it. Choosing to write your `React` `component` in `JSX` requires a `transform` process. This is typically handled through a `build` process or tool, like `webpack`.
+**JSX** is pretty interesting. It basically, allows using an HTML/XML-like syntax within JavaScript-based React components. Of course this wouldn't work if you tried to do that then serve it. Choosing to write your React component in JSX requires a *transform* process. This is typically handled through a build process or tool, like [webpack](http://webpack.github.io).
 
 ```js
 var Button = React.createClass({
@@ -175,13 +175,13 @@ var Button = React.createClass({
 React.render(<Button />, document.body);
 ```
 
-Here you can see a `React` `component` has a `render` `function`, which outputs the `markup`. We can easily see, at a glance exactly what the output will be.
+Here you can see a React component has a `render` method, which returns *markup*. It's easy to see the shape of the output at a glance.
 
 [JS Bin](http://jsbin.com/tapupafeqe/1/edit?html,js,output)
 
-**NOTE:** Your `React` `component` needs to always return a single `tag`.
+**NOTE:** [As of version 0.13](https://github.com/facebook/react/issues/2127) React components can only ever return a single "root" element or sub-component.
 
-For example, you cannot do something like:
+For example, this is forbidden:
 
 ```js
 return (
@@ -201,18 +201,17 @@ return (
 );
 ```
 
-
-To render a `React` `component` in the body all you need to do is:
+To render a React component in the body all you need to do is:
 
 ```js
 React.render(<Button />, document.body);
 ```
 
-Simply call the `render` method, pass in the `component`, and the `DOM` node you want to render to.
+Simply call the render method, pass in the component, and the DOM node you want to render to.
 
 **NOTE:** These examples use `document.body`, but you should avoid using it as it can cause subtle bugs.
 
-When `rendering` a `React` `component`, `React` wants complete ownership of the `DOM` node.
+When rendering a React component inside a DOM node, React wants complete ownership of the node. You should not add children to or remove children from a node in which React inserted a component.
 
 So just create a `<div id="content"></div>` and then use `document.getElementById('content')`.
 
@@ -238,7 +237,7 @@ Read more: [JSX in Depth](https://facebook.github.io/react/docs/jsx-in-depth.htm
 
 ### React Supported Attributes
 
-`React`, works with most common `HTML` elements, for example:
+React works with most common HTML elements, for example:
 
 ```js
 var Link = React.createClass({
@@ -262,7 +261,7 @@ Read more: [React Tags and Attributes](http://facebook.github.io/react/docs/tags
 
 ### React Supported Events
 
-`React` also supports `browser` events.  Lets go back to our `Link` example:
+React has a cross-compatibility layer for most specific browser events. Going back to our `Link`:
 
 ```js
 var Link = React.createClass({
@@ -284,9 +283,9 @@ React.render(<Link />, document.body);
 
 [JS Bin](http://jsbin.com/vahezonoyi/2/edit?html,js,output)
 
-Now, I know what you're thinking. `Inline events`, isn't that bad? It looks like its `inline` but its really not. `React` will attach the event for you via `event delegation`. So now we have a very declarative way to associate events to `DOM` elements. Now there's no confusion as to what `elements` have what `events` and there is no hassle for `managing` `ids`.
+Now, I know what you're thinking. *Inline events, isn't that bad?* It looks like its inline but its really not. React will use *event delegation* behind the scenes. So now we have a very declarative way to associate events to DOM elements. Now there's no confusion as to what elements have what events and there is no hassle of managing binding hooks between DOM and javascript (e.g. ids or classes).
 
-Here's a key point from the `React` documentation:
+Here's a key point from the React documentation:
 
 > #### [Event Handling and Synthetic Events](http://facebook.github.io/react/docs/interactivity-and-dynamic-uis.html#event-handling-and-synthetic-events)
 > With React you simply pass your event handler as a camelCased prop similar to how you'd do it in normal HTML. React ensures that all events behave identically in IE8 and above by implementing a synthetic event system. That is, React knows how to bubble and capture events according to the spec, and the events passed to your event handler are guaranteed to be consistent with the W3C spec, regardless of which browser you're using.
@@ -301,9 +300,9 @@ Here's a key point from the `React` documentation:
 >
 > **Event delegation:** React doesn't actually attach event handlers to the nodes themselves. When React starts up, it starts listening for all events at the top level using a single event listener. When a component is mounted or unmounted, the event handlers are simply added or removed from an internal mapping. When an event occurs, React knows how to dispatch it using this mapping. When there are no event handlers left in the mapping, React's event handlers are simple no-ops. To learn more about why this is fast, see David Walsh's excellent blog post.
 
-In the example, we define a function, and simply pass the function to the `onClick` property.
+In the example, we defined a function, and simply passed the function to the `onClick` property.
 
-When the `click event` occurs, we receive back a `synthetic event` and the we can do whatever with it as we please. `e.preventDefault()` to stop the `event propagation`, or get things like `e.target`.
+When the *click event* occurs, we receive back a *synthetic event* we can manipulate as usual e.g. call `#preventDefault()` to stop the event's default action, or access the event's `#target`.
 
 Read more: [React Events](http://facebook.github.io/react/docs/events.html)
 
@@ -311,7 +310,7 @@ Read more: [React Events](http://facebook.github.io/react/docs/events.html)
 
 #### React Supported Events Continued
 
-You might find yourself wanting to get back a `value` or do something like add a custom `data-attribute`,  a common pattern from the `jQuery` days.
+To use the same event handler in multiple bindings and contexts, you may want to attach custom data to DOM nodes as you'd to in native javascript:
 
 ```js
 var Link = React.createClass({
@@ -337,7 +336,7 @@ React.render(<Link />, document.body);
 
 [JS Bin](http://jsbin.com/ducavuvoka/1/edit?html,js,output)
 
-It's actually totally unnecessary to do that. You can instead do `currying`. It looks something like this:
+That is unnecessary in React, you can use `Function#bind` and customise the handler itself via partial application:
 
 ```js
 var Link = React.createClass({
@@ -363,12 +362,12 @@ React.render(<Link />, document.body);
 
 [JS Bin](http://jsbin.com/vuhozilibu/1/edit?html,js,output)
 
-`JavaScript Is Sexy` describes `currying` as follows:
+According to [Javascript Is Sexy](http://javascriptissexy.com):
 
-> Function Currying, also known as partial function application, is the use of a function (that accept one or more arguments) that returns a new function with some of the arguments already set. The function that is returned has access to the stored arguments and variables of the outer function. This sounds way more complex than it actually is, so let’s code.
+> Partial function application is the use of a function (that accept one or more arguments) that returns a new function with some of the arguments already set. The function that is returned has access to the stored arguments and variables of the outer function. This sounds way more complex than it actually is, so let’s code.
 > ...
 
-An explanation of `.bind('this', ...)` vs `.bind(null, ...)` by `Morhaus` on `#reactjs`:
+An explanation of `.bind(this, ...)` vs `.bind(null, ...)` by `Morhaus` on `#reactjs`:
 
 > React autobinds methods in the object you pass to `React.createClass()` to the component instance, so using `this.handleClick.bind(null, 'test')` will ensure that behavior is not messed with
 >
@@ -376,7 +375,7 @@ An explanation of `.bind('this', ...)` vs `.bind(null, ...)` by `Morhaus` on `#r
 >
 >  pass null instead, unless you're not using `React.createClass()` but `class extends React.Component`, in which case methods are not auto bound
 
-`this` can be passed to preserve the `context`, or we can pass `null`, if it is not necessary. In this case, since we are using `React.createClass`, `React` will `autobind` for us, so we can just pass `null` and the arguments we want to pass.
+`this` can be passed to preserve the current context, or we can pass `null` if it is not necessary. In this case, since we are using `React.createClass`, React will *autobind* the method for us so we can just pass `null` and whatever arguments we want applied.
 
 Read more: [Currying](http://javascriptissexy.com/javascript-apply-call-and-bind-methods-are-essential-for-javascript-professionals/)
 
@@ -392,7 +391,9 @@ Read more: [Partial application in JavasScript with `bind`](https://coderwall.co
 
 ### React Props
 
-`Props` are `properties`. They are `immutable`, and useful for passing data from a `parent` to a `child`. One thing to note about `props` is that they are `immutable`, that means the `component` **cannot** **change** them. To change the `props`, the `Parent` must trigger a `render`, where it passes `new props` to the `child component`. `Props` flow downward like a waterfall.
+*Props* are immutable parameters passed by a parent component to a child sub-component. A component can not alter its `#props` object (and should not alter the props themselves), the only way for props to change is for a new render to be triggered, where the parent component passes new props to the child.
+
+Props flow downwards, and in JSX they are provided as *attributes* of the component node:
 
 ```js
 // Parent Component
@@ -421,9 +422,9 @@ var LikeListItem = React.createClass({
 React.render(<LikeList />, document.body);
 ```
 
-Here we have the `Parent Component`, `LikeList`, render a `unordered list`, with one `child`, a `LikeListItem`. In the `LikeListItem`, we pass a property known as `text`.
+Here we have the *Parent Component*, `LikeList`, render an unordered list, with one child, a `LikeListItem`. To the `LikeListItem` we pass a `text` property.
 
-`Props` are avaliable within a `component` via `this.props`. To access `text` we do `this.props.text`. Here we simply call it in our `render` `function`.
+A component can access its props through `this.props`, `text` would be accessed via `this.props.text`. Here, the `text` prop is simply accessed during rendering.
 
 [JS Bin](http://jsbin.com/rerazageku/1/edit?html,js,output)
 
@@ -431,7 +432,7 @@ Read more: [Transferring Props](https://facebook.github.io/react/docs/transferri
 
 #### getDefaultProps
 
-If we do not pass down `props` from the `Parent`, we can have the `child` set some `default` `props` with the `getDefaultProps` method.
+`getDefaultProps` will be called to get a default set of props, which will be overridden by the props eventually provided by a parent component. This is useful for optional props which have a sensible default value.
 
 ```js
 // Parent Component
@@ -466,7 +467,7 @@ var LikeListItem = React.createClass({
 React.render(<LikeList />, document.body);
 ```
 
-If no `props` is set for `text`, we give it a `default` `value` of `N/A`. Inside the function we must `return` a `object {}`.
+If no `text` prop is passed, we give it a default value of `N/A`. If defined, `getDefaultProps` must return an object.
 
 [JS Bin](http://jsbin.com/volisofase/2/edit?html,js,output)
 
@@ -474,9 +475,9 @@ Read more: [Default Prop Values](https://facebook.github.io/react/docs/reusable-
 
 #### propTypes
 
-A useful way of documenting your `React` `components` that use `props`, is `propTypes`. When `Prop Validation` fails, you will get a notice inside your `dev console`. Check the `Read more` link to see all the available options.
+`propTypes` documents the props expected by a component and define validators generating notices in the dev console.
 
-A key point from the `React` `documentation`:
+A key point from the React `documentation`:
 
 > ##### [Prop Validation](https://facebook.github.io/react/docs/reusable-components.html#prop-validation)
 > As your app grows it's helpful to ensure that your components are used correctly. We do this by allowing you to specify propTypes. React.PropTypes exports a range of validators that can be used to make sure the data you receive is valid. When an invalid value is provided for a prop, a warning will be shown in the JavaScript console. Note that for performance reasons propTypes is only checked in development mode. Here is an example documenting the different validators provided:
@@ -507,9 +508,9 @@ var LikeListItem = React.createClass({
 });
 ```
 
-Here we declare that the `text` property, must  be a `string`.
+Here we declare that the `text` property, must be a `string`. By default, props are optional and should have a default value (provided through `getDefaultProps`).
 
-If we wanted to`require` the `text` `prop`, we can chain it with `isRequired`, like so:
+It is also possible to mandate that a prop be provided with the `isRequired` validator:
 
 ```js
 // Child Component
@@ -520,11 +521,13 @@ var LikeListItem = React.createClass({
 ...
 ```
 
+`getDefaultProps` was removed: since the property is required, there is no reason to provide a default value for it.
+
 Read more: [Prop Validation](https://facebook.github.io/react/docs/reusable-components.html#prop-validation)
 
 #### refs
 
-`React` documentation introduction:
+React documentation introduction:
 
 > React supports a very special property that you can attach to any component that is output from render(). This special property allows you to refer to the corresponding backing instance of anything returned from render(). It is always guaranteed to be the proper instance, at any point in time.
 
@@ -534,7 +537,7 @@ Here is an example of how you can treat a `ref` like an `id`.
 // Parent Component
 var LikeList = React.createClass({
     componentDidMount: function() {
-      console.log(this.refs.first.getDOMNode());
+      console.log(React.findDOMNode(this.refs.first));
     },
 
 	render: function() {
@@ -563,7 +566,7 @@ React.render(<LikeList />, document.body);
 
 [JS Bin](http://jsbin.com/labicocahi/1/edit?js,output)
 
-In this example, we can access the `ref` of `first` via `this.refs.first`. After the `componentDidMount`, the `console.log` output will be:
+In this example, we can access the `ref` of `first` via `this.refs.first`. After `componentDidMount` has been called, the console output will be:
 
 ```html
 <li data-reactid=".0.0">turtles.</li>
@@ -573,9 +576,7 @@ Read more: [More About Refs](http://facebook.github.io/react/docs/more-about-ref
 
 #### children
 
-There may be cases, where you want to wrap things inside your custom `components`.
-
-Here is an example:
+There may be situations where you want components to wrap provided components rather than generate those from props:
 
 ```js
 var Likes = React.createClass({
@@ -618,7 +619,7 @@ var LikeListItem = React.createClass({
 React.render(<Likes />, document.body);
 ```
 
-You place the `children` between the `component` `opening` and `ending` tag, like any other `HTML` element and, the `component` renders it via `this.props.children`.
+Children are placed between a component's opening and ending tags, like regular HTML elements and, and the wrapper component can access those children via `this.props.children`.
 
 [JS Bin](http://jsbin.com/labicocahi/2/edit?js,output)
 
@@ -626,7 +627,7 @@ Read more: [Type of the Children props](http://facebook.github.io/react/tips/chi
 
 #### className
 
-When trying to set the `class` in a element, you need to use `className`, as there are issues using the `class` keyword.
+Because `class` is a reserved JavaScript keyword, to set the `class` of an element you will need to use the `className` property name instead.
 
 Review: [Tags and Attributes](https://facebook.github.io/react/docs/tags-and-attributes.html) for more details on the supported `HTML` tags and `attributes`.
 
@@ -634,7 +635,7 @@ Review: [Events](https://facebook.github.io/react/docs/events.html) for the supp
 
 #### Passing a Prop
 
-If you are are passing down a `prop` and it is a `boolean`, you can simply just add the key.
+When providing a boolean prop in JSX, passing the value is not necessary, as in HTML you can just add the key:
 
 ```js
 // SomeComponent.jsx
@@ -646,31 +647,25 @@ var SomeComponent = React.createClass({
 	}
 });
 ```
-`AnotherComponent`'s `this.props.checked` would resolve to true.
+`AnotherComponent`'s `this.props.checked` would resolve to `true`.
 
 ---
 
 ### React State
 
-As `Pete Hunt` would say, *__state is the root of all evil__*. But it's a necessary one... unfortunately. In `React`, `state` is `mutable`, that means you can change it. When `state` changes, the `component` will trigger a `render`, and the whole tree will `rerender`, but don't worry. `React` has pretty good performance out of the box and does intelligent things like `diffing` the `virtual DOM`, so only the differences are applied.
+As *Pete Hunt* noted, *shared mutable state is the root of evil*. Yet (mutable) state is often necessary. To that end, React components provide mutable state but *not shared* mutable state: only a component can alter its state, and a component can only alter its own state.
 
-Where might state be useful?
+On a component's state change, a re-render of the tree will be automatically triggered.
 
-Good question, let's consider a simple example... with something everyone should know: `jQuery`.
+State is useful for intermediate or self-contained component data, which should not or needs not be published externally. For instance a choice between liking something or not:
 
 ```html
 <!--  index.html -->
 <body>
-  Do you like fish sticks?
-
-  <br /><br />
-
-  Response: I <span id="response">______</span> fishsticks.
-
-  <br /><br />
-
-  <a id="like" class="btn btn-success">I like it.</a>
-  <a id="dislike" class="btn btn-danger">I dislike it.</a>  
+  <p>Do you like fish sticks?</p>
+  <p>Response: I <span id="response">______</span> fishsticks.</p>
+  <a id="like" class="btn btn-success">I like them.</a>
+  <a id="dislike" class="btn btn-danger">I dislike them.</a>  
 </body>
 
 ```
@@ -690,9 +685,7 @@ $('#dislike').on('click', function(e) {
 });
 ```
 
-Looks simple enough right? We want to update the response with either `like` or `dislike`. As you can imagine, thing start to get more complicated as we add more event logic. The code eventually becomes a lot harder to follow, because there be events all over the place modifying the `DOM` and you wouldn't be able to tell without going through all the logic. It's no fun having to take in the entire flow of the application at once.
-
-Let's take a look at how this would look in `React`.
+The state of having liked or disliked fish sticks is fully internal, it does not come from an external source (a parent component) and is not published anywhere, thus in React:
 
 ```js
 var LikeComponent = React.createClass({
@@ -705,14 +698,8 @@ var LikeComponent = React.createClass({
 	render: function() {
 		return (
 			<div>
-				Do you like fish sticks?
-
-				<br /><br />
-
-				Response: I {this.state.response || '_____'} fishsticks.
-
-				<br /><br />
-
+				<p>Do you like fish sticks?</p>
+				<p>Response: I {this.state.response || '_____'} fishsticks.</p>
 				<a className="btn btn-success" onClick={this.handleLike}>I like it.</a>
 				<a className="btn btn-danger" onClick={this.handleDislike}>I dislike it.</a>
 			</div>
@@ -741,11 +728,13 @@ React.render(<LikeComponent />, document.body);
 
 [JS Bin](http://jsbin.com/naruvavaqi/3/edit?html,js,output)
 
-You can see a few new methods here. Let's start with `getInitialState`, it works similiar to `getDefaultProps`.
+`getInitialState` has the same purpose as `getDefaultProps`, but because state is not shared rather than providing a default it provides the complete internal state of the component. State items can then be accessed through `this.state`, much like props via `this.props`.
 
-Before we can call `this.state` inside our `render` `function`, we need to use `getInitialState` to set up the `default` `values`, once we set it up we can call things like `this.state.response`, much like `this.props`.
+State **must not be altered directly**.
 
-** NOTE: ** Don't use `props` to set your `initial state`. It's a `anti-pattern` and it is only `acceptable`, when you do something like call the `prop` something like: `initialCount`.
+It should generally be altered via [`setState`](https://facebook.github.io/react/docs/component-api.html#setstate), which *merges* the provided object into the existing state then triggers a re-render: if the state is `{foo: 1, bar: 2}` `this.setState({foo: 2})` will result in a new state of `{foo: 2, bar: 2}`.
+
+** NOTE: ** although sometimes tempting, setting up the initial state from props is generally an anti-pattern, it's usually better to compute from props on the fly.
 
 Key Point:
 
@@ -763,7 +752,7 @@ Read more: [State](https://facebook.github.io/react/docs/interactivity-and-dynam
 
 ### React Lifecycle Events
 
-`React` has several lifecycle events. This lets you do things at specific points of a `components` lifecycle. The `React` documentation covers this section very well, so we will just quote it and show you some examples of how they work.
+React components have a somewhat involved lifecycle, but React provides a number of events/methods to hook in and act at various lifecycle points. The React documentation covers this section very well, so we will just quote it and show you some examples of how they work.
 
 Read more: [Component Specs and Lifecycle Events](https://facebook.github.io/react/docs/component-specs.html)
 
@@ -850,7 +839,7 @@ Read more: [componentWillUnmount](https://facebook.github.io/react/docs/componen
 
 ### React Dynamic Children
 
-`React` is great for rendering dynamic children. It's never been so easy.
+React is great for rendering dynamic children. It's never been so easy.
 
 Let's take the example:
 
@@ -890,15 +879,11 @@ React.render(<AnimalsList />, document.body);
 
 [JS Bin](http://jsbin.com/webamabaso/2/edit?html,js,output)
 
-In this example, we will be fetching the data from a remote source. So the data will be stored inside `state`. You should just as easily create a `component` that uses `props`, and have a `Parent` `container` do the fetching and pass it down as `props`.
+In this example, we will be fetching data from a remote source. That data will be stored as component state. It could also be stored externally and passed down as props.
 
-Anyway, upon the first `render`, we get back `No animals!`. Why? Well because our `this.state.animals` is `empty`!
+Because `this.state.animals` is initially empty, the first render will display *No animals!*, as coded in the first part of the `render` method, we only render the list if there are animals in the list.
 
-In our `render` method, you can see we check if our `this.state.animals` passes a `.length` condition. If it fails, we render a `div` that says `No Animals!`.
-
-If the condition passes, we render the `list`.
-
-So lets add in the data fetching. For the purposes of this example, we mock the functionality with a `setTimeout` and a local `var`. But if you were actually going to do a `remote` request, you can use your favorite `AJAX` library, whether it's `jQuery`'s `ajax` or something like `superagent` or `fetch`.
+For the purpose of this example, we'll emulate data fetching with a `setTimeout` call. In a real-world situation, you would use whatever AJAX library you prefer.
 
 ```js
 var animalsListData = [
@@ -951,9 +936,7 @@ React.render(<AnimalsList />, document.body);
 
 [JS Bin](http://jsbin.com/webamabaso/3/edit?html,js,output)
 
-So what's going on here? As soon as the `component` `mounts`, we tell it to fetch the `remote` `data`. This is simulated with a `setTimeout`, but you could just as easily do it with `$.ajax(...)`. Heck, we could even move it into a another method, like `this._fetchRemoteData`, and then call it on `componentDidMount`, and then add in a button, that calls the method via `onClick`.
-
-It could look something like this:
+As soon as the component mounts, we "fetch" the remote data, which will update the internal state and re-render the component 2 seconds later. The fetching is done inline but could be split into a separate method (e.g. `_fetchRemoteData`), and while we're fetching everything on mount, it could also be fetched only on a user action:
 
 ```js
 var animalsListData = [
@@ -1051,19 +1034,20 @@ React.render(<AnimalsList />, document.body);
 
 [JS Bin](http://jsbin.com/hapubiceta/1/edit?html,js,output)
 
-Alright this example a bit verbose, but hopefully it drives home how you can build your components. Do you see how intertwined your `view` and `view logic` end up being? Right from the `render` method, you can see exactly what it is going to output and what `events` are attached to what.
+Alright this example a bit verbose, but hopefully it drives home how you can build your components. Do you see how intertwined your view and view logic end up being? Right from the `render` method, you can see exactly what it is going to output and what events are attached to what.
 
 So let's summarize what is happening here:
 
-1. The `state` is initialized, `this.state.animals` set to an `empty` `array`.
+1. The `state` is initialized, `this.state.animals` set to an empty array.
 2. The component will mount, we do nothing here.
-3. When `render` is called, we check if there is anything inside `this.state.animals`, if there is nothing, we render a `div` that says `No animals!`. This could probably be a loading indicator if you are fetching data as soon as the `componentDidMount`.
+3. When `render` is called, we check if there is anything inside `this.state.animals`, if there is nothing, we render special case noting the lack of animals.
 4. The component did mount, we call `this._fetchRemoteData()`
-5. When `this._fetchRemoteData()` is triggered, `this.setState(..)` is called and a `render` happens! The `update` `lifecycle events` are also triggered. 
+5. When `this._fetchRemoteData()` completes, `this.setState(..)` is called and a new `render` happens! The update lifecycle events are also triggered. 
+6. The user can use the available buttons to reset or update the list of animals.
 
-There are also `buttons` that trigger a `reset` or `fetch`, just look at the `handler` `methods`, to see how they `update` the `state`. Changing `state`, tells `React` to `rerender`.
+So, to sum it all up, to render children, simply `map` over your collection and return the components you want rendered by passing in the collections item attributes as props.
 
-So, to sum it all up, to render `children`, simply `map` over your `collection` and `return` the `components` you want rendered by passing in the `collections` `item` `attributes` as `props`.
+**NOTE:** when mapping over an array, the result components must be given a `key`.
 
 Read more: [React vs. Ember by Alex Matchneer](https://docs.google.com/presentation/d/1afMLTCpRxhJpurQ97VBHCZkLbR1TEsRnd3yyxuSQ5YY/edit#slide=id.p)
 
@@ -1071,9 +1055,9 @@ Read more: [React vs. Ember by Alex Matchneer](https://docs.google.com/presentat
 
 ### React Nested Views
 
-`React` is great for working with a tree structure like `HTML`. You can nest to your hearts content, it's encouraged. Remember everything is a `component`. It's just like working in `HTML`, so it should start to come naturally to you.
+React is great for working with a tree structure like HTML. You can nest to your hearts content, it's encouraged. Remember everything is a component. It's just like working in HTML, so it should start to come naturally to you.
 
-Consider this, we have a `component` known as `App`:
+Consider this `App` component:
 
 ```js
 React.render(<App />, document.getElementById('#content'));
@@ -1081,7 +1065,7 @@ React.render(<App />, document.getElementById('#content'));
 
 We render it to `#content`.
 
-Inside the `App` component its `render` could have an assortment of `components`. Maybe it looks like this:
+Inside the `App` component its `render` could have an assortment of components. Maybe it looks like this:
 
 ```js
 // App.jsx
@@ -1131,7 +1115,7 @@ render: function() {
 
 ```
 
-Each `component`, could keep going. Eventually you'd reach a point it actually returns the `HTML`, for example, `Grid` might actually just be an `abstraction` for:
+Each component, could keep going. Eventually you'd reach a point it actually returns the HTML, for example, `Grid` might actually just be an abstraction for:
 
 ```js
 // Grid.jsx
@@ -1148,13 +1132,13 @@ render: function() {
 
 ### React Mixins
 
-`Mixins` are a way of sharing resuable functionality between components.
+Mixins are a way of sharing reusable functionality between components.
 
-Key point from `React` documentation:
+Key point from React documentation:
 
 > Components are the best way to reuse code in React, but sometimes very different components may share some common functionality. These are sometimes called [cross-cutting concerns](http://en.wikipedia.org/wiki/Cross-cutting_concern). React provides mixins to solve this problem.
 
-**NOTE:** The validity of `mixins`, is currently debated in the community. While you may continue to use them with `React.createClass`, `mixins` are not avaliable for `ES6 classes`.  The community seems to be leaning toward the idea of`containers`, aka `high order componenets (HOC)`, aka `decorators`.
+**NOTE:** The validity of mixins, is currently debated in the community. While you may continue to use them with `React.createClass`, mixins are not currently available when using ES6 classes.  The community seems to be leaning toward the idea of containers aka *high order components* or *decorators* (functions or components which manipulate or alter other components).
 
 Mixin example:
 
@@ -1190,7 +1174,7 @@ React.render(<Greeter />, document.body);
 ```
 [JS Bin](http://jsbin.com/hapubiceta/2/)
 
-In the console output, after the `componentDidMount`, you should see the following:
+After `componentDidMount`, the console should display:
 
 ```
 "Mixin1, component did mount!"
@@ -1198,7 +1182,7 @@ In the console output, after the `componentDidMount`, you should see the followi
 "Greeter, component did mount!"
 ```
 
-`Mixins` are a way of reusing functionality in lifecycle events, you could also use it to add custom methods to your `React` components.
+Mixins are a way of sharing functionality in lifecycle events between components. They can also be used to add custom methods to your React components.
 
 Read more: [Mixins](https://facebook.github.io/react/docs/reusable-components.html#mixins)
 
@@ -1206,9 +1190,9 @@ Read more: [Mixins](https://facebook.github.io/react/docs/reusable-components.ht
 
 ### React Pure Render
 
-A simple performance boost you can get out of `React` is through the `PureRenderMixin`.
+A simple performance boost you can get out of React is through the `PureRenderMixin`.
 
-Per the `React` documentation:
+Per the React documentation:
 
 > If your React component's render function is "pure" (in other words, it renders the same result given the same props and state), you can use this mixin for a performance boost in some cases.
 >
@@ -1277,18 +1261,18 @@ React.render(<Greeter />, document.body);
 
 [JS Bin](http://jsbin.com/hapubiceta/3/edit?html,js,console,output)
 
-The `initial state` of `this.state.greeter` is set to `Hi`.
+The initial state of `this.state.greeter` is set to `Hi`.
 
-If we clicked the `Say Hi` action, the only thing would get back in `console`:
+If we clicked the *Say Hi* action, the console would display:
 
 ```
 "click event"
 "Hi"
 ```
 
-**No updates were applied** because the `previous state` is `Hi`, and the `new state` is `Hi`, `PureRenderMixin`, `shallowly compares your props and state`. If they are are equal, the `render` is **skipped**.
+**No updates were applied** because the previous state is `{greeting: 'Hi'}`, and the new state is the exact same `{greeting: 'Hi'}`. If the props and state haven't visibly changed since the last `render`, `PureRenderMixin` will just **skip** the new one.
 
-If you clicked `Say Hey`, while `this.state.greeting` is on `Hi`, you would get this in `console.log`:
+If we clicked *Say Hey*, the console would say the following instead:
 
 ```
 "click event"
@@ -1303,9 +1287,9 @@ Read more: [PureRenderMixin](https://facebook.github.io/react/docs/pure-render-m
 
 ### React and 3rd Party Libraries
 
-The neat thing about `React` is you don't have to commit your whole application to using it. You can sprinkle it in and eventually... you'll want to write to everything in `React`. ;)
+The neat thing about React is you don't have to commit your whole application to using it. You can sprinkle it in and eventually... you'll want to write to everything in React. ;)
 
-You can use third party libraries with `React`, even if they were not specifically written for `React`. Considering something like `jQueryUI` or some sort of charting library or even something like `DataTables`. We will use `DataTables` as an example, of how you could use it with `React`. 
+You can use third party libraries with React, even if they were not specifically written for React. Considering something like [jQuery UI](https://jqueryui.com), some sort of charting library or even something like [DataTables](https://www.datatables.net). We will use *DataTables* as an example, of how you could use it with React. 
 
 ```js
 var accountingData = function() {
@@ -1332,20 +1316,20 @@ var AccountingTable = React.createClass({
   },
 
   componentDidMount: function() {
-    $(this.refs.table.getDOMNode()).DataTable();
+    $(React.findDOMNode(this.refs.table)).DataTable();
   },
 
   componentWillUpdate: function() {
-    var table = $(this.refs.table.getDOMNode()).DataTable();
+    var table = $(React.findDOMNode(this.refs.table)).DataTable();
     table.destroy();
   },
   
   componentDidUpdate: function() {
-    $(this.refs.table.getDOMNode()).DataTable();
+    $(React.findDOMNode(this.refs.table)).DataTable();
   },
 
   componentWillUnmount: function() {
-    var table = $(this.refs.table.getDOMNode()).DataTable();
+    var table = $(React.findDOMNode(this.refs.table)).DataTable();
     table.destroy();
   },
 
@@ -1390,13 +1374,19 @@ React.render(<AccountingTable />, document.body);
 
 [JS Bin](http://jsbin.com/hapubiceta/4/edit?js,output)
 
-This example is incredibly arbitrary. You would probably update the `table` via `ajax` instead, or write your own `table` component, or use something off the shelf for `React` like `Fixed Data Tables` from `Facebook` or `Griddle`, etc.
+This example is incredibly arbitrary. You would probably update the table via ajax instead, or write your own table component, or use something off the shelf for React like [FixedDataTable](https://facebook.github.io/fixed-data-table/) from Facebook or [Griddle](http://dynamictyped.github.io/Griddle/), etc.
 
-In this example, our initial state, `this.state.transactions`, is an `empty` `array`. After `componentDidMount`, we `initialize` `DataTables()`. To get `DataTables` rendered. Then on `Get Transactions`, we update the `state` with the data. Before it updaes, we `destroy` `DataTables`, and `reinitialize` it on `componentDidUpdate`. When the `component` `unmounts` we will also `destroy` it to clean up any sssociated `event handlers` to it.
+In this example, our initial state, `this.state.transactions`, is an empty array.
 
-We may also store the reference in something like `this._dataTableRef`.
+After `componentDidMount`, we initialize and render `DataTable`.
 
-You could also have a `React` `component` that doesn't render anything to the `DOM`, but all it does is use its `lifecycle` `events` to `trigger` a third party library to manipulate the `DOM`. This concept, is what `Ryan Florence` likes to call a `portal`.
+Then on *Get Transactions*, we update the `state` with the data.
+
+Before the component updates, we destroy `DataTable`, and reinitialize it on `componentDidUpdate`. When the component unmounts we will also destroy the `DataTable` to clean up any associated event handler or resource.
+
+If there are more interactions with the table, instead of asking React for the DOM node every time, we could store a reference in something like `this._dataTableRef`.
+
+You could also have a React component which doesn't render anything to the DOM (aside from a required component root) but uses its lifecycle events to trigger commands on a third party library to manipulate the DOM. This concept is what *Ryan Florence* calls a **portal**.
 
 Read more: [Reaf.js Conf 2015 - Hype! (Portals)](https://youtu.be/z5e7kWSHWTg?t=15m22s) - Video.
 
@@ -1408,7 +1398,7 @@ Read more: ["Portals" in React.js](http://joecritchley.svbtle.com/portals-in-rea
 
 ### React Developer Tools
 
-`React` has a handy developer debug tool, for `Chrome`, check it out: [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en).
+React has a handy developer debug tool, for *Chrome*, check it out: [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en).
 
 ---
 
