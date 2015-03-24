@@ -73,7 +73,7 @@ At the time of writing, the examples were written for `React 0.12.x`. This guide
 
 ## Authors Note
 
-This primer makes use of several libraries, but it is by no means a "_React the right way_". It's just a introduction to how I am building my own React applications. The goal of this primer to help developers get familiar with React and dive right in. Maybe you will come up with approaches that work with better for you and I hope that you share them with the community! Or if you're already well versed, help improve this document so others in the community can benefit. Sharing is caring!
+This primer makes use of several libraries, but it is by no means a "_React the right way_". It's just a introduction to how I am building my own React applications. The goal of this primer to help developers get familiar with React and dive right in. Maybe you will come up with approaches that work better for you and I hope that you share them with the community! Or if you're already well versed, help improve this document so others in the community can benefit. Sharing is caring!
 
 This guide is dedicated to the engineers at [Jellyvision](http://jellyvision.com), we are [hiring](http://www.jellyvision.com/jobs/) so check us out. :D
 
