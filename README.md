@@ -61,6 +61,7 @@ A *primer* for building `Single Page Applications` with `React`.
     - [8.2: Writing an API](#writing-an-api)
     - [8.3: Session Handling in React](#session-handling-in-react)
     - [8.4: Rails and React Build Process](#rails-and-react-build-process)
+
 ---
 
 ## Authors Note
