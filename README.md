@@ -5,7 +5,8 @@ A *primer* for building `Single Page Applications` with `React`.
 ## Table of Contents
 - [Author's Note](#authors-note)
 - [Part 1: Intro to React](#intro-to-react)
-  - [0.0: What People are saying about React](#what-people-are-saying-about-react)
+  - [0.1: What People are saying about React](#what-people-are-saying-about-react)
+  - [0.2: React Community](#react-community)
   - [0.5: React Documentation](#react-documentation)
   - [1.0: React Component](#react-component)
   - [1.1: React JSX](#react-jsx)
@@ -120,11 +121,28 @@ Don't be afraid of `React` either.  It may seem `complex` but it is quite simple
 
 ---
 
+### React Community
+
+The `React` community, is super friendly!
+
+Connect with other `React` developers at:
+
+- [Reactiflux](https://reactiflux.slack.com/) - Slack for `React` developers
+- [#reactjs on irc.freenode.net](irc://chat.freenode.net/reactjs)
+- [Google Groups](http://groups.google.com/group/reactjs)
+- [Stack Overflow](http://stackoverflow.com/questions/tagged/reactjs)
+- [@reactjs](https://twitter.com/reactjs)
+- [#reactjs](https://twitter.com/search?q=%23reactjs)
+
+---
+
 ### React Documentation
 
 The `React` documentation is very good. Use this primer as a introduction and then read more about `React` by viewing the official documentation:
 
 [React Documentation](https://facebook.github.io/react/docs/getting-started.html)
+
+There's also a ton of resources at: [Awesome React](https://github.com/enaqx/awesome-react)
 
 ### React Component
 
