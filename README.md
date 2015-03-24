@@ -747,6 +747,16 @@ Before we can call `this.state` inside our `render` `function`, we need to use `
 
 ** NOTE: ** Don't use `props` to set your `initial state`. It's a `anti-pattern` and it is only `acceptable`, when you do something like call the `prop` something like: `initialCount`.
 
+For example:
+
+```js
+getInitialState: function() {
+   return {
+     count: this.props.initialCount // this is fine because we make it clear that it is an initial value
+   }
+}
+```
+
 Key Point:
 
 > #### [Props in getInitialState Is an Anti-Pattern](https://facebook.github.io/react/tips/props-in-getInitialState-as-anti-pattern.html)
