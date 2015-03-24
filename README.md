@@ -531,13 +531,13 @@ React documentation introduction:
 
 > React supports a very special property that you can attach to any component that is output from render(). This special property allows you to refer to the corresponding backing instance of anything returned from render(). It is always guaranteed to be the proper instance, at any point in time.
 
-Here is an example of how you can treat a `ref` like an `id`.
+Here is an example of how you can treat a `ref` like an `id`:
 
 ```js
 // Parent Component
 var LikeList = React.createClass({
     componentDidMount: function() {
-      console.log(React.findDOMNode(this.refs.first));
+      console.log(this.refs.first.getDOMNode()));
     },
 
 	render: function() {
@@ -565,6 +565,8 @@ React.render(<LikeList />, document.body);
 ```
 
 [JS Bin](http://jsbin.com/labicocahi/1/edit?js,output)
+
+**NOTE:** In React 0.13, `Component#getDOMNode()` should be replaced by `React.findDOMNode(Component)`, the first one generates a warning in the console.
 
 In this example, we can access the `ref` of `first` via `this.refs.first`. After `componentDidMount` has been called, the console output will be:
 
@@ -1316,20 +1318,20 @@ var AccountingTable = React.createClass({
   },
 
   componentDidMount: function() {
-    $(React.findDOMNode(this.refs.table)).DataTable();
+    $(this.refs.table.getDOMNode()).DataTable();
   },
 
   componentWillUpdate: function() {
-    var table = $(React.findDOMNode(this.refs.table)).DataTable();
+    var table = $(this.refs.table.getDOMNode()).DataTable();
     table.destroy();
   },
   
   componentDidUpdate: function() {
-    $(React.findDOMNode(this.refs.table)).DataTable();
+    $(this.refs.table.getDOMNode()).DataTable();
   },
 
   componentWillUnmount: function() {
-    var table = $(React.findDOMNode(this.refs.table)).DataTable();
+    var table = $(this.refs.table.getDOMNode()).DataTable();
     table.destroy();
   },
 
