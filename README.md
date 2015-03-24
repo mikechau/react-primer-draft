@@ -1008,6 +1008,56 @@ render: function() {
 
 `Mixins` are a way of sharing resuable functionality between components.
 
+Key point from `React` documentation:
+
+> Components are the best way to reuse code in React, but sometimes very different components may share some common functionality. These are sometimes called [cross-cutting concerns](http://en.wikipedia.org/wiki/Cross-cutting_concern). React provides mixins to solve this problem.
+
+**NOTE:** The validity of `mixins`, is currently debated in the community. While you may continue to use them with `React.createClass`, `mixins` are not avaliable for `ES6 classes`.  The community seems to be leaning toward the idea of`containers`, aka `high order componenets (HOC)`, aka `decorators`.
+
+Mixin example:
+
+```js
+var Mixin1 = {
+  componentDidMount: function() {
+    console.log('Mixin1, component did mount!');
+  }
+};
+
+var Mixin2 = {
+  componentDidMount: function() {
+    console.log('Mixin2, component did mount!');
+  }
+};
+
+
+var Greeter = React.createClass({
+  mixins: [Mixin1, Mixin2],
+
+  componentDidMount: function() {
+    console.log('Greeter, component did mount!');
+  },
+
+  render: function() {
+    return (
+      <div>Hi!</div>
+    );
+  }
+});
+
+React.render(<Greeter />, document.body);
+```
+[JS Bin](http://jsbin.com/hapubiceta/2/)
+
+In the console output, after the `componentDidMount`, you should see the following:
+
+```
+"Mixin1, component did mount!"
+"Mixin2, component did mount!"
+"Greeter, component did mount!"
+```
+
+`Mixins` are a way of reusing functionality in lifecycle events, you could also use it to add custom methods to your `React` components.
+
 Read more: [Mixins](https://facebook.github.io/react/docs/reusable-components.html#mixins)
 
 ---
@@ -1020,13 +1070,90 @@ Per the `React` documentation:
 
 > If your React component's render function is "pure" (in other words, it renders the same result given the same props and state), you can use this mixin for a performance boost in some cases.
 >
-> Under the hood, the mixin implements shouldComponentUpdate, in which it compares the current props and state with the next ones and returns false if the equalities pass.
+> Under the hood, the mixin implements `shouldComponentUpdate`, in which it compares the current props and state with the next ones and returns false if the equalities pass.
 >
 > **Note:**
 > This only shallowly compares the objects. If these contain complex data structures, it may produce false-negatives for deeper differences. Only mix into components which have simple props and state, or use forceUpdate() when you know deep data structures have changed. Or, consider using immutable objects to facilitate fast comparisons of nested data.
 > Furthermore, shouldComponentUpdate skips updates for the whole component subtree. Make sure all the children components are also "pure".
 
+Let's check out an example:
 
+```js
+
+var Greeter = React.createClass({
+  mixins: [React.addons.PureRenderMixin],
+
+  getInitialState: function() {
+    return {
+      greeting: 'Hi'
+    };
+  },
+
+  componentDidUpdate: function() {
+    console.log('Component updated!');
+  },
+
+  render: function() {
+    console.log('Component rendered!');
+    return (
+      <div>
+        Greeting: {this.state.greeting}
+        <br />
+        <hr />
+        <a
+          href="#"
+          onClick={this.handleGreetingClick.bind(null, 'Hi')}
+        >
+          Say Hi
+        </a>
+
+        <br />
+
+        <a
+          href="#"
+          onClick={this.handleGreetingClick.bind(null, 'Hey')}
+        >
+          Say Hey
+        </a>
+      </div>
+    );
+  },
+  
+  handleGreetingClick: function(greeting, e) {
+    e.preventDefault();
+    
+    console.log('click event', greeting);
+    
+    this.setState({
+      greeting: greeting
+    });
+  }
+});
+
+React.render(<Greeter />, document.body);
+```
+
+[JS Bin](http://jsbin.com/hapubiceta/3/edit?html,js,console,output)
+
+The `initial state` of `this.state.greeter` is set to `Hi`.
+
+If we clicked the `Say Hi` action, the only thing would get back in `console`:
+
+```
+"click event"
+"Hi"
+```
+
+**No updates were applied** because the `previous state` is `Hi`, and the `new state` is `Hi`, `PureRenderMixin`, `shallowly compares your props and state`. If they are are equal, the `render` is **skipped**.
+
+If you clicked `Say Hey`, while `this.state.greeting` is on `Hi`, you would get this in `console.log`:
+
+```
+"click event"
+"Hey"
+"Component rendered!"
+"Component updated!"
+```
 
 Read more: [PureRenderMixin](https://facebook.github.io/react/docs/pure-render-mixin.html)
 
@@ -1037,6 +1164,8 @@ Read more: [PureRenderMixin](https://facebook.github.io/react/docs/pure-render-m
 ---
 
 ### React Developer Tools
+
+`React` has a handy developer debug tool, for `Chrome`, check it out: [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en).
 
 ---
 
