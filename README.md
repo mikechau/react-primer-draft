@@ -167,7 +167,7 @@ Read more: [Interactivity and Dynamic UIs](https://facebook.github.io/react/docs
 
 ### React JSX
 
-**JSX** is pretty interesting. It basically, allows using an HTML/XML-like syntax within JavaScript-based React components. Of course this wouldn't work if you tried to do that then serve it. Choosing to write your React component in JSX requires a *transform* process. This is typically handled through a build process or tool, like [webpack](http://webpack.github.io).
+**JSX** is pretty interesting. It basically allows using an HTML/XML-like syntax within JavaScript-based React components. Of course this wouldn't work if you tried to do that then serve it. Choosing to write your React component in JSX requires a *transform* process. This is typically handled through a build process or tool, like [webpack](http://webpack.github.io).
 
 ```js
 var Button = React.createClass({
