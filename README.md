@@ -1,6 +1,6 @@
 # react-primer-draft
 
-A primer for building *Single Page Applications* with [React](http://facebook.github.io/react/).
+A primer for building *Single-Page Applications* with [React](http://facebook.github.io/react/).
 
 ## Status
 
