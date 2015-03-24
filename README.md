@@ -26,7 +26,7 @@
   - [1.10: React Mixins](#react-mixins)
   - [1.11: React Pure Render](#react-pure-render)
   - [1.12: React and 3rd Party Libraries](#react-and-3rd-party-libraries)
-  - [1.13: React Developer Tools](#react-dev-tools)
+  - [1.13: React Developer Tools](#react-developer-tools)
 - [Part 2: Harmony aka ES6 aka ES2015](#es2015)
   - [2.1: CONST and LET](#const-and-let)
   - [2.2: Fat Arrow](#fat-arrow)
