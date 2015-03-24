@@ -34,10 +34,11 @@
   - [1.12: React and 3rd Party Libraries](#react-and-3rd-party-libraries)
   - [1.13: React Developer Tools](#react-developer-tools)
 - [Part 2: Harmony aka ES6 aka ES2015](#es2015)
-  - [2.1: CONST and LET](#const-and-let)
+  - [2.1: const and let](#const-and-let)
   - [2.2: Fat Arrow](#fat-arrow)
-  - [2.3: Classes](#classes)
-  - [2.4: Babel](#babel)
+  - [2.3: Spread Operator](#spread-operator)
+  - [2.4: Classes](#classes)
+  - [2.5: Babel](#babel)
 - [Part 3: Useful Libraries](#useful-libraries)
     - [3.1: Superagent](#superagent)
     - [3.2: Bluebird](#bluebird)
@@ -1388,10 +1389,47 @@ Read more: ["Portals" in React.js](http://joecritchley.svbtle.com/portals-in-rea
 
 ### const and let
 
+### Fat Arrow
+
+### Classes
+
+### Babel
 
 ---
 
-##
+## Useful Libraries
+
+### Superagent
+
+### Bluebird
+
+### lodash
+
+---
+
+## Webpack
+
+### Hot Module Replacement and Hot Reloading
+
+---
+
+## React Router
+
+---
+
+## Flux
+
+### Alt
+
+#### Alt Actions
+
+#### Alt Stores
+
+---
+
+## Testing
+
+### Mocha
 
 ---
 
