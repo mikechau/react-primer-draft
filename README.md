@@ -1,5 +1,7 @@
 # react-primer-draft
 
+A *primer* for building `Single Page Applications` with `React`.
+
 ## Table of Contents
 - [Author's Note](#authors-note)
 - [Part 1: Intro to React](#intro-to-react)
@@ -54,7 +56,7 @@
       - [6.1.2: Alt Stores](#alt-stores)
 - [Part 7: Testing](#testing)
     - [7.1: Mocha](#mocha)
-- [Part 8: Rails](#rails)
+- [Part 8: Rails (Bonus Chapter)](#rails)
     - [8.1: React Rails](#react-rails)
     - [8.2: Writing an API](#writing-an-api)
     - [8.3: Session Handling in React](#session-handling-in-react)
