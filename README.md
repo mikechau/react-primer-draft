@@ -13,6 +13,10 @@
   - [1.5: React Props](#react-props)
       - [1.5.1: getDefaultProps](#getdefaultprops)
       - [1.5.2: propTypes](#proptypes)
+      - [1.5.3: refs](#refs)
+      - [1.5.4: children](#children)
+      - [1.5.5: className](#className)
+      - [1.5.6: Passing Props](#passing-props)
   - [1.6: React State](#react-state)
   - [1.7: React Lifecycle Events](#react-lifecycle-events)
       - [1.7.1: Mounting: componentWillMount](#mounting-componentwillmount)
@@ -23,6 +27,7 @@
       - [1.7.6: Updating: componentDidUpdate](#updating-componentdidupdate)
       - [1.7.7: Unmounting: componentWillUnmount](#unmounting-componentwillunmount)
   - [1.8: React Dynamic Children](#react-dynamic-children)
+      - [1.8.1: key](#key)
   - [1.9: React Nested Views](#react-nested-views)
   - [1.10: React Mixins](#react-mixins)
   - [1.11: React Pure Render](#react-pure-render)
@@ -488,6 +493,12 @@ var LikeListItem = React.createClass({
 ```
 
 Read more: [Prop Validation](https://facebook.github.io/react/docs/reusable-components.html#prop-validation)
+
+#### refs
+
+`ref` is pretty much `React`'s version of the `id` attribute. Except its scoped within the `component`.
+
+#### children
 
 #### className
 
@@ -1167,6 +1178,92 @@ Read more: [PureRenderMixin](https://facebook.github.io/react/docs/pure-render-m
 ---
 
 ### React and 3rd Party Libraries
+
+The neat thing about `React` is you don't hve you commit your whole application to using it. You can sprinkle it in and eventually... you'll want to write to everything in `React`.
+
+You can use third party libraries with `React`, even if they were not specifically written for `React`. Considering something like `jQueryUI` or some sort of charting library or even something like `DataTables`. We will use `DataTables` as an example, of how you could use it with `React`.
+
+```js
+var accountingData = function() {
+  var data = [];
+  
+  var random = (Math.floor(Math.random() * 10));
+  
+  for (i = 0; i < random; i++) { 
+    data.push({
+      name: 'Transaction ' + (i + 1),
+      amount: (Math.floor(Math.random() * 100))
+    });
+  }
+  
+  return data;
+};
+
+
+var AccountingTable = React.createClass({
+  getInitialState: function() {
+    return {
+      transactions: []
+    };
+  },
+
+  componentDidMount: function() {
+    $(this.refs.table.getDOMNode()).DataTable();
+  },
+
+  componentWillUpdate: function() {
+    var table = $(this.refs.table.getDOMNode()).DataTable();
+    table.destroy();
+  },
+  
+  componentDidUpdate: function() {
+    $(this.refs.table.getDOMNode()).DataTable();
+  },
+
+  render: function() {
+    return (
+      <div>
+        <table ref="table" className="table">
+          <thead>
+            <th>Transaction Name</th>
+            <th>Amount</th>
+          </thead>
+          <tbody>
+            {
+              this.state.transactions.map(function(trans, index) {
+                return (
+                  <tr key={index}>
+                    <td>{trans.name}</td>
+                    <td>{trans.amount}</td>
+                  </tr>
+                );
+              })
+            }        
+          </tbody>
+        </table>
+        
+        <a href="#" className="btn btn-default" onClick={this.handleGetTransactionsClick}>Get Transactions</a>
+      </div>
+    );
+  },
+  
+  handleGetTransactionsClick: function(e) {
+    e.preventDefault();
+
+    this.setState({
+      transactions: accountingData()
+    });
+  }
+});
+
+React.render(<AccountingTable />, document.body);
+```
+
+[JS Bin](http://jsbin.com/hapubiceta/4/edit?js,output)
+
+This example is incredinly arbitrary. You would probably update the `table` via `ajax` instead, or write your own `table` component, or use something off the shelf for `React` like `Fixed Data Tables` from `Facebook` or `Griddle`, etc.
+
+In this example, our initial state, `this.state.transactions`, is an `empty` `array`. After it mounts, we `initialize` `DataTables()`. To get the 
 
 ---
 
