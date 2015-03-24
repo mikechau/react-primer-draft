@@ -56,7 +56,7 @@
 
 ## Authors Note
 
-This primer makes use of several libraries, but it is by *__no__* means a "_React the right way_", or anything like that. It's just introduction to how I am building my own `React` applications. The goal of this primer to help developers interested in `React`, get familiar and dive right in. Maybe you will come up with approaches that work with better for you and I hope that you share them with the community! Or if you're already well versed, help improve this document so others in the community can benefit.
+This primer makes use of several libraries, but it is by *__no__* means a "_React the right way_", or anything like that. It's just a introduction to how I am building my own `React` applications. The goal of this primer to help developers get familiar with `React` and dive right in. Maybe you will come up with approaches that work with better for you and I hope that you share them with the community! Or if you're already well versed, help improve this document so others in the community can benefit. Sharing is caring!
 
 This guide is dedicated to the engineers at `Jellyvision`, we are [hiring](http://www.jellyvision.com/jobs/) so check us out. :D
 
@@ -66,7 +66,7 @@ This guide is dedicated to the engineers at `Jellyvision`, we are [hiring](http:
 
 `React` is a `JavaScript` library by `Facebook`, it describes itself as *__a javascript library for building user interfaces__*.
 
-Developers often call it the `V in MVC`, or talk about the its `virtual DOM` (not to be confused with the `shadow DOM`). I like `React` for its `declartive` style, `lifecycle event hooks`, and the fact that a `React` `component` describes its view at anytime. By breaking down the `view` into `components`, writing `React` starts to become very natural and a pleasure to work with, as you no longer need to understand the entire flow of the application at once, you can start at a `component` and work your way up or down.
+Developers often call it the `V in MVC`, or talk about the its `virtual DOM` (not to be confused with the `shadow DOM`). I like `React` for its `declartive` style, `lifecycle event hooks`, and the fact that a `React` `component` describes its view at anytime. By breaking down the `view` into `components`, writing `React` starts to become very natural. `React`  has been a pleasure to work with. You no longer need to understand the entire flow of the application at once, you can start at a `component` and work your way up or down.
 
 This `primer` is a means to get you rapidly ready to start working with a `React` application. Its goal is not to teach and explain everything, but merely introduce concepts and help you form the right questions to ask and to have an idea of where to look for an answer. It is OK if you do not understand everything at first, just keep working at it by commiting the code you see to muscle memory and reading up on the documentation. Hopefully through `reflection`, and `incubation`, the concepts here will start to make sense.
 
@@ -1261,7 +1261,7 @@ React.render(<AccountingTable />, document.body);
 
 [JS Bin](http://jsbin.com/hapubiceta/4/edit?js,output)
 
-This example is incredinly arbitrary. You would probably update the `table` via `ajax` instead, or write your own `table` component, or use something off the shelf for `React` like `Fixed Data Tables` from `Facebook` or `Griddle`, etc.
+This example is incredibly arbitrary. You would probably update the `table` via `ajax` instead, or write your own `table` component, or use something off the shelf for `React` like `Fixed Data Tables` from `Facebook` or `Griddle`, etc.
 
 In this example, our initial state, `this.state.transactions`, is an `empty` `array`. After it mounts, we `initialize` `DataTables()`. To get the 
 
