@@ -1086,7 +1086,7 @@ Read more: [React vs. Ember by Alex Matchneer](https://docs.google.com/presentat
 Consider this, we have a `component` known as `App`:
 
 ```js
-React.render(<App />, document.getElementById('#content'));
+React.render(<App />, document.getElementById('content'));
 ```
 
 We render it to `#content`.
