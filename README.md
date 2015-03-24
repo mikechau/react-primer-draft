@@ -303,7 +303,7 @@ Here's a key point from the `React` documentation:
 
 In the example, we define a function, and simply pass the function to the `onClick` property.
 
-When the `click event` occurs, we receive back a `synthetic event`, can do with it as we please. `e.preventDefault()` to stop the `event propagation`, or get things like `e.target`.
+When the `click event` occurs, we receive back a `synthetic event` and the we can do whatever with it as we please. `e.preventDefault()` to stop the `event propagation`, or get things like `e.target`.
 
 Read more: [React Events](http://facebook.github.io/react/docs/events.html)
 
