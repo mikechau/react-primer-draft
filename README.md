@@ -496,9 +496,105 @@ Read more: [Prop Validation](https://facebook.github.io/react/docs/reusable-comp
 
 #### refs
 
-`ref` is pretty much `React`'s version of the `id` attribute. Except its scoped within the `component`.
+`React` documentation introduction:
+
+> React supports a very special property that you can attach to any component that is output from render(). This special property allows you to refer to the corresponding backing instance of anything returned from render(). It is always guaranteed to be the proper instance, at any point in time.
+
+Here is an example of how you can treat a `ref` like an `id`.
+
+```js
+// Parent Component
+var LikeList = React.createClass({
+    componentDidMount: function() {
+      console.log(this.refs.first.getDOMNode());
+    },
+
+	render: function() {
+		return (
+			<ul>
+				<LikeListItem ref="first" text='turtles.' />
+			</ul>
+		);
+	}
+});
+
+
+// Child Component
+var LikeListItem = React.createClass({
+	render: function() {
+		return (
+			<li>
+				{this.props.text}
+			</li>
+		);
+	}
+});
+
+React.render(<LikeList />, document.body);
+```
+
+[JS Bin](http://jsbin.com/labicocahi/1/edit?js,output)
+
+In this example, we can access the `ref` of `first` via `this.refs.first`. After the `componentDidMount`, the `console.log` output will be:
+
+```html
+<li data-reactid=".0.0">turtles.</li>
+```
+
+Read more: [More About Refs](http://facebook.github.io/react/docs/more-about-refs.html)
 
 #### children
+
+There may be cases, where you want to wrap things inside your custom `components`.
+
+Here is an example:
+
+```js
+var Likes = React.createClass({
+  render: function() {
+    return (
+      <div>
+        <LikesListWrapper>
+          <LikeListItem text="turtles" />
+        </LikesListWrapper>
+      </div>
+    );
+  }
+});
+
+
+
+// Parent Component
+var LikesListWrapper = React.createClass({
+	render: function() {
+		return (
+			<ul>
+              {this.props.children}
+            </ul>
+		);
+	}
+});
+
+
+// Child Component
+var LikeListItem = React.createClass({
+	render: function() {
+		return (
+			<li>
+				{this.props.text}
+			</li>
+		);
+	}
+});
+
+React.render(<Likes />, document.body);
+```
+
+You place the `children` between the `component` `opening` and `ending` tag, like any other `HTML` element and, the `component` renders it via `this.props.children`.
+
+[JS Bin](http://jsbin.com/labicocahi/2/edit?js,output)
+
+Read more: [Type of the Children props](http://facebook.github.io/react/tips/children-props-type.html)
 
 #### className
 
@@ -1181,7 +1277,7 @@ Read more: [PureRenderMixin](https://facebook.github.io/react/docs/pure-render-m
 
 The neat thing about `React` is you don't hve you commit your whole application to using it. You can sprinkle it in and eventually... you'll want to write to everything in `React`.
 
-You can use third party libraries with `React`, even if they were not specifically written for `React`. Considering something like `jQueryUI` or some sort of charting library or even something like `DataTables`. We will use `DataTables` as an example, of how you could use it with `React`.
+You can use third party libraries with `React`, even if they were not specifically written for `React`. Considering something like `jQueryUI` or some sort of charting library or even something like `DataTables`. We will use `DataTables` as an example, of how you could use it with `React`. 
 
 ```js
 var accountingData = function() {
@@ -1218,6 +1314,11 @@ var AccountingTable = React.createClass({
   
   componentDidUpdate: function() {
     $(this.refs.table.getDOMNode()).DataTable();
+  },
+
+  componentWillUnmount: function() {
+    var table = $(this.refs.table.getDOMNode()).DataTable();
+    table.destroy();
   },
 
   render: function() {
@@ -1263,7 +1364,17 @@ React.render(<AccountingTable />, document.body);
 
 This example is incredibly arbitrary. You would probably update the `table` via `ajax` instead, or write your own `table` component, or use something off the shelf for `React` like `Fixed Data Tables` from `Facebook` or `Griddle`, etc.
 
-In this example, our initial state, `this.state.transactions`, is an `empty` `array`. After it mounts, we `initialize` `DataTables()`. To get the 
+In this example, our initial state, `this.state.transactions`, is an `empty` `array`. After `componentDidMount`, we `initialize` `DataTables()`. To get `DataTables` rendered. Then on `Get Transactions`, we update the `state` with the data. Before it updaes, we `destroy` `DataTables`, and `reinitialize` it on `componentDidUpdate`. When the `component` `unmounts` we will also `destroy` it to clean up any sssociated `event handlers` to it.
+
+We may also store the reference in something like `this._dataTableRef`.
+
+You could also have a `React` `component` that doesn't render anything to the `DOM`, but all it does is use its `lifecycle` `events` to `trigger` a third party library to manipulate the `DOM`. This concept, is what `Ryan Florence` likes to call a `portal`.
+
+Read more: [Reaf.js Conf 2015 - Hype! (Portals)](https://youtu.be/z5e7kWSHWTg?t=15m22s) - Video.
+
+Read more: [Portals Example Repo](https://github.com/ryanflorence/reactconf-2015-HYPE/tree/master/demos/03-portals)
+
+Read more: ["Portals" in React.js](http://joecritchley.svbtle.com/portals-in-reactjs)
 
 ---
 
