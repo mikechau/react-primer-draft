@@ -742,7 +742,7 @@ State **must not be altered directly**.
 
 It should generally be altered via [`setState`](https://facebook.github.io/react/docs/component-api.html#setstate), which *merges* the provided object into the existing state then triggers a re-render: if the state is `{foo: 1, bar: 2}` `this.setState({foo: 2})` will result in a new state of `{foo: 2, bar: 2}`.
 
-** NOTE: ** although sometimes tempting, setting up the initial state from props is generally an anti-pattern, it's usually better to compute from props on the fly.
+**NOTE:** although sometimes tempting, setting up the initial state from props is generally an anti-pattern, it's usually better to compute from props on the fly.
 
 For example:
 
