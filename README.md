@@ -234,7 +234,7 @@ var Link = React.createClass({
 React.render(<Link />, document.body);
 ```
 
-You just made a `a` tag. It can now be called via `<Link />`.
+You just made an `a` tag! It can now be called via `<Link />`.
 
 [JS Bin](http://jsbin.com/vahezonoyi/1/edit?html,js,output)
 
