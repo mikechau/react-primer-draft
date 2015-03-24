@@ -192,7 +192,7 @@ For example, this is forbidden:
 ```js
 return (
 	<div>Test</div>
-	<div>Tet 2</div>
+	<div>Test 2</div>
 );
 ``` 
 
