@@ -2,6 +2,12 @@
 
 A *primer* for building `Single Page Applications` with `React`.
 
+## Status
+
+This is a work in progress.
+
+At the time of writing, the examples were written for `React 0.12.x`, but this guide will be updated with `React 0.13` `ES6 class` examples soon!
+
 ## Table of Contents
 - [Author's Note](#authors-note)
 - [Part 1: Intro to React](#intro-to-react)
