@@ -284,7 +284,7 @@ React.render(<Link />, document.body);
 
 [JS Bin](http://jsbin.com/vahezonoyi/2/edit?html,js,output)
 
-Now, I know what you're thinking. `Inline events`, isn't that bad? It looks like its `inline` but its really not. `React` will attach the event for you via `event delegation`. So now we have a very declarative well to associate events to `DOM` elements. Now there's no confusion as to what `elements` have what `events` and there is no hassle for `managing` `ids`.
+Now, I know what you're thinking. `Inline events`, isn't that bad? It looks like its `inline` but its really not. `React` will attach the event for you via `event delegation`. So now we have a very declarative way to associate events to `DOM` elements. Now there's no confusion as to what `elements` have what `events` and there is no hassle for `managing` `ids`.
 
 Here's a key point from the `React` documentation:
 
