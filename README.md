@@ -192,7 +192,7 @@ React.render(<Button />, document.body);
 
 Simply call the `render` method, pass in the `component`, and the `DOM` node you want to render to.
 
-**NOTE:** These examples use `document.body`, but you should avoid using it can there can be subtle bugs.
+**NOTE:** These examples use `document.body`, but you should avoid using it as it can cause subtle bugs.
 
 When `rendering` a `React` `component`, `React` wants complete ownership of the `DOM` node.
 
