@@ -123,7 +123,7 @@ Don't be afraid of `React` either.  It may seem `complex` but it is quite simple
 
 ### React Community
 
-The `React` community, is super friendly!
+The `React` community is super friendly!
 
 Connect with other `React` developers at:
 
