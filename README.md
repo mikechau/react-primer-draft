@@ -1104,7 +1104,7 @@ As we map over `this.state.animals`, we set the `key` prop to the current index 
 
 In general, it is recommended you pass the current index to `key`, instead of generating a unique identifier or using one from the object.
 
-***funkiee*** from Hacker News explains why ([Marko vs. React: Performance Benchmark](https://news.ycombinator.com/item?id=9066065)):
+**funkiee** from Hacker News explains why ([Marko vs. React: Performance Benchmark](https://news.ycombinator.com/item?id=9066065)):
 
 > Not necessarily addressing the speed portion, but if you're going to give a key to a repeated item in React, it is best to use the index instead of a unique identifier(if the overall DOM structure does not change much between renders) so that React does not destroy and recreate each item on tree change.
 
