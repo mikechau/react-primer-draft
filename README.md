@@ -24,8 +24,8 @@ At the time of writing, the examples were written for `React 0.12.x`. This guide
       - [1.5.2: propTypes](#proptypes)
       - [1.5.3: refs](#refs)
       - [1.5.4: children](#children)
-      - [1.5.5: className](#className)
-      - [1.5.6: Passing Props](#passing-props)
+      - [1.5.5: className](#classname)
+      - [1.5.6: Passing a Prop](#passing-a-prop)
   - [1.6: React State](#react-state)
   - [1.7: React Lifecycle Events](#react-lifecycle-events)
       - [1.7.1: Mounting: componentWillMount](#mounting-componentwillmount)
@@ -134,6 +134,8 @@ The React community is super friendly!
 Connect with other React developers at:
 
 - [Reactiflux](https://reactiflux.slack.com/) - Slack for React developers
+    - [Request an Invite](https://join-reactiflux.herokuapp.com/)
+    - [Request an Invite Mirror](http://reactiflux.herokuapp.com/)
 - [#reactjs on irc.freenode.net](irc://chat.freenode.net/reactjs)
 - [Google Groups](http://groups.google.com/group/reactjs)
 - [Stack Overflow](http://stackoverflow.com/questions/tagged/reactjs)
