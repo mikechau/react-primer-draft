@@ -75,7 +75,7 @@ At the time of writing, the examples were written for `React 0.12.x`. This guide
 
 This primer makes use of several libraries, but it is by no means a "_React the right way_". It's just a introduction to how I am building my own React applications. The goal of this primer to help developers get familiar with React and dive right in. Maybe you will come up with approaches that work better for you and I hope that you share them with the community! Or if you're already well versed, help improve this document so others in the community can benefit. Sharing is caring!
 
-This guide is dedicated to the engineers at [Jellyvision](http://jellyvision.com), we are [hiring](http://www.jellyvision.com/jobs/) so check us out. :D
+This guide is dedicated to the engineers at [Jellyvision](http://www.jellyvision.com), we are [hiring](http://www.jellyvision.com/jobs/) so check us out. :D
 
 ~ Michael Chau (gh: [@mikechau](https://github.com/mikechau), twtr: [@money_mikec](https://twitter.com/money_mikec))
 
@@ -178,12 +178,12 @@ var Button = React.createClass({
  	}
 });
 
-React.render(<Button />, document.body);
+React.render(<Button />, document.getElementById('content'));
 ```
 
 Here you can see a React component has a `render` method, which returns *markup*. It's easy to see the shape of the output at a glance.
 
-[JS Bin](http://jsbin.com/tapupafeqe/1/edit?html,js,output)
+[JS Bin](http://jsbin.com/maragegesu/1/edit?html,js,output)
 
 **NOTE:** [As of version 0.13](https://github.com/facebook/react/issues/2127) React components can only ever return a single "root" element or sub-component.
 
@@ -210,12 +210,12 @@ return (
 To render a React component in the body all you need to do is:
 
 ```js
-React.render(<Button />, document.body);
+React.render(<Button />, document.getElemenyById('content'));
 ```
 
 Simply call the render method, pass in the component, and the DOM node you want to render to.
 
-**NOTE:** These examples use `document.body`, but you should avoid using it as it can cause subtle bugs.
+**NOTE:** You should avoid rendering your React component directly into `document.body`, as it can lead to [subtle bugs](https://medium.com/@dan_abramov/two-weird-tricks-that-fix-react-7cf9bbdef375).
 
 When rendering a React component inside a DOM node, React wants complete ownership of the node. You should not add children to or remove children from a node in which React inserted a component.
 
@@ -247,19 +247,19 @@ React works with most common HTML elements, for example:
 
 ```js
 var Link = React.createClass({
-	render: function() {
-		return (
-			<a href="http://google.com">Google</a>
-		);
-	}
+  render: function() {
+    return (
+      <a href="http://google.com">Google</a>
+    );
+  }
 });
 
-React.render(<Link />, document.body);
+React.render(<Link />, document.getElementById('content'));
 ```
 
-You just made an `a` tag! It can now be called via `<Link />`.
+[JS Bin](http://jsbin.com/dayoqaxava/1/edit?html,js,output)
 
-[JS Bin](http://jsbin.com/vahezonoyi/1/edit?html,js,output)
+You just made an `a` tag! It can now be called via `<Link />`.
 
 Read more: [React Tags and Attributes](http://facebook.github.io/react/docs/tags-and-attributes.html)
 
@@ -271,25 +271,25 @@ React has a cross-compatibility layer for most specific browser events. Going ba
 
 ```js
 var Link = React.createClass({
-	render: function() {
-		return (
-			<a href="http://google.com" onClick={this.handleClick}>Google</a>
-		);
-	},
+  render: function() {
+    return (
+      <a href="http://google.com" onClick= {this.handleClick}>Google</a>
+    );
+  },
 
-	handleClick: function(e) {
-		e.preventDefault();
+  handleClick: function(e) {
+    e.preventDefault();
 
-		alert('You clicked me!');
-	}
+    alert('You clicked me!');
+  }
 });
 
-React.render(<Link />, document.body);
+
+React.render(<Link />, document.getElementById('content'));
 ```
-
-[JS Bin](http://jsbin.com/vahezonoyi/2/edit?html,js,output)
-
 Now, I know what you're thinking. *Inline events, isn't that bad?* It looks like its inline but its really not. React will use *event delegation* behind the scenes. So now we have a very declarative way to associate events to DOM elements. Now there's no confusion as to what elements have what events and there is no hassle of managing binding hooks between DOM and javascript (e.g. ids or classes).
+
+[JS Bin](http://jsbin.com/dayoqaxava/1/edit?html,js,output)
 
 Here's a key point from the React documentation:
 
@@ -320,53 +320,53 @@ To use the same event handler in multiple bindings and contexts, you may want to
 
 ```js
 var Link = React.createClass({
-	render: function() {
-		return (
-			<div>
-				<a href="http://google.com" onClick={this.handleClick} data-link="Google">Google</a>
-                <br />
-				<a href="http://facebook.com" onClick={this.handleClick} data-link="Facebook">Facebook</a>
-			</div>
-		);
-	},
+  render: function() {
+    return (
+      <div>
+        <a href="http://google.com" onClick={this.handleClick} data-link="Google">Google</a>
+        <br />
+        <a href="http://facebook.com" onClick={this.handleClick} data-link="Facebook">Facebook</a>
+      </div>
+    );
+  },
 
-	handleClick: function(e) {
-		e.preventDefault();
+  handleClick: function(e) {
+    e.preventDefault();
 
-		alert('You clicked ' + e.target.getAttribute('data-link'));
-	}
+    alert('You clicked ' + e.target.getAttribute('data-link'));
+  }
 });
 
-React.render(<Link />, document.body);
+React.render(<Link />, document.getElementById('content'));
 ```
 
-[JS Bin](http://jsbin.com/ducavuvoka/1/edit?html,js,output)
+[JS Bin](http://jsbin.com/moqigezidu/1/edit?html,js,output)
 
 That is unnecessary in React, you can use `Function#bind` and customise the handler itself via partial application:
 
 ```js
 var Link = React.createClass({
-	render: function() {
-		return (
-			<div>
-				<a href="http://google.com" onClick={this.handleClick.bind(null, 'Google')}>Google</a>
+  render: function() {
+    return (
+      <div>
+        <a href="http://google.com" onClick={this.handleClick.bind(null, 'Google')}>Google</a>
                 <br />
-				<a href="http://facebook.com" onClick={this.handleClick.bind(null, 'Facebook')}>Facebook</a>
-			</div>
-		);
-	},
+        <a href="http://facebook.com" onClick={this.handleClick.bind(null, 'Facebook')}>Facebook</a>
+      </div>
+    );
+  },
 
-	handleClick: function(linkName, e) {
-		e.preventDefault();
+  handleClick: function(linkName, e) {
+    e.preventDefault();
 
-		alert('You clicked ' + linkName);
-	}
+    alert('You clicked ' + linkName);
+  }
 });
 
-React.render(<Link />, document.body);
+React.render(<Link />, document.getElementById('content'));
 ```
 
-[JS Bin](http://jsbin.com/vuhozilibu/1/edit?html,js,output)
+[JS Bin](http://jsbin.com/dikizexixu/1/edit?html,js,output)
 
 According to [Javascript Is Sexy](http://javascriptissexy.com):
 
@@ -404,35 +404,35 @@ Props flow downwards, and in JSX they are provided as *attributes* of the compon
 ```js
 // Parent Component
 var LikeList = React.createClass({
-	render: function() {
-		return (
-			<ul>
-				<LikeListItem text='turtles.' />
-			</ul>
-		);
-	}
+  render: function() {
+    return (
+      <ul>
+        <LikeListItem text='turtles.' />
+      </ul>
+    );
+  }
 });
 
 
 // Child Component
 var LikeListItem = React.createClass({
-	render: function() {
-		return (
-			<li>
-				{this.props.text}
-			</li>
-		);
-	}
+  render: function() {
+    return (
+      <li>
+        {this.props.text}
+      </li>
+    );
+  }
 });
 
-React.render(<LikeList />, document.body);
+React.render(<LikeList />, document.getElementById('content'));
 ```
 
 Here we have the *Parent Component*, `LikeList`, render an unordered list, with one child, a `LikeListItem`. To the `LikeListItem` we pass a `text` property.
 
 A component can access its props through `this.props`, `text` would be accessed via `this.props.text`. Here, the `text` prop is simply accessed during rendering.
 
-[JS Bin](http://jsbin.com/rerazageku/1/edit?html,js,output)
+[JS Bin](http://jsbin.com/sanivitehu/1/edit?html,js,output)
 
 Read more: [Transferring Props](https://facebook.github.io/react/docs/transferring-props.html)
 
@@ -443,13 +443,13 @@ Read more: [Transferring Props](https://facebook.github.io/react/docs/transferri
 ```js
 // Parent Component
 var LikeList = React.createClass({
-	render: function() {
-		return (
-			<ul>
-				<LikeListItem />
-			</ul>
-		);
-	}
+  render: function() {
+    return (
+      <ul>
+        <LikeListItem />
+      </ul>
+    );
+  }
 });
 
 
@@ -461,27 +461,29 @@ var LikeListItem = React.createClass({
       };
     },
 
-	render: function() {
-		return (
-			<li>
-				{this.props.text}
-			</li>
-		);
-	}
+  render: function() {
+    return (
+      <li>
+        {this.props.text}
+      </li>
+    );
+  }
 });
 
-React.render(<LikeList />, document.body);
+React.render(<LikeList />, document.getElementById('content'));
 ```
 
 If no `text` prop is passed, we give it a default value of `N/A`. If defined, `getDefaultProps` must return an object.
 
-[JS Bin](http://jsbin.com/volisofase/2/edit?html,js,output)
+[JS Bin](http://jsbin.com/kipejudici/1/edit?html,js,output)
 
 Read more: [Default Prop Values](https://facebook.github.io/react/docs/reusable-components.html#default-prop-values)
 
 #### propTypes
 
 `propTypes` documents the props expected by a component and define validators generating notices in the dev console.
+
+It is recommended that you define `propTypes` in any component that expects props, it not only is useful for validation during development but can be a way of documenting the component and it also makes it clear to others what the component expects.
 
 A key point from the React `documentation`:
 
@@ -494,23 +496,21 @@ Example:
 ```js
 // Child Component
 var LikeListItem = React.createClass({
-	propTypes: {
-		text: React.PropTypes.string
-	},
+  propTypes: {
+    text: React.PropTypes.string
+  },
 
-	getDefaultProps: function() {
- 		return {
- 			text: 'N/A'
-      		};
-    	},
+  getDefaultProps: function() {
+    return {
+      text: 'N/A'
+        };
+    },
 
-	render: function() {
-		return (
-			<li>
-				{this.props.text}
-			</li>
-		);
-	}
+  render: function() {
+    return (
+      <li>{this.props.text}</li>
+    );
+  }
 });
 ```
 
@@ -521,9 +521,9 @@ It is also possible to mandate that a prop be provided with the `isRequired` val
 ```js
 // Child Component
 var LikeListItem = React.createClass({
-	propTypes: {
-		text: React.PropTypes.string.isRequired
-	},
+  propTypes: {
+    text: React.PropTypes.string.isRequired
+  },
 ...
 ```
 
@@ -543,34 +543,34 @@ Here is an example of how you can treat a `ref` like an `id`:
 // Parent Component
 var LikeList = React.createClass({
     componentDidMount: function() {
-      console.log(this.refs.first.getDOMNode()));
+      console.log(this.refs.first.getDOMNode());
     },
 
-	render: function() {
-		return (
-			<ul>
-				<LikeListItem ref="first" text='turtles.' />
-			</ul>
-		);
-	}
+  render: function() {
+    return (
+      <ul>
+        <LikeListItem ref="first" text='turtles.' />
+      </ul>
+    );
+  }
 });
 
 
 // Child Component
 var LikeListItem = React.createClass({
-	render: function() {
-		return (
-			<li>
-				{this.props.text}
-			</li>
-		);
-	}
+  render: function() {
+    return (
+      <li>
+        {this.props.text}
+      </li>
+    );
+  }
 });
 
-React.render(<LikeList />, document.body);
+React.render(<LikeList />, document.getElementById('content'));
 ```
 
-[JS Bin](http://jsbin.com/labicocahi/1/edit?js,output)
+[JS Bin](http://jsbin.com/lemodizizi/1/edit?html,js,output)
 
 **NOTE:** In React 0.13, `Component#getDOMNode()` should be replaced by `React.findDOMNode(Component)`, the first one generates a warning in the console.
 
@@ -600,42 +600,49 @@ var Likes = React.createClass({
 });
 
 
-
 // Parent Component
 var LikesListWrapper = React.createClass({
-	render: function() {
-		return (
-			<ul>
-              {this.props.children}
-            </ul>
-		);
-	}
+  render: function() {
+    return (
+      <ul>
+        { this.props.children }
+      </ul>
+    );
+  }
 });
 
 
 // Child Component
 var LikeListItem = React.createClass({
-	render: function() {
-		return (
-			<li>
-				{this.props.text}
-			</li>
-		);
-	}
+  render: function() {
+    return (
+      <li>
+        {this.props.text}
+      </li>
+    );
+  }
 });
 
-React.render(<Likes />, document.body);
+React.render(<Likes />, document.getElementById('content'));
 ```
 
 Children are placed between a component's opening and ending tags, like regular HTML elements and, and the wrapper component can access those children via `this.props.children`.
 
-[JS Bin](http://jsbin.com/labicocahi/2/edit?js,output)
+[JS Bin](http://jsbin.com/nafoqitazi/1/edit?html,js,output)
 
 Read more: [Type of the Children props](http://facebook.github.io/react/tips/children-props-type.html)
 
 #### className
 
 Because `class` is a reserved JavaScript keyword, to set the `class` of an element you will need to use the `className` property name instead.
+
+```js
+render: function() {
+  return (
+    <a className="btn btn-default">I am a button with a class!</a>
+  );
+}
+```
 
 Review: [Tags and Attributes](https://facebook.github.io/react/docs/tags-and-attributes.html) for more details on the supported `HTML` tags and `attributes`.
 
@@ -648,13 +655,14 @@ When providing a boolean prop in JSX, passing the value is not necessary, as in 
 ```js
 // SomeComponent.jsx
 var SomeComponent = React.createClass({
-	render: function() {
-		return (
-			<AnotherComponent checked />
-		);
-	}
+  render: function() {
+    return (
+      <AnotherComponent checked />
+    );
+  }
 });
 ```
+
 `AnotherComponent`'s `this.props.checked` would resolve to `true`.
 
 ---
@@ -673,7 +681,7 @@ State is useful for intermediate or self-contained component data, which should 
   <p>Do you like fish sticks?</p>
   <p>Response: I <span id="response">______</span> fishsticks.</p>
   <a id="like" class="btn btn-success">I like them.</a>
-  <a id="dislike" class="btn btn-danger">I dislike them.</a>  
+  <a id="dislike" class="btn btn-danger">I dislike them.</a>
 </body>
 
 ```
@@ -697,44 +705,50 @@ The state of having liked or disliked fish sticks is fully internal, it does not
 
 ```js
 var LikeComponent = React.createClass({
-	getInitialState: function() {
-		return {
-			response: ''
-		};
-	},
+  getInitialState: function() {
+    return {
+      response: ''
+    };
+  },
 
-	render: function() {
-		return (
-			<div>
-				<p>Do you like fish sticks?</p>
-				<p>Response: I {this.state.response || '_____'} fishsticks.</p>
-				<a className="btn btn-success" onClick={this.handleLike}>I like it.</a>
-				<a className="btn btn-danger" onClick={this.handleDislike}>I dislike it.</a>
-			</div>
-		);
-	},
+  render: function() {
+    return (
+      <div>
+        Do you like fish sticks?
 
-	handleLike: function(e) {
-		e.preventDefault();
+        <br /><br />
 
-		this.setState({
-			response: 'like'
-		});
-	},
+        Response: I {this.state.response || '_____'} fishsticks.
 
-	handleDislike: function(e) {
-		e.preventDefault();
+        <br /><br />
 
-		this.setState({
-			response: 'dislike'
-		});
-	}
+        <a className="btn btn-success" onClick={this.handleLike}>I like it.</a>
+        <a className="btn btn-danger" onClick={this.handleDislike}>I dislike it.</a>
+      </div>
+    );
+  },
+
+  handleLike: function(e) {
+    e.preventDefault();
+
+    this.setState({
+      response: 'like'
+    });
+  },
+
+  handleDislike: function(e) {
+    e.preventDefault();
+
+    this.setState({
+      response: 'dislike'
+    });
+  }
 });
 
-React.render(<LikeComponent />, document.body);
+React.render(<LikeComponent />, document.getElementById('content'));
 ```
 
-[JS Bin](http://jsbin.com/naruvavaqi/3/edit?html,js,output)
+[JS Bin](http://jsbin.com/deburinesa/1/edit?html,js,output)
 
 `getInitialState` has the same purpose as `getDefaultProps`, but because state is not shared rather than providing a default it provides the complete internal state of the component. State items can then be accessed through `this.state`, much like props via `this.props`.
 
@@ -770,7 +784,7 @@ Read more: [State](https://facebook.github.io/react/docs/interactivity-and-dynam
 
 ### React Lifecycle Events
 
-React components have a somewhat involved lifecycle, but React provides a number of events/methods to hook in and act at various lifecycle points. The React documentation covers this section very well, so we will just quote it and show you some examples of how they work.
+React components have a somewhat involved lifecycle, but React provides a number of events/methods to hook in and act at various lifecycle points. The React documentation covers this section very well, so we will just quote it for convenience.
 
 Read more: [Component Specs and Lifecycle Events](https://facebook.github.io/react/docs/component-specs.html)
 
@@ -862,6 +876,13 @@ React is great for rendering dynamic children. It's never been so easy.
 Let's take the example:
 
 ```js
+var animalsListData = [
+  { id: 1, animal: 'tiger', name: 'Vee' },
+  { id: 2, animal: 'lion', name: 'Simba' },
+  { id: 3, animal: 'dog', name: 'Buck' },
+  { id: 4, animal: 'sealion', name: 'Seel' }
+];
+
 var AnimalsList = React.createClass({
   getInitialState: function() {
     return {
@@ -892,10 +913,10 @@ var AnimalsList = React.createClass({
   }
 });
 
-React.render(<AnimalsList />, document.body);
+React.render(<AnimalsList />, document.getElementById('content'));
 ```
 
-[JS Bin](http://jsbin.com/webamabaso/2/edit?html,js,output)
+[JS Bin](http://jsbin.com/jowuvovocu/1/edit?html,js,output)
 
 In this example, we will be fetching data from a remote source. That data will be stored as component state. It could also be stored externally and passed down as props.
 
@@ -918,14 +939,6 @@ var AnimalsList = React.createClass({
     };
   },
 
-  componentDidMount: function() {
-    setTimeout(function() {
-      this.setState({
-        animals: animalsListData
-      });
-    }.bind(this), 2000);
-  },
-
   render: function() {
     if (!this.state.animals.length) {
       return (
@@ -949,10 +962,10 @@ var AnimalsList = React.createClass({
   }
 });
 
-React.render(<AnimalsList />, document.body);
+React.render(<AnimalsList />, document.getElementById('content'));
 ```
 
-[JS Bin](http://jsbin.com/webamabaso/3/edit?html,js,output)
+[JS Bin](http://jsbin.com/jowuvovocu/1/edit?html,js,output)
 
 As soon as the component mounts, we "fetch" the remote data, which will update the internal state and re-render the component 2 seconds later. The fetching is done inline but could be split into a separate method (e.g. `_fetchRemoteData`), and while we're fetching everything on mount, it could also be fetched only on a user action:
 
@@ -988,7 +1001,7 @@ var AnimalsList = React.createClass({
             onClick={this.handleFetchClick}
           >
             Fetch
-          </a>        
+          </a>
         </div>
       );
     }
@@ -1000,20 +1013,12 @@ var AnimalsList = React.createClass({
             this.state.animals.map(function(animal, index) {
               return (
                 <li key={index}>
-                  {animal.name} the { animal.animal }!
+                  {animal.name} the {animal.animal}!
                 </li>
               );
             })
           }
         </ul>
-        
-        <a
-          href="#fetch"
-          className="btn btn-primary"
-          onClick={this.handleFetchClick}
-        >
-          Fetch
-        </a>
 
         <a
           href="#reset"
@@ -1047,10 +1052,10 @@ var AnimalsList = React.createClass({
   }
 });
 
-React.render(<AnimalsList />, document.body);
+React.render(<AnimalsList />, document.getElementById('content'));
 ```
 
-[JS Bin](http://jsbin.com/hapubiceta/1/edit?html,js,output)
+[JS Bin](http://jsbin.com/zejijonobo/1/edit?html,js,output)
 
 Alright this example a bit verbose, but hopefully it drives home how you can build your components. Do you see how intertwined your view and view logic end up being? Right from the `render` method, you can see exactly what it is going to output and what events are attached to what.
 
@@ -1060,12 +1065,127 @@ So let's summarize what is happening here:
 2. The component will mount, we do nothing here.
 3. When `render` is called, we check if there is anything inside `this.state.animals`, if there is nothing, we render special case noting the lack of animals.
 4. The component did mount, we call `this._fetchRemoteData()`
-5. When `this._fetchRemoteData()` completes, `this.setState(..)` is called and a new `render` happens! The update lifecycle events are also triggered. 
+5. When `this._fetchRemoteData()` completes, `this.setState(...)` is called and a new `render` happens! The update lifecycle events are also triggered. 
 6. The user can use the available buttons to reset or update the list of animals.
 
 So, to sum it all up, to render children, simply `map` over your collection and return the components you want rendered by passing in the collections item attributes as props.
 
 **NOTE:** when mapping over an array, the result components must be given a `key`.
+
+#### key
+
+Think of the `key` property, as a unique identifier for the components being returned from `map`.
+
+Key point:
+
+> When React reconciles the keyed children, it will ensure that any child with key will be reordered (instead of clobbered) or destroyed (instead of reused).
+
+So lets review:
+
+```js
+render: function() {
+  return (
+    <ul>
+      {
+        this.state.animals.map(function(animal, index) {
+          return (
+            <li key={index}>
+              {animal.name} the {animal.animal}!
+            </li>
+          );
+        })
+      }
+    </ul>
+  );
+}
+```
+
+As we map over `this.state.animals`, we set the `key` prop to the current index in the array.
+
+In general, it is recommended you pass the current index to `key`, instead of generating a unique identifier or using one from the object.
+
+***funkiee*** from Hacker News explains why ([Marko vs. React: Performance Benchmark](https://news.ycombinator.com/item?id=9066065)):
+
+> Not necessarily addressing the speed portion, but if you're going to give a key to a repeated item in React, it is best to use the index instead of a unique identifier(if the overall DOM structure does not change much between renders) so that React does not destroy and recreate each item on tree change.
+
+As a follow up, you are probably thinking:
+
+> It re-creates items even when they have unique identifiers? Is that a bug?
+> ~ [myhf](https://news.ycombinator.com/item?id=9066196) - Hacker News
+
+To which, **funkiee** responds:
+
+> It's as intended. If the ID in a list of 100 changes, and that ID is the key, React is going to assume the tree is different during reconciliation. If you were to use an index, like 0, on pagination the key is still 0 and as such the DOM nodes will be reused. [http://facebook.github.io/react/docs/reconciliation.html](http://facebook.github.io/react/docs/reconciliation.html) See #2 in the Trade-offs section.
+
+For your convenience, here are the trade-offs quoted from the React documentation:
+
+> #### [Trade-offs](http://facebook.github.io/react/docs/reconciliation.html#trade-offs)
+> It is important to remember that the reconciliation algorithm is an implementation detail. React could re-render the whole app on every action; the end result would be the same. We are regularly refining the heuristics in order to make common use cases faster.
+>
+> In the current implementation, you can express the fact that a sub-tree has been moved amongst its siblings, but you cannot tell that it has moved somewhere else. The algorithm will re-render that full sub-tree.
+>
+> Because we rely on two heuristics, if the assumptions behind them are not met, performance will suffer.
+>
+>	1. The algorithm will not try to match sub-trees of different components classes. If you see yourself alternating between two components classes with very similar output, you may want to make it the same class. In practice, we haven't found this to be an issue.
+>	2. If you don't provide stable keys (by using Math.random() for example), all the sub-trees are going to be re-rendered every single time. By giving the users the choice to choose the key, they have the ability to shoot themselves in the foot.
+
+This will probably make more sense upon reviewing  the [Reconciliation](https://facebook.github.io/react/docs/reconciliation.html) section in the React documentation.
+
+**NOTE:** You only need to set the `key` to the parent container component, it does not matter if it is a custom React component or a HTML container.
+
+Example:
+
+```js
+// CORRECT
+render: function() {
+  return (
+    <ul>
+      {
+        this.state.animals.map(function(animal, index) {
+          return (
+            <ListItemWrapperComponent key={index}>
+              <li>
+                {animal.name} the {animal.animal}!
+              </li>
+            </ListItemWrapperComponent>
+          );
+        })
+      }
+    </ul>
+  );
+}
+
+// NOT CORRECT
+render: function() {
+  return (
+    <ul>
+      {
+        this.state.animals.map(function(animal, index) {
+          return (
+            <ListItemWrapperComponent>
+              <li key={index}>
+                {animal.name} the {animal.animal}!
+              </li>
+            </ListItemWrapperComponent>
+          );
+        })
+      }
+    </ul>
+  );
+}
+```
+
+`key` just needs to be set in the outermost component.
+
+Read more: [Dynamic Children](https://facebook.github.io/react/docs/multiple-components.html#dynamic-children)
+
+Read more: [Reconciliation](https://facebook.github.io/react/docs/reconciliation.html)
+
+Read more: [Trade-offs](http://facebook.github.io/react/docs/reconciliation.html#trade-offs)
+
+Read more: [Marko vs. React: Performance Benchmark](https://news.ycombinator.com/item?id=9066065)
+
+Read more: [React.js and Dynamic Children - Why the Keys are Important](http://blog.arkency.com/2014/10/react-dot-js-and-dynamic-children-why-the-keys-are-important/)
 
 Read more: [React vs. Ember by Alex Matchneer](https://docs.google.com/presentation/d/1afMLTCpRxhJpurQ97VBHCZkLbR1TEsRnd3yyxuSQ5YY/edit#slide=id.p)
 
@@ -1089,48 +1209,47 @@ Inside the `App` component its `render` could have an assortment of components. 
 // App.jsx
 ...
 render: function() {
-	return (
-		<div>
-			<SubNavBar />
+  return (
+    <div>
+      <SubNavBar />
 
-			<MainContent>
-		</div>
-	);
+      <MainContent>
+    </div>
+  );
 }
 ...
 
 // SubNavBar.jsx
 ...
 render: function() {
-	return (
-		<Nav>
-			<SearchBar />
-			<NavMenuDropdown>
-				<NavItemLink name='Edit Profile' to='/edit' />
-				<NavItemLink name='Logout' to='/logout' />
-			<NavMenuDropdown>
-		</Nav>
-	);
+  return (
+    <Nav>
+      <SearchBar />
+      <NavMenuDropdown>
+        <NavItemLink name='Edit Profile' to='/edit' />
+        <NavItemLink name='Logout' to='/logout' />
+      <NavMenuDropdown>
+    </Nav>
+  );
 }
 ...
 
 // MainContent.jsx
 ...
 render: function() {
-	return (
-		<Grid fluid>
-			<Col md={3}>
-				<Sidebar />
-			</Col>
+  return (
+    <Grid fluid>
+      <Col md={3}>
+        <Sidebar />
+      </Col>
 
-			<Col md={9}>
-				<Dashboard />
-			</Col>
-		</Grid>
-	);
+      <Col md={9}>
+        <Dashboard />
+      </Col>
+    </Grid>
+  );
 }
 ...
-
 ```
 
 Each component, could keep going. Eventually you'd reach a point it actually returns the HTML, for example, `Grid` might actually just be an abstraction for:
@@ -1138,11 +1257,11 @@ Each component, could keep going. Eventually you'd reach a point it actually ret
 ```js
 // Grid.jsx
 render: function() {
-	return (
-		<div className={this._classNames()}>
-			{this.props.children}
-		</div>
-	);
+  return (
+    <div className={this._classNames()}>
+      {this.props.children}
+    </div>
+  );
 }
 ```
 
@@ -1188,9 +1307,9 @@ var Greeter = React.createClass({
   }
 });
 
-React.render(<Greeter />, document.body);
+React.render(<Greeter />, document.getElementById('content'));
 ```
-[JS Bin](http://jsbin.com/hapubiceta/2/)
+[JS Bin](http://jsbin.com/galefibomo/1/edit?js,console,output)
 
 After `componentDidMount`, the console should display:
 
@@ -1274,10 +1393,10 @@ var Greeter = React.createClass({
   }
 });
 
-React.render(<Greeter />, document.body);
+React.render(<Greeter />, document.getElementById('content'));
 ```
 
-[JS Bin](http://jsbin.com/hapubiceta/3/edit?html,js,console,output)
+[JS Bin](http://jsbin.com/jafakogeha/1/edit?js,console,output)
 
 The initial state of `this.state.greeter` is set to `Hi`.
 
@@ -1307,7 +1426,9 @@ Read more: [PureRenderMixin](https://facebook.github.io/react/docs/pure-render-m
 
 The neat thing about React is you don't have to commit your whole application to using it. You can sprinkle it in and eventually... you'll want to write to everything in React. ;)
 
-You can use third party libraries with React, even if they were not specifically written for React. Considering something like [jQuery UI](https://jqueryui.com), some sort of charting library or even something like [DataTables](https://www.datatables.net). We will use *DataTables* as an example, of how you could use it with React. 
+You can use third party libraries with React, even if they were not specifically written for React, some examples include [jQuery UI](https://jqueryui.com), your favorite charting library or [DataTables](https://www.datatables.net).
+
+We will use *DataTables* as an example, of how you could use it with React.
 
 ```js
 var accountingData = function() {
@@ -1387,10 +1508,10 @@ var AccountingTable = React.createClass({
   }
 });
 
-React.render(<AccountingTable />, document.body);
+React.render(<AccountingTable />, document.getElementById('content'));
 ```
 
-[JS Bin](http://jsbin.com/hapubiceta/4/edit?js,output)
+[JS Bin](http://jsbin.com/soqikucoda/1/edit?js,output)
 
 This example is incredibly arbitrary. You would probably update the table via ajax instead, or write your own table component, or use something off the shelf for React like [FixedDataTable](https://facebook.github.io/fixed-data-table/) from Facebook or [Griddle](http://dynamictyped.github.io/Griddle/), etc.
 
