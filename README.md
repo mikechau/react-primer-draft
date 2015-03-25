@@ -1277,7 +1277,7 @@ Key point from React documentation:
 
 > Components are the best way to reuse code in React, but sometimes very different components may share some common functionality. These are sometimes called [cross-cutting concerns](http://en.wikipedia.org/wiki/Cross-cutting_concern). React provides mixins to solve this problem.
 
-**NOTE:** The validity of mixins, is currently debated in the community. While you may continue to use them with `React.createClass`, mixins are not currently available when using ES6 classes.  The community seems to be leaning toward the idea of containers aka *high order components* or *decorators* (functions or components which manipulate or alter other components).
+**NOTE:** The validity of mixins, is currently debated in the community. While you may continue to use them with `React.createClass`, mixins are not currently available when using ES6 classes.  The community seems to be leaning toward the idea of containers aka [*higher-order components*](https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750) or *decorators* (functions or components which manipulate or alter other components).
 
 Mixin example:
 
@@ -1324,6 +1324,8 @@ After `componentDidMount`, the console should display:
 Mixins are a way of sharing functionality in lifecycle events between components. They can also be used to add custom methods to your React components.
 
 Read more: [Mixins](https://facebook.github.io/react/docs/reusable-components.html#mixins)
+
+Read more: [Higher-Order Components (HOC)](https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750)
 
 ---
 
