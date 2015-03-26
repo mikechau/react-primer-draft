@@ -11,7 +11,7 @@ At the time of writing, the examples were written for `React 0.12.x`. This guide
 ## Progress
 
 - [x] Part 1: Intro to React (completed)
-- [] Part 2: Harmony aka ES6 aka ES2015 (in progress)
+- [ ] Part 2: Harmony aka ES6 aka ES2015 (in progress)
 
 ## Table of Contents
 - [Author's Note](#authors-note)
