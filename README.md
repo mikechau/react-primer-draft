@@ -43,13 +43,14 @@ At the time of writing, the examples were written for `React 0.12.x`. This guide
   - [1.12: React and 3rd Party Libraries](#react-and-3rd-party-libraries)
   - [1.13: React Developer Tools](#react-developer-tools)
 - [Part 2: Harmony aka ES6 aka ES2015](#harmony-aka-es6-aka-es2015)
-  - [2.1: const and let](#const-and-let)
-  - [2.2: Fat Arrow](#fat-arrow)
-  - [2.3: Spread Operator](#spread-operator)
-  - [2.4: Classes](#classes)
-  - [2.5: Babel](#babel)
+	- [2.1: modules](#modules)
+  - [2.2: const and let](#const-and-let)
+  - [2.3: Fat Arrow](#fat-arrow)
+  - [2.4: Spread Operator](#spread-operator)
+  - [2.5: Classes](#classes)
+  - [2.6: Babel](#babel)
 - [Part 3: Useful Libraries](#useful-libraries)
-    - [3.1: Superagent](#superagent)
+    - [3.1: SuperAgent](#superagent)
     - [3.2: Bluebird](#bluebird)
     - [3.3: lodash](#lodash)
     - [3.4: normalizr](#normalizr)
@@ -1593,6 +1594,8 @@ Read more: [Node.js modules](https://nodejs.org/api/modules.html) - Review this 
 
 ### Fat Arrow
 
+### Spread Operator
+
 ### Classes
 
 ### Babel
@@ -1601,7 +1604,7 @@ Read more: [Node.js modules](https://nodejs.org/api/modules.html) - Review this 
 
 ## Useful Libraries
 
-### Superagent
+### SuperAgent
 [SuperAgent](https://github.com/visionmedia/superagent) is a small progressive client-side HTTP request library, and Node.js module with the same API, sporting many high-level HTTP client features.
 
 ### Bluebird
