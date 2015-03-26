@@ -1547,7 +1547,7 @@ React has a handy developer debug tool, for *Chrome*, check it out: [React Devel
 
 ## Harmony aka ES6 aka ES2015
 
-Initially known as **Harmony** or **ES6**, **ES2015**, is an update to the [ECMAScript](http://en.wikipedia.org/wiki/ECMAScript) standard.
+Initially known as **Harmony** or **ES6**, **ES2015** is an update to the [ECMAScript](http://en.wikipedia.org/wiki/ECMAScript) standard.
 
 This document will refer to the new upcoming standard for ECMAScript as **ES6**.
 
@@ -1569,7 +1569,7 @@ Read more: [ES6 compatability table](https://kangax.github.io/compat-table/es6/)
 
 If you are unfamiliar with modules, it is a way of declaring dependencies. The idea is similar to `require` in Ruby or `import` in Python.
 
-You may already be familiar with [CommonJS](http://en.wikipedia.org/wiki/CommonJS) modules, espeically if you have done work with [Node.js](https://nodejs.org/api/modules.html).
+You may already be familiar with [CommonJS](http://en.wikipedia.org/wiki/CommonJS) modules, especially if you have done work with [Node.js](https://nodejs.org/api/modules.html).
 
 To refresh your memory, it looks like this:
 
