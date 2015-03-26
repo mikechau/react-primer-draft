@@ -42,7 +42,7 @@ At the time of writing, the examples were written for `React 0.12.x`. This guide
   - [1.11: React Pure Render](#react-pure-render)
   - [1.12: React and 3rd Party Libraries](#react-and-3rd-party-libraries)
   - [1.13: React Developer Tools](#react-developer-tools)
-- [Part 2: Harmony aka ES6 aka ES2015](#es2015)
+- [Part 2: Harmony aka ES6 aka ES2015](#harmony-aka-es6-aka-es2015)
   - [2.1: const and let](#const-and-let)
   - [2.2: Fat Arrow](#fat-arrow)
   - [2.3: Spread Operator](#spread-operator)
@@ -1545,7 +1545,49 @@ React has a handy developer debug tool, for *Chrome*, check it out: [React Devel
 
 ---
 
-## ES2015
+## Harmony aka ES6 aka ES2015
+
+Initially known as **Harmony** or **ES6**, **ES2015**, is an update to the [ECMAScript](http://en.wikipedia.org/wiki/ECMAScript) standard.
+
+This document will refer to the new upcoming standard for ECMAScript as **ES6**.
+
+While ES6 browser support is still in progress, many developers are taking advantage of it today. They are doing so through the use of a [transpiler](http://en.wikipedia.org/wiki/Source-to-source_compiler) like [Babel](https://babeljs.io/). Babel will take your ES6 code and convert it into ES5, so developers can start taking advantage of ES6 while browsers work to implement the ES6 standard.
+
+This section will cover some of the new syntax you may commonly see in React projects taking advantage of ES6.
+
+It is recommended you review one of the following overviews (or maybe look at all of them) to get a better understanding about ES6's features.
+
+Read more: [ECMAScript 6 Overview](https://github.com/lukehoban/es6features#readme)
+
+Read more: [Using ECMAScript 6 today](http://www.2ality.com/2015/02/es6-classes-final.html)
+
+Read more: [You Don't Know JS: ES6 & Beyond](https://github.com/getify/You-Dont-Know-JS/tree/master/es6%20%26%20beyond)
+
+Read more: [ES6 compatability table](https://kangax.github.io/compat-table/es6/)
+
+### modules
+
+If you are unfamiliar with modules, it is a way of declaring dependencies. The idea is similar to `require` in Ruby or `import` in Python.
+
+You may already be familiar with [CommonJS](http://en.wikipedia.org/wiki/CommonJS) modules, espeically if you have done work with [Node.js](https://nodejs.org/api/modules.html).
+
+To refresh your memory, it looks like this:
+
+```js
+var React = require('react');
+
+var MyComponent = React.createClass(...);
+```
+
+You can now instead do:
+
+```js
+import React from 'react';
+```
+
+Read more: [ECMAScript 6 modules: the final syntax](http://www.2ality.com/2014/09/es6-modules-final.html)
+
+Read more: [Node.js modules](https://nodejs.org/api/modules.html) - Review this if you are unfamiliar with node modules.
 
 ### const and let
 
