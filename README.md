@@ -164,7 +164,7 @@ Don't be afraid of React either.  It may *seem* complex but is quite simple with
 
 ### React Component
 
-A React component encapsulates everything. It does not separate the *view* from the *view logic*, but rather merges the two together. Separating these does not really make sense when building a user interface: the view and its view-logic are inevitably tightly coupled. Rather than jumping between a template file and some sort of view-controller it makes sense to keep them together. React *components* are usually small enough that this is not a big deal to have the two together, and if it does get to be too large you can break down your component into smaller components.  
+A React component encapsulates everything. It does not separate the *view* from the *view logic*, but rather merges the two together. Separating these does not really make sense when building a user interface: the view and its view logic are inevitably tightly coupled. Rather than jumping between a template file and some sort of view-controller it makes sense to keep them together. React *components* are usually small enough that this is not a big deal to have the two together, and if it does get to be too large you can break down your component into smaller components.  
 
 A key point from [the React documentation](http://facebook.github.io/react/docs/):
 
@@ -1074,7 +1074,7 @@ In general, it is recommended you pass the current index to `key`, instead of ge
 **funkiee** from Hacker News explains why ([Marko vs. React: Performance Benchmark](https://news.ycombinator.com/item?id=9066065)):
 
 > Not necessarily addressing the speed portion, but if you're going to give a key to a repeated item in React, it is best to use the index instead of a unique identifier(if the overall DOM structure does not change much between renders) so that React does not destroy and recreate each item on tree change.
-> ~ [funkiee](https://news.ycombinator.com/user?id=funkiee)
+> ~ [funkiee](https://news.ycombinator.com/user?id=funkiee) - Hacker News
 
 As a follow up, you are probably thinking:
 
@@ -1084,7 +1084,7 @@ As a follow up, you are probably thinking:
 To which, **funkiee** responds:
 
 > It's as intended. If the ID in a list of 100 changes, and that ID is the key, React is going to assume the tree is different during reconciliation. If you were to use an index, like 0, on pagination the key is still 0 and as such the DOM nodes will be reused. [http://facebook.github.io/react/docs/reconciliation.html](http://facebook.github.io/react/docs/reconciliation.html) See #2 in the Trade-offs section.
-> ~ [funkiee](https://news.ycombinator.com/user?id=funkiee)
+> ~ [funkiee](https://news.ycombinator.com/user?id=funkiee) - Hacker News
 
 For your convenience, here are the trade-offs quoted from the React documentation:
 
