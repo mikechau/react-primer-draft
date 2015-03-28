@@ -50,10 +50,12 @@ At the time of writing, the examples were written for `React 0.12.x`. This guide
   - [1.13: React Component Parent and Child Communication](#react-component-parent-and-child-communication)
   - [1.14: React Developer Tools](#react-developer-tools)
 - [Part 2: Harmony aka ES6 aka ES2015](#harmony-aka-es6-aka-es2015)
-  - [2.1: modules](#modules)
+  - [2.1: Modules](#modules)
     - [2.1.1: import](#import)
     - [2.1.2: export](#export)
-  - [2.2: const and let](#const-and-let)
+  - [2.2: Variable Assignment](#variable-assignment)
+    - [2.2.1: const](#const)
+    - [2.2.2: let](#let)
   - [2.3: Fat Arrow](#fat-arrow)
   - [2.4: Spread Operator](#spread-operator)
   - [2.5: Classes](#classes)
@@ -1630,7 +1632,7 @@ Read more: [You Don't Know JS: ES6 & Beyond](https://github.com/getify/You-Dont-
 
 Read more: [ES6 compatability table](https://kangax.github.io/compat-table/es6/)
 
-### modules
+### Modules
 
 If you are unfamiliar with modules, it is a way of declaring dependencies. The idea is similar to `require` in Ruby or `import` in Python.
 
@@ -1699,7 +1701,67 @@ export default MyReactComponent;
 import { SOME_CONST, someFunction } from './MyReactComponent';
 ```
 
-### const and let
+### Variable Assignment
+
+`var` can be replaced with either `let` or `const`. In most cases, you will probably want to use `const`.
+
+Read more: [Let + Const](https://github.com/lukehoban/es6features#let--const)
+
+#### const
+
+`const` is single-assignment. This means that it is read-only.
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) explanation:
+
+> ##### Summary
+>
+> The const declaration creates a read-only named constant.
+>
+> ###### Description
+>
+> This declaration creates a constant that can be global or local to the function in which it is declared. Constants are block-scoped. The value of a constant cannot change through re-assignment, and a constant cannot be re-declared. An initializer for a constant is required. A constant cannot share its name with a function or a variable in the same scope.
+
+
+```js
+const test = "x";
+
+// error cant reassign a const
+test ="y";
+
+const test = {key: 'value'};
+
+// OK (object attributes are not protected)
+test.key2 = '1';
+```
+
+Read more: [MDN - const](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const)
+
+#### let
+
+[MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let) explanation:
+
+> ##### Summary
+>
+> The let statement declares a block scope local variable, optionally initializing it to a value.
+>
+> ###### Description
+>
+> let allows you to declare variables that are limited in scope to the block, statement, or expression on which it is used. This is unlike the var keyword, which defines a variable globally, or locally to an entire function regardless of block scope.
+
+Example from [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let):
+
+```js
+function letTest() {
+  let x = 31;
+  if (true) {
+    let x = 71;  // different variable
+    console.log(x);  // 71
+  }
+  console.log(x);  // 31
+}
+```
+
+Read more: [MDN - let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)
 
 ### Fat Arrow
 
