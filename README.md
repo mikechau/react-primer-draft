@@ -51,6 +51,8 @@ At the time of writing, the examples were written for `React 0.12.x`. This guide
   - [1.14: React Developer Tools](#react-developer-tools)
 - [Part 2: Harmony aka ES6 aka ES2015](#harmony-aka-es6-aka-es2015)
   - [2.1: modules](#modules)
+    - [2.1.1: import](#import)
+    - [2.1.2: export](#export)
   - [2.2: const and let](#const-and-let)
   - [2.3: Fat Arrow](#fat-arrow)
   - [2.4: Spread Operator](#spread-operator)
@@ -1632,6 +1634,12 @@ Read more: [ES6 compatability table](https://kangax.github.io/compat-table/es6/)
 
 If you are unfamiliar with modules, it is a way of declaring dependencies. The idea is similar to `require` in Ruby or `import` in Python.
 
+Read more: [ECMAScript 6 modules: the final syntax](http://www.2ality.com/2014/09/es6-modules-final.html)
+
+Read more: [Node.js modules](https://nodejs.org/api/modules.html) - Review this if you are unfamiliar with node modules.
+
+#### import
+
 You may already be familiar with [CommonJS](http://en.wikipedia.org/wiki/CommonJS) modules, especially if you have done work with [Node.js](https://nodejs.org/api/modules.html).
 
 To refresh your memory, it looks like this:
@@ -1648,9 +1656,20 @@ You can now instead do:
 import React from 'react';
 ```
 
-Read more: [ECMAScript 6 modules: the final syntax](http://www.2ality.com/2014/09/es6-modules-final.html)
+To import a specific function:
 
-Read more: [Node.js modules](https://nodejs.org/api/modules.html) - Review this if you are unfamiliar with node modules.
+```js
+// ES 6
+import { Grid, Row, Column } from 'react-bootstrap';
+
+// CommonJS
+var ReactBootstrap = require('react-bootstrap');
+var Grid = ReactBootstrap.Grid;
+var Row = ReactBootstrap.Row;
+var Column = ReactBootstrap.Column;
+```
+
+#### export
 
 ### const and let
 
