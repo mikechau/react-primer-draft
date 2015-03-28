@@ -1636,6 +1636,8 @@ If you are unfamiliar with modules, it is a way of declaring dependencies. The i
 
 Read more: [ECMAScript 6 modules: the final syntax](http://www.2ality.com/2014/09/es6-modules-final.html)
 
+Read more: [Understanding Javascript Modules](https://spring.io/understanding/javascript-modules)
+
 Read more: [Node.js modules](https://nodejs.org/api/modules.html) - Review this if you are unfamiliar with node modules.
 
 #### import
@@ -1659,10 +1661,10 @@ import React from 'react';
 To import a specific function:
 
 ```js
-// ES 6
+// ES6
 import { Grid, Row, Column } from 'react-bootstrap';
 
-// CommonJS
+// CommonJS Equivalent
 var ReactBootstrap = require('react-bootstrap');
 var Grid = ReactBootstrap.Grid;
 var Row = ReactBootstrap.Row;
@@ -1670,6 +1672,32 @@ var Column = ReactBootstrap.Column;
 ```
 
 #### export
+
+To specify what you want to export by default, observe the following:
+
+```js
+// MyReactComponent.jsx
+//ES6
+export default MyReactComponent;
+
+// CommonJS Equivalent
+module.exports = MyReactComponent;
+
+// Import the default
+import MyReactComponent from './MyReactComponent';
+```
+
+You can also export multiple things.
+
+```js
+// MyReactComponent.jsx
+export SOME_CONST;
+export someFunction;
+export default MyReactComponent;
+
+// Import something specific
+import { SOME_CONST, someFunction } from './MyReactComponent';
+```
 
 ### const and let
 
