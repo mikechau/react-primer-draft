@@ -15,10 +15,11 @@ At the time of writing, the examples were written for `React 0.12.x`. This guide
 
 ## Table of Contents
 - [Author's Note](#authors-note)
-- [Part 1: Intro to React](#intro-to-react)
+- [Part 0: Preface](#preface)
   - [0.1: What People are saying about React](#what-people-are-saying-about-react)
   - [0.2: React Community](#react-community)
-  - [0.5: React Documentation](#react-documentation)
+  - [0.3: React Documentation](#react-documentation)
+- [Part 1: Intro to React](#intro-to-react)
   - [1.0: React Component](#react-component)
   - [1.1: React JSX](#react-jsx)
   - [1.2: React Supported Attributes](#react-supported-attributes)
@@ -46,9 +47,10 @@ At the time of writing, the examples were written for `React 0.12.x`. This guide
   - [1.10: React Mixins](#react-mixins)
   - [1.11: React Pure Render](#react-pure-render)
   - [1.12: React and 3rd Party Libraries](#react-and-3rd-party-libraries)
-  - [1.13: React Developer Tools](#react-developer-tools)
+  - [1.13: React Component Parent and Child Communication](#react-component-parent-and-child-communication)
+  - [1.14: React Developer Tools](#react-developer-tools)
 - [Part 2: Harmony aka ES6 aka ES2015](#harmony-aka-es6-aka-es2015)
-	- [2.1: modules](#modules)
+  - [2.1: modules](#modules)
   - [2.2: const and let](#const-and-let)
   - [2.3: Fat Arrow](#fat-arrow)
   - [2.4: Spread Operator](#spread-operator)
@@ -85,30 +87,7 @@ This guide is dedicated to the engineers at [Jellyvision](http://www.jellyvision
 
 ~ Michael Chau (gh: [@mikechau](https://github.com/mikechau), twtr: [@money_mikec](https://twitter.com/money_mikec))
 
-## Intro to React
-
-React is a JavaScript library by Facebook, it describes itself as *__a javascript library for building user interfaces__*.
-
-Developers often call it *the V in MVC*, or talk about the *virtual DOM* (not to be confused with the *shadow DOM*). I like React for its declarative style, lifecycle event hooks, and the fact that a React *component* describes its view at anytime. By breaking down the view into components, writing React starts to become very natural. React  has been a pleasure to work with. You no longer need to understand the entire flow of the application at once, you can start at a component and work your way up or down.
-
-This primer is meant to get you rapidly ready to start working with a React application. Its goal is not to teach and explain everything, but merely introduce concepts and help you form the right questions to ask and to have an idea of where to look for an answer. It is OK if you do not understand everything at first, just keep working at it by commiting the code you see to muscle memory and reading up on the documentation. Hopefully through reflection, and incubation, the concepts here will start to make sense.
-
-Don't be afraid of React either.  It may *seem* complex but is quite simple with a very small API of a dozen "essential" methods:
-
-1. [render](http://facebook.github.io/react/docs/component-specs.html#render)
-2. [getInitialState](http://facebook.github.io/react/docs/component-specs.html#getinitialstate)
-3. [getDefaultProps](http://facebook.github.io/react/docs/component-specs.html#getdefaultprops)
-4. [propTypes](http://facebook.github.io/react/docs/component-specs.html#proptypes)
-5. [mixins](http://facebook.github.io/react/docs/component-specs.html#mixins)
-6. [componentWillMount](http://facebook.github.io/react/docs/component-specs.html#mounting-componentwillmount)
-7. [componentDidMount](http://facebook.github.io/react/docs/component-specs.html#mounting-componentdidmount)
-8. [componentWillReceiveProps](http://facebook.github.io/react/docs/component-specs.html#updating-componentwillreceiveprops)
-9. [shouldComponentUpdate](http://facebook.github.io/react/docs/component-specs.html#updating-shouldcomponentupdate)
-10. [componentWillUpdate](http://facebook.github.io/react/docs/component-specs.html#updating-componentwillupdate)
-11. [componentDidUpdate](http://facebook.github.io/react/docs/component-specs.html#updating-componentdidupdate)
-12. [componentWillUnmount](http://facebook.github.io/react/docs/component-specs.html#unmounting-componentwillunmount)
-
----
+## Preface
 
 ### What people are saying about React:
 
@@ -148,8 +127,6 @@ Connect with other React developers at:
 - [@reactjs](https://twitter.com/reactjs)
 - [#reactjs](https://twitter.com/search?q=%23reactjs)
 
----
-
 ### React Documentation
 
 The React documentation is very good. Use this primer as a introduction and then read more about React by viewing the official documentation:
@@ -158,9 +135,36 @@ The React documentation is very good. Use this primer as a introduction and then
 
 There's also a ton of resources at: [Awesome React](https://github.com/enaqx/awesome-react)
 
+---
+
+## Intro to React
+
+React is a JavaScript library by Facebook, it describes itself as *__a javascript library for building user interfaces__*.
+
+Developers often call it *the V in MVC*, or talk about the *virtual DOM* (not to be confused with the *shadow DOM*). I like React for its declarative style, lifecycle event hooks, and the fact that a React *component* describes its view at anytime. By breaking down the view into components, writing React starts to become very natural. React  has been a pleasure to work with. You no longer need to understand the entire flow of the application at once, you can start at a component and work your way up or down.
+
+This primer is meant to get you rapidly ready to start working with a React application. Its goal is not to teach and explain everything, but merely introduce concepts and help you form the right questions to ask and to have an idea of where to look for an answer. It is OK if you do not understand everything at first, just keep working at it by commiting the code you see to muscle memory and reading up on the documentation. Hopefully through reflection, and incubation, the concepts here will start to make sense.
+
+Don't be afraid of React either.  It may *seem* complex but is quite simple with a very small API of a dozen "essential" methods:
+
+1. [render](http://facebook.github.io/react/docs/component-specs.html#render)
+2. [getInitialState](http://facebook.github.io/react/docs/component-specs.html#getinitialstate)
+3. [getDefaultProps](http://facebook.github.io/react/docs/component-specs.html#getdefaultprops)
+4. [propTypes](http://facebook.github.io/react/docs/component-specs.html#proptypes)
+5. [mixins](http://facebook.github.io/react/docs/component-specs.html#mixins)
+6. [componentWillMount](http://facebook.github.io/react/docs/component-specs.html#mounting-componentwillmount)
+7. [componentDidMount](http://facebook.github.io/react/docs/component-specs.html#mounting-componentdidmount)
+8. [componentWillReceiveProps](http://facebook.github.io/react/docs/component-specs.html#updating-componentwillreceiveprops)
+9. [shouldComponentUpdate](http://facebook.github.io/react/docs/component-specs.html#updating-shouldcomponentupdate)
+10. [componentWillUpdate](http://facebook.github.io/react/docs/component-specs.html#updating-componentwillupdate)
+11. [componentDidUpdate](http://facebook.github.io/react/docs/component-specs.html#updating-componentdidupdate)
+12. [componentWillUnmount](http://facebook.github.io/react/docs/component-specs.html#unmounting-componentwillunmount)
+
+---
+
 ### React Component
 
-A React component encapsulates everything. It does not separate the *view* from the *view logic*, but rather merges the two together. Separating these does not really make sense when building a user interface: the view and its logic are inevitably tightly coupled. Rather than jumping between a template file and some sort of view-controller it makes sense to keep them together. React *components* are usually small enough that this is not a big deal to have the two together, and if it does get to be too large you can break down your component into smaller components.  
+A React component encapsulates everything. It does not separate the *view* from the *view logic*, but rather merges the two together. Separating these does not really make sense when building a user interface: the view and its view-logic are inevitably tightly coupled. Rather than jumping between a template file and some sort of view-controller it makes sense to keep them together. React *components* are usually small enough that this is not a big deal to have the two together, and if it does get to be too large you can break down your component into smaller components.  
 
 A key point from [the React documentation](http://facebook.github.io/react/docs/):
 
@@ -179,11 +183,11 @@ Read more: [Interactivity and Dynamic UIs](https://facebook.github.io/react/docs
 
 ```js
 var Button = React.createClass({
-	render: function() {
-		return (
- 			<a className="btn btn-default">I am a button! Click me!</a>
-		);
- 	}
+  render: function() {
+    return (
+      <a className="btn btn-default">I am a button! Click me!</a>
+    );
+  }
 });
 
 React.render(<Button />, document.getElementById('content'));
@@ -199,8 +203,8 @@ For example, this is forbidden:
 
 ```js
 return (
-	<div>Test</div>
-	<div>Test 2</div>
+  <div>Test</div>
+  <div>Test 2</div>
 );
 ``` 
 
@@ -208,10 +212,10 @@ It has to be:
 
 ```js
 return (
-	<div>
-		<div>Test</div>
-		<div>Test 2</div>
-	</div>
+  <div>
+    <div>Test</div>
+    <div>Test 2</div>
+  </div>
 );
 ```
 
@@ -926,56 +930,7 @@ React.render(<AnimalsList />, document.getElementById('content'));
 
 [JS Bin](http://jsbin.com/jowuvovocu/1/edit?html,js,output)
 
-In this example, we will be fetching data from a remote source. That data will be stored as component state. It could also be stored externally and passed down as props.
-
 Because `this.state.animals` is initially empty, the first render will display *No animals!*, as coded in the first part of the `render` method, we only render the list if there are animals in the list.
-
-For the purpose of this example, we'll emulate data fetching with a `setTimeout` call. In a real-world situation, you would use whatever AJAX library you prefer.
-
-```js
-var animalsListData = [
-  { id: 1, animal: 'tiger', name: 'Vee' },
-  { id: 2, animal: 'lion', name: 'Simba' },
-  { id: 3, animal: 'dog', name: 'Buck' },
-  { id: 4, animal: 'sealion', name: 'Seel' }
-];
-
-var AnimalsList = React.createClass({
-  getInitialState: function() {
-    return {
-      animals: []
-    };
-  },
-
-  render: function() {
-    if (!this.state.animals.length) {
-      return (
-        <div>No animals!</div>
-      );
-    }
-  
-    return (
-      <ul>
-        {
-          this.state.animals.map(function(animal, index) {
-            return (
-              <li key={index}>
-                {animal.name} the { animal.animal }!
-              </li>
-            );
-          })
-        }
-      </ul>
-    );
-  }
-});
-
-React.render(<AnimalsList />, document.getElementById('content'));
-```
-
-[JS Bin](http://jsbin.com/jowuvovocu/1/edit?html,js,output)
-
-As soon as the component mounts, we "fetch" the remote data, which will update the internal state and re-render the component 2 seconds later. The fetching is done inline but could be split into a separate method (e.g. `_fetchRemoteData`), and while we're fetching everything on mount, it could also be fetched only on a user action:
 
 ```js
 var animalsListData = [
@@ -1065,7 +1020,11 @@ React.render(<AnimalsList />, document.getElementById('content'));
 
 [JS Bin](http://jsbin.com/zejijonobo/1/edit?html,js,output)
 
-Alright this example a bit verbose, but hopefully it drives home how you can build your components. Do you see how intertwined your view and view logic end up being? Right from the `render` method, you can see exactly what it is going to output and what events are attached to what.
+For the purpose of this example, we'll emulate data fetching with a `setTimeout` call. In a real-world situation, you would use whatever AJAX library you prefer.
+
+As soon as the component mounts, we "fetch" the remote data, which will update the internal state and re-render the component 2 seconds later. The fetching is done inline but could be split into a separate method (e.g. `_fetchRemoteData`), and while we're fetching everything on mount, it could also be fetched only on a user action.
+
+This example a bit verbose, but hopefully it drives home how you can build your components. Do you see how intertwined your view and view logic end up being? Right from the `render` method, you can see exactly what it is going to output and what events are attached to what.
 
 So let's summarize what is happening here:
 
@@ -1076,9 +1035,9 @@ So let's summarize what is happening here:
 5. When `this._fetchRemoteData()` completes, `this.setState(...)` is called and a new `render` happens! The update lifecycle events are also triggered. 
 6. The user can use the available buttons to reset or update the list of animals.
 
-So, to sum it all up, to render children, simply `map` over your collection and return the components you want rendered by passing in the collections item attributes as props.
+To render dynamic children, simply `map` over your collection and return the components you want rendered by passing in the collections item attributes as props.
 
-**NOTE:** when mapping over an array, the result components must be given a `key`.
+**NOTE:** When mapping over an array, the result components must be given a `key`.
 
 #### key
 
@@ -1115,6 +1074,7 @@ In general, it is recommended you pass the current index to `key`, instead of ge
 **funkiee** from Hacker News explains why ([Marko vs. React: Performance Benchmark](https://news.ycombinator.com/item?id=9066065)):
 
 > Not necessarily addressing the speed portion, but if you're going to give a key to a repeated item in React, it is best to use the index instead of a unique identifier(if the overall DOM structure does not change much between renders) so that React does not destroy and recreate each item on tree change.
+> ~ [funkiee](https://news.ycombinator.com/user?id=funkiee)
 
 As a follow up, you are probably thinking:
 
@@ -1124,6 +1084,7 @@ As a follow up, you are probably thinking:
 To which, **funkiee** responds:
 
 > It's as intended. If the ID in a list of 100 changes, and that ID is the key, React is going to assume the tree is different during reconciliation. If you were to use an index, like 0, on pagination the key is still 0 and as such the DOM nodes will be reused. [http://facebook.github.io/react/docs/reconciliation.html](http://facebook.github.io/react/docs/reconciliation.html) See #2 in the Trade-offs section.
+> ~ [funkiee](https://news.ycombinator.com/user?id=funkiee)
 
 For your convenience, here are the trade-offs quoted from the React documentation:
 
@@ -1134,8 +1095,8 @@ For your convenience, here are the trade-offs quoted from the React documentatio
 >
 > Because we rely on two heuristics, if the assumptions behind them are not met, performance will suffer.
 >
->	1. The algorithm will not try to match sub-trees of different components classes. If you see yourself alternating between two components classes with very similar output, you may want to make it the same class. In practice, we haven't found this to be an issue.
->	2. If you don't provide stable keys (by using Math.random() for example), all the sub-trees are going to be re-rendered every single time. By giving the users the choice to choose the key, they have the ability to shoot themselves in the foot.
+>    1. The algorithm will not try to match sub-trees of different components classes. If you see yourself alternating between two components classes with very similar output, you may want to make it the same class. In practice, we haven't found this to be an issue.
+>    2. If you don't provide stable keys (by using Math.random() for example), all the sub-trees are going to be re-rendered every single time. By giving the users the choice to choose the key, they have the ability to shoot themselves in the foot.
 
 This will probably make more sense upon reviewing  the [Reconciliation](https://facebook.github.io/react/docs/reconciliation.html) section in the React documentation.
 
@@ -1542,6 +1503,100 @@ Read more: [Reaf.js Conf 2015 - Hype! (Portals)](https://youtu.be/z5e7kWSHWTg?t=
 Read more: [Portals Example Repo](https://github.com/ryanflorence/reactconf-2015-HYPE/tree/master/demos/03-portals)
 
 Read more: ["Portals" in React.js](http://joecritchley.svbtle.com/portals-in-reactjs)
+
+---
+
+### React Component Parent and Child Communication
+
+As you start to build out your React application, you may find yourself asking, *how do I get this child component to update the state of my parent component?*
+
+You can simply pass down a callback function from the Parent Component to the Child Component.
+
+For example:
+
+```js
+var ShoppingList = React.createClass({
+  getInitialState: function() {
+    return {
+      items: [
+        { id: 1, name: 'Apple', qty: 2 },
+        { id: 2, name: 'Orange', qty: 3 },
+        { id: 3, name: 'Chicken', qty: 1 }
+      ]
+    };
+  },
+
+  render: function() {
+    return (
+      <List
+        items={this.state.items}
+        onClick={this.handleItemClick}
+      />
+    );
+  },
+
+  handleItemClick: function(name, e) {
+    e.preventDefault();
+    console.log('click event', name);
+  }
+});
+
+var List = React.createClass({
+  propTypes: {
+    items: React.PropTypes.array.isRequired,
+    onClick: React.PropTypes.func.isRequired
+  },
+
+  render: function() {
+    return (
+      <ul>
+        {
+          this.props.items.map(function(item, index) {
+            return (
+              <li key={index}>
+                <a href="#" onClick={this.props.onClick.bind(null, item.name)}>
+                  {item.name}
+                </a>
+              </li>
+            );
+          }.bind(this))
+        }
+      </ul>
+    );
+  }
+});
+
+React.render(<ShoppingList />, document.getElementById('content'));
+```
+
+[JS Bin](http://jsbin.com/jamadofeni/1/edit?js,console,output)
+
+In this example, we have a `ShoppingList` parent component, that renders a `List` child component.
+
+Lets walk through the process:
+
+1. `ShoppingList` sets its initial state of `items` to an array:
+
+  ```js
+  [
+    { id: 1, name: 'Apple', qty: 2 },
+    { id: 2, name: 'Orange', qty: 3 },
+    { id: 3, name: 'Chicken', qty: 1 }
+  ]
+  ```
+
+2. It passes `this.state.items` to the `List` component, along with the callback function `handleItemClick`.
+
+3. `List` component, expects the `propTypes` of `items` (array) and `onClick` (function), both are required.
+
+4. `List` creates dynamic children via map, which is binded. It returns `<li>` tags, passing in the index as the `key`. Inside of the `<li>` tag, is an `<a>` tag with a `onClick` event, where we pass the `this.props.onClick` callback function we were given from the parent. We also bind `this.props.onClick`, to get back the `item.name`.
+
+Upon clicking Apple, you should see in the console:
+
+```
+"click event"
+"Apple"
+```
 
 ---
 
