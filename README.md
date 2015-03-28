@@ -1508,7 +1508,7 @@ Read more: ["Portals" in React.js](http://joecritchley.svbtle.com/portals-in-rea
 
 ### React Component Parent and Child Communication
 
-As you start to build out your React application, you may find yourself asking, *how do I get this child component to update the state of my parent component?*
+As you start to build out your React application, you may find yourself asking: *how do I get this child component to update the state of my parent component?*
 
 You can simply pass down a callback function from the Parent Component to the Child Component.
 
@@ -1569,7 +1569,7 @@ var List = React.createClass({
 React.render(<ShoppingList />, document.getElementById('content'));
 ```
 
-[JS Bin](http://jsbin.com/jamadofeni/1/edit?js,console,output)
+[JS Bin](http://jsbin.com/jamadofeni/3/edit?js,console,output)
 
 In this example, we have a `ShoppingList` parent component, that renders a `List` child component.
 
@@ -1597,6 +1597,8 @@ Upon clicking Apple, you should see in the console:
 "click event"
 "Apple"
 ```
+
+Then `setState` is called, which will update `activeItem` to whatever the name of the item that was clicked.
 
 ---
 
