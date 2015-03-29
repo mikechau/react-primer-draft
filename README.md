@@ -48,7 +48,8 @@ At the time of writing, the examples were written for `React 0.12.x`. This guide
   - [1.11: React Pure Render](#react-pure-render)
   - [1.12: React and 3rd Party Libraries](#react-and-3rd-party-libraries)
   - [1.13: React Component Parent and Child Communication](#react-component-parent-and-child-communication)
-  - [1.14: React Developer Tools](#react-developer-tools)
+  - [1.14: React Fetching Data](#react-fetching-data)
+  - [1.15: React Developer Tools](#react-developer-tools)
 - [Part 2: Harmony aka ES6 aka ES2015](#harmony-aka-es6-aka-es2015)
   - [2.1: Modules](#modules)
     - [2.1.1: import](#import)
@@ -1603,6 +1604,12 @@ Upon clicking Apple, you should see in the console:
 ```
 
 Then `#setState` is called, which will update `activeItem` to whatever the name of the item that was clicked.
+
+---
+
+### React Fetching Data
+
+This example will show you how you could fetch data from inside your component. As your application grows and becomes more complex, you will probably want to use [Flux](https://facebook.github.io/flux/).
 
 ---
 
