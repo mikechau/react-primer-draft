@@ -1589,7 +1589,7 @@ Lets walk through the process:
   ]
   ```
 
-2. It passes `this.state.items` to the `List` component, along with the callback function `handleItemClick`.
+2. It passes `this.state.items` to the `List` component, along with the callback function `#handleItemClick`.
 
 3. `List` component, expects the `propTypes` of `items` (array) and `onClick` (function), both are required.
 
@@ -1602,7 +1602,7 @@ Upon clicking Apple, you should see in the console:
 "Apple"
 ```
 
-Then `setState` is called, which will update `activeItem` to whatever the name of the item that was clicked.
+Then `#setState` is called, which will update `activeItem` to whatever the name of the item that was clicked.
 
 ---
 
