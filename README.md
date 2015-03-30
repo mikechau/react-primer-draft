@@ -1029,7 +1029,7 @@ For the purpose of this example, we'll emulate data fetching with a `setTimeout`
 
 As soon as the component mounts, we "fetch" the remote data, which will update the internal state and re-render the component 2 seconds later. The fetching is done inline but could be split into a separate method (e.g. `_fetchRemoteData`), and while we're fetching everything on mount, it could also be fetched only on a user action.
 
-This example a bit verbose, but hopefully it drives home how you can build your components. Do you see how intertwined your view and view logic end up being? Right from the `render` method, you can see exactly what it is going to output and what events are attached to what.
+This example is a bit verbose, but hopefully it drives home how you can build your components. Do you see how intertwined your view and view logic end up being? Right from the `render` method, you can see exactly what it is going to output and what events are attached to what.
 
 So let's summarize what is happening here:
 
