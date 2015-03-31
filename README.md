@@ -146,7 +146,7 @@ There's also a ton of resources at: [Awesome React](https://github.com/enaqx/awe
 
 React is a JavaScript library by Facebook, it describes itself as *__a javascript library for building user interfaces__*.
 
-Developers often call it *the V in MVC*, or talk about the *virtual DOM* (not to be confused with the *shadow DOM*). I like React for its declarative style, lifecycle event hooks, and the fact that a React *component* describes its view at anytime. By breaking down the view into components, writing React starts to become very natural. React  has been a pleasure to work with. You no longer need to understand the entire flow of the application at once, you can start at a component and work your way up or down.
+Developers often call it *the V in MVC*, or talk about the *virtual DOM* (not to be confused with the *shadow DOM*). I like React for its declarative style, lifecycle event hooks, and the fact that a React *component* describes its view at anytime. By breaking down the view into components, writing React starts to become very natural. React has been a pleasure to work with. You no longer need to understand the entire flow of the application at once, you can start at a component and work your way up or down.
 
 This primer is meant to get you rapidly ready to start working with a React application. Its goal is not to teach and explain everything, but merely introduce concepts and help you form the right questions to ask and to have an idea of where to look for an answer. It is OK if you do not understand everything at first, just keep working at it by commiting the code you see to muscle memory and reading up on the documentation. Hopefully through reflection, and incubation, the concepts here will start to make sense.
 
@@ -304,7 +304,7 @@ var Link = React.createClass({
 
 React.render(<Link />, document.getElementById('content'));
 ```
-Now, I know what you're thinking. *Inline events, isn't that bad?* It looks like its inline but its really not. React will use *event delegation* behind the scenes. So now we have a very declarative way to associate events to DOM elements. Now there's no confusion as to what elements have what events and there is no hassle of managing binding hooks between DOM and javascript (e.g. ids or classes).
+Now, I know what you're thinking. *Inline events, isn't that bad?* It looks like it's inline but it's really not. React will use *event delegation* behind the scenes. So now we have a very declarative way to associate events to DOM elements. Now there's no confusion as to what elements have what events and there is no hassle of managing binding hooks between DOM and javascript (e.g. ids or classes).
 
 [JS Bin](http://jsbin.com/dayoqaxava/1/edit?html,js,output)
 
@@ -359,7 +359,7 @@ React.render(<Link />, document.getElementById('content'));
 
 [JS Bin](http://jsbin.com/moqigezidu/1/edit?html,js,output)
 
-That is unnecessary in React, you can use `Function#bind` and customise the handler itself via partial application:
+That is unnecessary in React, you can use `Function#bind` and customize the handler itself via partial application:
 
 ```js
 var Link = React.createClass({
@@ -498,7 +498,7 @@ Read more: [Default Prop Values](https://facebook.github.io/react/docs/reusable-
 
 #### propTypes
 
-`propTypes` documents the props expected by a component and define validators generating notices in the dev console.
+`propTypes` documents the props expected by a component and defines validators for generating warnings in the dev console.
 
 It is recommended that you define `propTypes` in any component that expects props, it not only is useful for validation during development but can be a way of documenting the component and it also makes it clear to others what the component expects.
 
@@ -531,7 +531,7 @@ var LikeListItem = React.createClass({
 });
 ```
 
-Here we declare that the `text` property, must be a `string`. By default, props are optional and should have a default value (provided through `getDefaultProps`).
+Here we declare that the `text` property must be a `string`. By default, props are optional and should have a default value (provided through `getDefaultProps`).
 
 It is also possible to mandate that a prop be provided with the `isRequired` validator:
 
@@ -643,7 +643,7 @@ var LikeListItem = React.createClass({
 React.render(<Likes />, document.getElementById('content'));
 ```
 
-Children are placed between a component's opening and ending tags, like regular HTML elements and, and the wrapper component can access those children via `this.props.children`.
+Children are placed between a component's opening and ending tags, like regular HTML elements. The wrapper component can access those children via `this.props.children`.
 
 [JS Bin](http://jsbin.com/nafoqitazi/1/edit?html,js,output)
 
@@ -771,7 +771,7 @@ React.render(<LikeComponent />, document.getElementById('content'));
 
 State **must not be altered directly**.
 
-It should generally be altered via [`setState`](https://facebook.github.io/react/docs/component-api.html#setstate), which *merges* the provided object into the existing state then triggers a re-render: if the state is `{foo: 1, bar: 2}` `this.setState({foo: 2})` will result in a new state of `{foo: 2, bar: 2}`.
+It should generally be altered via [`setState`](https://facebook.github.io/react/docs/component-api.html#setstate), which *merges* the provided object into the existing state then triggers a re-render: if the state is `{foo: 1, bar: 2}`, `this.setState({foo: 2})` will result in a new state of `{foo: 2, bar: 2}`.
 
 **NOTE:** although sometimes tempting, setting up the initial state from props is generally an anti-pattern, it's usually better to compute from props on the fly.
 
@@ -935,7 +935,7 @@ React.render(<AnimalsList />, document.getElementById('content'));
 
 [JS Bin](http://jsbin.com/jowuvovocu/1/edit?html,js,output)
 
-Because `this.state.animals` is initially empty, the first render will display *No animals!*, as coded in the first part of the `render` method, we only render the list if there are animals in the list.
+Because `this.state.animals` is initially empty, the first render will display *No animals!*, as coded in the first part of the `render` method. We only render the list if there are animals in the list.
 
 ```js
 var animalsListData = [
@@ -1035,24 +1035,24 @@ So let's summarize what is happening here:
 
 1. The `state` is initialized, `this.state.animals` set to an empty array.
 2. The component will mount, we do nothing here.
-3. When `render` is called, we check if there is anything inside `this.state.animals`, if there is nothing, we render special case noting the lack of animals.
+3. When `render` is called, we check if there is anything inside `this.state.animals`, if there is nothing, we render the special case noting the lack of animals.
 4. The component did mount, we call `this._fetchRemoteData()`
 5. When `this._fetchRemoteData()` completes, `this.setState(...)` is called and a new `render` happens! The update lifecycle events are also triggered. 
 6. The user can use the available buttons to reset or update the list of animals.
 
-To render dynamic children, simply `map` over your collection and return the components you want rendered by passing in the collections item attributes as props.
+To render dynamic children, simply `map` over your collection and return the components you want rendered by passing in the collection's item attributes as props.
 
 **NOTE:** When mapping over an array, the result components must be given a `key`.
 
 #### key
 
-Think of the `key` property, as a unique identifier for the components being returned from `map`.
+Think of the `key` property as a unique identifier for the components being returned from `map`.
 
 Key point:
 
 > When React reconciles the keyed children, it will ensure that any child with key will be reordered (instead of clobbered) or destroyed (instead of reused).
 
-So lets review:
+So let's review:
 
 ```js
 render: function() {
@@ -1103,9 +1103,9 @@ For your convenience, here are the trade-offs quoted from the React documentatio
 >    1. The algorithm will not try to match sub-trees of different components classes. If you see yourself alternating between two components classes with very similar output, you may want to make it the same class. In practice, we haven't found this to be an issue.
 >    2. If you don't provide stable keys (by using Math.random() for example), all the sub-trees are going to be re-rendered every single time. By giving the users the choice to choose the key, they have the ability to shoot themselves in the foot.
 
-This will probably make more sense upon reviewing  the [Reconciliation](https://facebook.github.io/react/docs/reconciliation.html) section in the React documentation.
+This will probably make more sense after reviewing the [Reconciliation](https://facebook.github.io/react/docs/reconciliation.html) section in the React documentation.
 
-**NOTE:** You only need to set the `key` to the parent container component, it does not matter if it is a custom React component or a HTML container.
+**NOTE:** You only need to set the `key` for the parent container component, it does not matter if it is a custom React component or an HTML container.
 
 Example:
 
@@ -1167,7 +1167,7 @@ Read more: [React vs. Ember by Alex Matchneer](https://docs.google.com/presentat
 
 ### React Nested Views
 
-React is great for working with a tree structure like HTML. You can nest to your hearts content, it's encouraged. Remember everything is a component. It's just like working in HTML, so it should start to come naturally to you.
+React is great for working with a tree structure like HTML. You can nest to your heart's content, it's encouraged. Remember: everything is a component. It's just like working in HTML, so it should start to come naturally to you.
 
 Consider this `App` component:
 
@@ -1226,7 +1226,7 @@ render: function() {
 ...
 ```
 
-Each component, could keep going. Eventually you'd reach a point it actually returns the HTML, for example, `Grid` might actually just be an abstraction for:
+Each component could keep going. Eventually you'd reach a point it actually returns the HTML, for example, `Grid` might actually just be an abstraction for:
 
 ```js
 // Grid.jsx
@@ -1249,7 +1249,7 @@ Key point from React documentation:
 
 > Components are the best way to reuse code in React, but sometimes very different components may share some common functionality. These are sometimes called [cross-cutting concerns](http://en.wikipedia.org/wiki/Cross-cutting_concern). React provides mixins to solve this problem.
 
-**NOTE:** The validity of mixins, is currently debated in the community. While you may continue to use them with `React.createClass`, mixins are not currently available when using ES6 classes.  The community seems to be leaning toward the idea of containers aka [*higher-order components*](https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750) or *decorators* (functions or components which manipulate or alter other components).
+**NOTE:** The validity of mixins, is currently debated in the community. While you may continue to use them with `React.createClass`, mixins are not currently available when using ES6 classes. The community seems to be leaning toward the idea of containers aka [*higher-order components*](https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750) or *decorators* (functions or components which manipulate or alter other components).
 
 Mixin example:
 
@@ -1404,7 +1404,7 @@ The neat thing about React is you don't have to commit your whole application to
 
 You can use third party libraries with React, even if they were not specifically written for React, some examples include [jQuery UI](https://jqueryui.com), your favorite charting library or [DataTables](https://www.datatables.net).
 
-We will use *DataTables* as an example, of how you could use it with React.
+We will use *DataTables* as an example of how you could use it with React.
 
 ```js
 var accountingData = function() {
@@ -1503,7 +1503,7 @@ If there are more interactions with the table, instead of asking React for the D
 
 You could also have a React component which doesn't render anything to the DOM (aside from a required component root) but uses its lifecycle events to trigger commands on a third party library to manipulate the DOM. This concept is what *Ryan Florence* calls a **portal**.
 
-Read more: [Reaf.js Conf 2015 - Hype! (Portals)](https://youtu.be/z5e7kWSHWTg?t=15m22s) - Video.
+Read more: [React.js Conf 2015 - Hype! (Portals)](https://youtu.be/z5e7kWSHWTg?t=15m22s) - Video.
 
 Read more: [Portals Example Repo](https://github.com/ryanflorence/reactconf-2015-HYPE/tree/master/demos/03-portals)
 
@@ -1578,7 +1578,7 @@ React.render(<ShoppingList />, document.getElementById('content'));
 
 In this example, we have a `ShoppingList` parent component, that renders a `List` child component.
 
-Lets walk through the process:
+Let's walk through the process:
 
 1. `ShoppingList` sets its initial state of `items` to an array:
 
@@ -1594,7 +1594,7 @@ Lets walk through the process:
 
 3. `List` component, expects the `propTypes` of `items` (array) and `onClick` (function), both are required.
 
-4. `List` creates dynamic children via map, which is binded. It returns `<li>` tags, passing in the index as the `key`. Inside of the `<li>` tag, is an `<a>` tag with a `onClick` event, where we pass the `this.props.onClick` callback function we were given from the parent. We also bind `this.props.onClick`, to get back the `item.name`.
+4. `List` creates dynamic children via map, which is binded. It returns `<li>` tags, passing in the index as the `key`. Inside of the `<li>` tag, is an `<a>` tag with an `onClick` event, where we pass the `this.props.onClick` callback function we were given from the parent. We also bind `this.props.onClick` to get back the `item.name`.
 
 Upon clicking Apple, you should see in the console:
 
@@ -1637,7 +1637,7 @@ Read more: [Using ECMAScript 6 today](http://www.2ality.com/2015/02/es6-classes-
 
 Read more: [You Don't Know JS: ES6 & Beyond](https://github.com/getify/You-Dont-Know-JS/tree/master/es6%20%26%20beyond)
 
-Read more: [ES6 compatability table](https://kangax.github.io/compat-table/es6/)
+Read more: [ES6 compatibility table](https://kangax.github.io/compat-table/es6/)
 
 ### Modules
 
@@ -1789,7 +1789,7 @@ Read more: [MDN - let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/R
 [Bluebird](https://github.com/petkaantonov/bluebird) is a fully featured promise library with a focus on innovative features and performance.
 
 ### lodash
-[lodash](https://lodash.com/) is a JavaScript utility library delivering consistency, modularity, performance, & extras.
+[lodash](https://lodash.com/) is a JavaScript utility library delivering consistency, modularity, performance & extras.
 
 ### normalizr
 [normalizr](https://github.com/gaearon/normalizr) normalizes deeply nested JSON API responses according to a schema for Flux applications.
@@ -1831,4 +1831,4 @@ under the terms of the GNU Free Documentation License, Version 1.3
 or any later version published by the Free Software Foundation;  
 with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  
 A copy of the license is included in the section entitled "GNU  
-Free Documentation License".  
+Free Documentation License".
