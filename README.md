@@ -58,9 +58,10 @@ At the time of writing, the examples were written for `React 0.12.x`. This guide
     - [2.2.1: const](#const)
     - [2.2.2: let](#let)
   - [2.3: Fat Arrow](#fat-arrow)
-  - [2.4: Spread Operator](#spread-operator)
-  - [2.5: Classes](#classes)
-  - [2.6: Babel](#babel)
+  - [2.4: Enhanced Object Literals](#enhanced-object-literals)
+  - [2.5: Spread Operator](#spread-operator)
+  - [2.6: Classes](#classes)
+  - [2.7: Babel](#babel)
 - [Part 3: Useful Libraries](#useful-libraries)
     - [3.1: SuperAgent](#superagent)
     - [3.2: Bluebird](#bluebird)
@@ -1611,6 +1612,174 @@ Then `#setState` is called, which will update `activeItem` to whatever the name 
 
 This example will show you how you could fetch data from inside your component. As your application grows and becomes more complex, you will probably want to use [Flux](https://facebook.github.io/flux/).
 
+In this example, we have an API that we can query to retrieve an collection of videos that we want to display. We want to be able to switch between videos, display its metadata (timestamp, title, etc) and show what video we are on and what the total videos are.
+
+**Note:** For the sake of this example, we will use jQuery to help ease you into React. jQuery is absolutely not necessary, but for the convenience of making a AJAX request it will be used.
+
+Here is a mockup of what we want to create:
+
+```
++-----------------------------------------------------------+
+| [App]                                                     |
+|                                                           |
+|  +------------------------------------------------------+ |
+|  |  Title (Current Video Index / Total Videos)          | |
+|  |                                                      | |
+|  |[HeaderView]                                          | |
+|  +------------------------------------------------------+ |
+|  +------------------------------------------------------+ |
+|  |[StageView]                                           | |
+|  |          +--------------------------------+          | |
+|  |          | Video                          |          | |
+|  |          |                                |          | |
+|  | Previous |                                |   Next   | |
+|  |          |                                |          | |
+|  |          |                                |          | |
+|  |          |                                |          | |
+|  |          |                                |          | |
+|  |          |                                |          | |
+|  |          +--------------------------------+          | |
+|  |          +--------------------------------+          | |
+|  |          | Metadata                       |          | |
+|  |          +--------------------------------+          | |
+|  +------------------------------------------------------+ |
++-----------------------------------------------------------+
+```
+
+Components have been marked with **[brackets]**.
+
+1. [App] sets its initial state
+2. [App] makes a AJAX request on mount
+3. [App] renders [HeaderView] and [StageView]
+4. [HeaderView] receives a title, current video index and total videos via props and renders
+5. [StageView] receives a video and callbacks for handling previous/next events and renders
+
+The code:
+
+```
+var App = React.createClass({
+  getInitialState: function(){
+    return {
+      videoData: [],
+      currentVideo: 0,
+      totalVideos: 0
+    }
+  },
+
+  componentDidMount: function(){
+    this._retrieveVideos();
+  },
+
+  render: function(){
+    return(
+      <div>
+        <HeaderView title="Jetclips" currentVideo={this.state.currentVideo +1} totalVideos={this.state.videoData.length}/>
+        <StageView onChange={this._updateIndex} video={this.state.videoData[this.state.currentVideo] || {}} />
+      </div>
+    );
+  },
+
+  _retrieveVideos: function(){
+    //Ajax
+    $.getJSON( "http://jetclips.herokuapp.com/api/v1/videos/489159771140559", function( data ) {
+       this.setState({videoData: data});
+    }.bind(this));
+  },
+
+  _updateIndex: function(n){
+    this.setState({currentVideo: this.state.currentVideo + n});
+  }
+});
+
+var HeaderView = React.createClass({
+  propTypes: {
+    title: React.PropTypes.string,
+    currentVideo: React.PropTypes.number,
+    totalVideos: React.PropTypes.number
+  },
+
+  render: function() {
+    return (
+      <div className="header">
+        <h1>{this.props.title} <small>{this.props.currentVideo} / {this.props.totalVideos}</small></h1>
+       </div>
+    );
+  }
+});
+
+var StageView = React.createClass({
+  propTypes: {
+    video: React.PropTypes.object.isRequired,
+    onChange: React.PropTypes.func.isRequired
+  },
+
+  componentDidMount: function(){
+    $("body").keydown(this._handleArrowKeys);
+  },
+
+  componentWillUnmount: function() {
+    $("body").off(this._handleArrowKeys);
+  },
+
+  render: function() {
+    return (
+      <div className="container">
+        <div className="col-md-2">
+          <a href="#" onClick={this.prevVideo}>Previous</a>
+        </div>
+        <div className="videoContainer col-md-8">
+          <video controls src={this.props.video.source}></video>
+           <div className="video-metadata">
+             <span>{this.props.video.name || 'NA'}</span><br />
+             <span>{this.props.video.ts}</span><br />
+             <span>{this.props.video.id}</span><br />
+           </div>
+        </div>
+        <div className="col-md-2">
+          <a href="#" onClick={this.nextVideo}>Next</a>
+        </div>
+      </div>
+    );
+  },
+
+  nextVideo: function(e){
+    e.preventDefault();
+    this.props.onChange(1);
+  },
+  
+  prevVideo: function(e){
+      e.preventDefault();
+      this.props.onChange(-1);
+  },
+
+  _handleArrowKeys: function(e) {
+    if (e.keyCode === 37) {
+      this.prevVideo(e);
+    };
+
+    if (e.keyCode === 39) {
+      this.nextVideo(e);
+    }
+  }
+});
+
+React.render(<App />, document.getElementById('content'));
+```
+
+[JSBin](http://jsbin.com/focanezude/3/edit?js,output)
+
+You can see that [App] is the entry point, the AJAX request gets called, and then we pass down the relevant props down to [HeaderView] and [StageView].
+
+If you commented out `#_retrieveVideos` inside [App], you would see there wouldn't be anything there.
+
+You can also see that a `#_updateIndex` function gets passed down to [StageView] to manage the moving between videos.
+
+Also if you look at [StageView], when the component mounts we attach a `#keydown` event listener to the body so we can move between videos when the left or right arrow key is pressed.
+
+**Remember**: When attaching events on mount, you should clean them up on `componentWillUnmount`.
+
+Feel free to mess around with this example and experiment with things! One area of improvement is the logic for [App]'s `#_updateIndex`. There should be guards to prevent one from going back past the first video and the last or perhaps it should loopback.
+
 ---
 
 ### React Developer Tools
@@ -1771,6 +1940,120 @@ function letTest() {
 Read more: [MDN - let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)
 
 ### Fat Arrow
+
+The arrow function, or fat arrow works similar to how it does in Coffeescript.
+
+According to [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#Lexical_this):
+
+> An arrow function expression (also known as fat arrow function) has a shorter syntax compared to function expressions and lexically binds the this value. Arrow functions are always anonymous.
+
+Example:
+
+```js
+const ListComponent = React.createClass({
+  propTypes: {
+    items: React.PropTypes.array
+  },
+
+  getInitialState: function() {
+    starredItemIndex: 0
+  },
+
+  render: function() {
+  <ul>
+    {
+      this.props.items.map((item, index) => {
+        const isStarred = this.state.starredItemIndex === index ? 'starred' : null;
+        return (
+          <li className={isStarred}>item.name</li>
+        );
+      })
+    }
+  </ul>
+  }
+});
+```
+
+In the above example, you can see how we call the fat arrow within the map, instead of having to `#bind(this)`, so we have access to get `state#starredItemIndex`.
+
+```js
+this.props.items.map(function(item, index) {
+...
+}).bind(this)
+```
+
+or doing something like:
+
+```js
+const self = this;
+return (
+  <ul>
+    {
+      this.props.items.map(function(item, index) {
+        const isStarred = self.state.starredItemIndex...
+      })
+    }
+  </ul>
+);
+```
+
+Read more:
+
+[MDN - Arrow Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+
+[ES6 Features - Arrows](https://github.com/lukehoban/es6features#arrows)
+
+[Arrow functions and their scope](http://es6rocks.com/2014/10/arrow-functions-and-their-scope/)
+
+[Arrow functions](http://www.2ality.com/2012/04/arrow-functions.html)
+
+### Enhanced Object Literals
+
+ES6 brings some additional conveniences. [es6features by lukehoban](https://github.com/lukehoban/es6features#enhanced-object-literals) sums it up nicely:
+
+> Object literals are extended to support setting the prototype at construction, shorthand for foo: foo assignments, defining methods, making super calls, and computing property names with expressions. Together, these also bring object literals and class declarations closer together, and let object-based design benefit from some of the same conveniences.
+
+Example from [es6features](https://github.com/lukehoban/es6features#enhanced-object-literals):
+
+```js
+var obj = {
+    // __proto__
+    __proto__: theProtoObj,
+    // Shorthand for ‘handler: handler’
+    handler,
+    // Methods
+    toString() {
+     // Super calls
+     return "d " + super.toString();
+    },
+    // Computed (dynamic) property names
+    [ 'prop_' + (() => 42)() ]: 42
+};
+```
+
+With ES6 React components, you will most likely see the function shorthand being used.
+
+Example:
+
+```js
+const ListComponent = React.createClass({
+  render() {
+    return (
+      <ul>
+        ...
+      </ul>
+    );
+  }
+});
+```
+
+Instead of doing `render: function() { ... }`, the shorthand `render() { ... }` can be used.
+
+Read more:
+
+[es6features - Enhanced Object Literals](https://github.com/lukehoban/es6features#enhanced-object-literals)
+
+[Object-Based JavaScript in ES6](http://maximilianhoffmann.com/posts/object-based-javascript-in-es6?page=1)
 
 ### Spread Operator
 
