@@ -1646,13 +1646,13 @@ Here is a mockup of what we want to create:
 +-----------------------------------------------------------+
 ```
 
-Components have been marked with *[brackets]*.
+Components have been marked with [*brackets*].
 
-1. *[App]* sets its initial state
-2. *[App]* makes a AJAX request on mount
-3. *[App]* renders *[HeaderView]* and *[StageView]*
-4. *[HeaderView]* receives a title, current video index and total videos via props and renders
-5. *[StageView]* receives a video and callbacks for handling previous/next events and renders
+1. [*App*] sets its initial state
+2. [*App*] makes a AJAX request on mount
+3. [*App*] renders *[HeaderView]* and *[StageView]*
+4. [*HeaderView*] receives a title, current video index and total videos via props and renders
+5. [*StageView*] receives a video and callbacks for handling previous/next events and renders
 
 The code:
 
@@ -1768,17 +1768,17 @@ React.render(<App />, document.getElementById('content'));
 
 [JSBin](http://jsbin.com/focanezude/3/edit?js,output)
 
-You can see that *[App]* is the entry point, the AJAX request gets called, and then we pass down the relevant props down to *[HeaderView]* and *[StageView]*.
+You can see that [*App*] is the entry point, the AJAX request gets called, and then we pass down the relevant props down to [*HeaderView*] and [*StageView*].
 
-If you commented out `#_retrieveVideos` inside *[App]*, you would see there wouldn't be anything there.
+If you commented out `#_retrieveVideos` inside [*App*], you would see there wouldn't be anything there.
 
-You can also see that a `#_updateIndex` function gets passed down to *[StageView]* to manage the moving between videos.
+You can also see that a `#_updateIndex` function gets passed down to [*StageView*] to manage the moving between videos.
 
-Also if you look at *[StageView]*, when the component mounts we attach a `#keydown` event listener to the body so we can move between videos when the left or right arrow key is pressed.
+Also if you look at [*StageView*], when the component mounts we attach a `#keydown` event listener to the body so we can move between videos when the left or right arrow key is pressed.
 
 **Remember**: When attaching events on mount, you should clean them up on `componentWillUnmount`.
 
-Feel free to mess around with this example and experiment with things! One area of improvement is the logic for *[App]*'s `#_updateIndex`. There should be guards to prevent one from going back past the first video and the last or perhaps it should loopback.
+Feel free to mess around with this example and experiment with things! One area of improvement is the logic for [*App*]'s `#_updateIndex`. There should be guards to prevent one from going back past the first video and the last or perhaps it should loopback.
 
 ---
 
