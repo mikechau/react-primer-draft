@@ -1903,7 +1903,9 @@ const test = "x";
 
 // error cant reassign a const
 test ="y";
+```
 
+```js
 const test = {key: 'value'};
 
 // OK (object attributes are not protected)
