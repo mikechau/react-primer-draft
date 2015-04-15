@@ -1748,8 +1748,8 @@ var StageView = React.createClass({
   },
   
   prevVideo: function(e){
-      e.preventDefault();
-      this.props.onChange(-1);
+    e.preventDefault();
+    this.props.onChange(-1);
   },
 
   _handleArrowKeys: function(e) {
@@ -1958,20 +1958,22 @@ const ListComponent = React.createClass({
   },
 
   getInitialState: function() {
-    starredItemIndex: 0
+    return { starredItemIndex: 0 }
   },
 
   render: function() {
-  <ul>
-    {
-      this.props.items.map((item, index) => {
-        const isStarred = this.state.starredItemIndex === index ? 'starred' : null;
-        return (
-          <li className={isStarred}>item.name</li>
-        );
-      })
-    }
-  </ul>
+    return (
+      <ul>
+        {
+          this.props.items.map((item, index) => {
+            const isStarred = this.state.starredItemIndex === index ? 'starred' : null;
+            return (
+              <li className={isStarred}>item.name</li>
+            );
+          })
+        }
+      </ul>
+    );
   }
 });
 ```
