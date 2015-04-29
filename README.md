@@ -228,7 +228,7 @@ return (
 To render a React component in the body all you need to do is:
 
 ```js
-React.render(<Button />, document.getElemenyById('content'));
+React.render(<Button />, document.getElementById('content'));
 ```
 
 Simply call the render method, pass in the component, and the DOM node you want to render to.
