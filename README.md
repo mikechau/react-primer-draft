@@ -1902,7 +1902,7 @@ Read more: [Let + Const](https://github.com/lukehoban/es6features#let--const)
 const test = "x";
 
 // error cant reassign a const
-test ="y";
+test = "y";
 ```
 
 ```js
