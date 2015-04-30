@@ -521,8 +521,8 @@ var LikeListItem = React.createClass({
   getDefaultProps: function() {
     return {
       text: 'N/A'
-        };
-    },
+    };
+  },
 
   render: function() {
     return (
