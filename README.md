@@ -1612,7 +1612,7 @@ Then `#setState` is called, which will update `activeItem` to whatever the name 
 
 This example will show you how you could fetch data from inside your component. As your application grows and becomes more complex, you will probably want to use [Flux](https://facebook.github.io/flux/).
 
-In this example, we have an API that we can query to retrieve an collection of videos that we want to display. We want to be able to switch between videos, display its metadata (timestamp, title, etc) and show what video we are on and what the total videos are.
+In this example, we have an API that we can query to retrieve a collection of videos that we want to display. We want to be able to switch between videos, display its metadata (timestamp, title, etc) and show what video we are on and what the total videos are.
 
 **Note:** For the sake of this example, we will use jQuery to help ease you into React. jQuery is absolutely not necessary, but for the convenience of making a AJAX request it will be used.
 
