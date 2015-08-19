@@ -409,7 +409,7 @@ Read more: [React Autobinding](http://facebook.github.io/react/docs/interactivit
 
 Read more: [bind(): React component methods may only be bound to the component instance](https://groups.google.com/forum/#!topic/reactjs/Xv9_kVoJJOw)
 
-Read more: [Partial application in JavasScript with `bind`](https://coderwall.com/p/nw9cxg/partial-application-in-javascript-with-bind)
+Read more: [Partial application in JavaScript with `bind`](https://coderwall.com/p/nw9cxg/partial-application-in-javascript-with-bind)
 
 ---
 
@@ -501,7 +501,7 @@ Read more: [Default Prop Values](https://facebook.github.io/react/docs/reusable-
 
 `propTypes` documents the props expected by a component and defines validators for generating warnings in the dev console.
 
-It is recommended that you define `propTypes` in any component that expects props, it not only is useful for validation during development but can be a way of documenting the component and it also makes it clear to others what the component expects.
+It is recommended that you define `propTypes` in any component that expects props. It is useful not only for validation during development but can be a way of documenting the component. It also makes it clear to others what the component expects.
 
 A key point from the React `documentation`:
 
