@@ -501,7 +501,7 @@ Read more: [Default Prop Values](https://facebook.github.io/react/docs/reusable-
 
 `propTypes` documents the props expected by a component and defines validators for generating warnings in the dev console.
 
-It is recommended that you define `propTypes` in any component that expects props, it not only is useful for validation during development but can be a way of documenting the component and it also makes it clear to others what the component expects.
+It is recommended that you define `propTypes` in any component that expects props. It is useful not only for validation during development but can be a way of documenting the component. It also makes it clear to others what the component expects.
 
 A key point from the React `documentation`:
 
