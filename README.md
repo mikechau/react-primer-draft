@@ -409,7 +409,7 @@ Read more: [React Autobinding](http://facebook.github.io/react/docs/interactivit
 
 Read more: [bind(): React component methods may only be bound to the component instance](https://groups.google.com/forum/#!topic/reactjs/Xv9_kVoJJOw)
 
-Read more: [Partial application in JavasScript with `bind`](https://coderwall.com/p/nw9cxg/partial-application-in-javascript-with-bind)
+Read more: [Partial application in JavaScript with `bind`](https://coderwall.com/p/nw9cxg/partial-application-in-javascript-with-bind)
 
 ---
 
