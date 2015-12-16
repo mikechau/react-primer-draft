@@ -1203,7 +1203,7 @@ render: function() {
       <NavMenuDropdown>
         <NavItemLink name='Edit Profile' to='/edit' />
         <NavItemLink name='Logout' to='/logout' />
-      <NavMenuDropdown>
+      </NavMenuDropdown>
     </Nav>
   );
 }
