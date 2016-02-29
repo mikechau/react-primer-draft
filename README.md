@@ -560,9 +560,9 @@ Here is an example of how you can treat a `ref` like an `id`:
 ```js
 // Parent Component
 var LikeList = React.createClass({
-    componentDidMount: function() {
-      console.log(this.refs.first.getDOMNode());
-    },
+  componentDidMount: function() {
+    console.log(this.refs.first.getDOMNode());
+  },
 
   render: function() {
     return (
