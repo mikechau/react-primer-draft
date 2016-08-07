@@ -473,11 +473,11 @@ var LikeList = React.createClass({
 
 // Child Component
 var LikeListItem = React.createClass({
-    getDefaultProps: function() {
-      return {
-        text: 'N/A'
-      };
-    },
+  getDefaultProps: function() {
+    return {
+      text: 'N/A'
+    };
+  },
 
   render: function() {
     return (
