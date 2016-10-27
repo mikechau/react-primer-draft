@@ -405,7 +405,7 @@ Read more: [Currying](http://javascriptissexy.com/javascript-apply-call-and-bind
 
 Read more: [Understand Javascript's "this" with Clarity and Master It](http://javascriptissexy.com/understand-javascripts-this-with-clarity-and-master-it/)
 
-Read more: [React Autobinding](http://facebook.github.io/react/docs/interactivity-and-dynamic-uis.html#under-the-hood-autobinding-and-event-delegation)
+Read more: [React Autobinding](https://facebook.github.io/react/docs/react-without-es6.html#autobinding)
 
 Read more: [bind(): React component methods may only be bound to the component instance](https://groups.google.com/forum/#!topic/reactjs/Xv9_kVoJJOw)
 
@@ -495,7 +495,7 @@ If no `text` prop is passed, we give it a default value of `N/A`. If defined, `g
 
 [JS Bin](http://jsbin.com/kipejudici/1/edit?html,js,output)
 
-Read more: [Default Prop Values](https://facebook.github.io/react/docs/reusable-components.html#default-prop-values)
+Read more: [Default Prop Values](https://facebook.github.io/react/docs/react-without-es6.html#declaring-prop-types-and-default-props)
 
 #### propTypes
 
@@ -547,7 +547,7 @@ var LikeListItem = React.createClass({
 
 `getDefaultProps` was removed: since the property is required, there is no reason to provide a default value for it.
 
-Read more: [Prop Validation](https://facebook.github.io/react/docs/reusable-components.html#prop-validation)
+Read more: [Prop Validation](https://facebook.github.io/react/docs/typechecking-with-proptypes.html)
 
 #### refs
 
@@ -648,7 +648,7 @@ Children are placed between a component's opening and ending tags, like regular 
 
 [JS Bin](http://jsbin.com/nafoqitazi/1/edit?html,js,output)
 
-Read more: [Type of the Children props](http://facebook.github.io/react/tips/children-props-type.html)
+Read more: [Children in JSX](https://facebook.github.io/react/docs/jsx-in-depth.html#children-in-jsx)
 
 #### className
 
@@ -794,7 +794,7 @@ Key Point:
 >
 > Using props, passed down from parent, to generate state in getInitialState often leads to duplication of "source of truth", i.e. where the real data is. Whenever possible, compute values on-the-fly to ensure that they don't get out of sync later on and cause maintenance trouble.
 
-Read more: [Props in getInitialState Is an Anti-Pattern](https://facebook.github.io/react/tips/props-in-getInitialState-as-anti-pattern.html), please review this to see acceptable usage patterns.
+Read more: [Props in getInitialState Is an Anti-Pattern](http://stackoverflow.com/questions/28785106/reactjs-why-is-passing-the-component-initial-state-a-prop-an-anti-pattern)
 
 Read more: [State](https://facebook.github.io/react/docs/interactivity-and-dynamic-uis.html)
 
@@ -812,7 +812,7 @@ Read more: [Component Specs and Lifecycle Events](https://facebook.github.io/rea
 
 > Invoked once, both on the client and server, immediately before the initial rendering occurs. If you call `setState` within this method, `render()` will see the updated state and will be executed only once despite the state change.
 
-Read more: [componentWillMount](https://facebook.github.io/react/docs/component-specs.html#mounting-componentwillmount)
+Read more: [componentWillMount](https://facebook.github.io/react/docs/react-component.html#componentwillmount)
 
 #### Mounting: componentDidMount
 
@@ -822,7 +822,7 @@ Read more: [componentWillMount](https://facebook.github.io/react/docs/component-
 >
 > If you want to integrate with other JavaScript frameworks, set timers using setTimeout or setInterval, or send AJAX requests, perform those operations in this method.
 
-Read more: [componentDidMount](https://facebook.github.io/react/docs/component-specs.html#mounting-componentdidmount)
+Read more: [componentDidMount](https://facebook.github.io/react/docs/react-component.html#componentdidmount)
 
 #### Updating: componentWillReceiveProps
 
