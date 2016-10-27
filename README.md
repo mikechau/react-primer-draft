@@ -1152,11 +1152,11 @@ render: function() {
 
 `key` just needs to be set in the outermost component.
 
-Read more: [Dynamic Children](https://facebook.github.io/react/docs/multiple-components.html#dynamic-children)
+Read more: [Recursing on Children](https://facebook.github.io/react/docs/reconciliation.html#recursing-on-children)
 
 Read more: [Reconciliation](https://facebook.github.io/react/docs/reconciliation.html)
 
-Read more: [Trade-offs](http://facebook.github.io/react/docs/reconciliation.html#trade-offs)
+Read more: [Trade-offs](https://facebook.github.io/react/docs/reconciliation.html#tradeoffs)
 
 Read more: [Marko vs. React: Performance Benchmark](https://news.ycombinator.com/item?id=9066065)
 
