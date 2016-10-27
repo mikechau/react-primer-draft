@@ -835,7 +835,7 @@ Read more: [componentDidMount](https://facebook.github.io/react/docs/react-compo
 >  **NOTE:**
 > There is no analogous method `componentWillReceiveState`. An incoming prop transition may cause a state change, but the opposite is not true. If you need to perform operations in response to a state change, use `componentWillUpdate`.
 
-Read more: [componentWillReceiveProps](https://facebook.github.io/react/docs/component-specs.html#updating-componentwillreceiveprops)
+Read more: [componentWillReceiveProps](https://facebook.github.io/react/docs/react-component.html#componentwillreceiveprops)
 
 #### Updating: shouldComponentUpdate
 
@@ -863,7 +863,7 @@ Read more: [componentWillReceiveProps](https://facebook.github.io/react/docs/com
 > You cannot use `this.setState()` in this method. If you need to update state in response to a prop change, use `componentWillReceiveProps` instead.
 
 
-Read more: [componentWillUpdate](https://facebook.github.io/react/docs/component-specs.html#updating-componentwillupdate)
+Read more: [componentWillUpdate](https://facebook.github.io/react/docs/react-component.html#componentwillupdate)
 
 #### Updating: componentDidUpdate
 
@@ -873,7 +873,7 @@ Read more: [componentWillUpdate](https://facebook.github.io/react/docs/component
 >
 > Use this as an opportunity to operate on the DOM when the component has been updated.
 
-Read more: [componentDidUpdate](https://facebook.github.io/react/docs/component-specs.html#updating-componentdidupdate)
+Read more: [componentDidUpdate](https://facebook.github.io/react/docs/react-component.html#componentdidupdate)
 
 #### Unmounting: componentWillUnmount
 
@@ -883,7 +883,7 @@ Read more: [componentDidUpdate](https://facebook.github.io/react/docs/component-
 >
 > Perform any necessary cleanup in this method, such as invalidating timers or cleaning up any DOM elements that were created in componentDidMount.
 
-Read more: [componentWillUnmount](https://facebook.github.io/react/docs/component-specs.html#unmounting-componentwillunmount)
+Read more: [componentWillUnmount](https://facebook.github.io/react/docs/react-component.html#componentwillunmount)
 
 ---
 
