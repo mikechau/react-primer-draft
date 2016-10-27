@@ -153,18 +153,18 @@ This primer is meant to get you rapidly ready to start working with a React appl
 
 Don't be afraid of React either.  It may *seem* complex but is quite simple with a very small API of a dozen "essential" methods:
 
-1. [render](http://facebook.github.io/react/docs/component-specs.html#render)
+1. [render](https://facebook.github.io/react/docs/react-component.html#render)
 2. [getInitialState](http://facebook.github.io/react/docs/component-specs.html#getinitialstate)
-3. [getDefaultProps](http://facebook.github.io/react/docs/component-specs.html#getdefaultprops)
-4. [propTypes](http://facebook.github.io/react/docs/component-specs.html#proptypes)
-5. [mixins](http://facebook.github.io/react/docs/component-specs.html#mixins)
-6. [componentWillMount](http://facebook.github.io/react/docs/component-specs.html#mounting-componentwillmount)
-7. [componentDidMount](http://facebook.github.io/react/docs/component-specs.html#mounting-componentdidmount)
-8. [componentWillReceiveProps](http://facebook.github.io/react/docs/component-specs.html#updating-componentwillreceiveprops)
-9. [shouldComponentUpdate](http://facebook.github.io/react/docs/component-specs.html#updating-shouldcomponentupdate)
-10. [componentWillUpdate](http://facebook.github.io/react/docs/component-specs.html#updating-componentwillupdate)
-11. [componentDidUpdate](http://facebook.github.io/react/docs/component-specs.html#updating-componentdidupdate)
-12. [componentWillUnmount](http://facebook.github.io/react/docs/component-specs.html#unmounting-componentwillunmount)
+3. [getDefaultProps](https://facebook.github.io/react/docs/react-without-es6.html#declaring-prop-types-and-default-props)
+4. [propTypes](https://facebook.github.io/react/docs/react-component.html#proptypes)
+5. [mixins](https://facebook.github.io/react/docs/react-without-es6.html#mixins)
+6. [componentWillMount](https://facebook.github.io/react/docs/react-component.html#componentwillmount)
+7. [componentDidMount](https://facebook.github.io/react/docs/react-component.html#componentdidmount)
+8. [componentWillReceiveProps](https://facebook.github.io/react/docs/react-component.html#componentwillreceiveprops)
+9. [shouldComponentUpdate](https://facebook.github.io/react/docs/react-component.html#shouldcomponentupdate)
+10. [componentWillUpdate](https://facebook.github.io/react/docs/react-component.html#componentwillupdate)
+11. [componentDidUpdate](https://facebook.github.io/react/docs/react-component.html#componentdidupdate)
+12. [componentWillUnmount](https://facebook.github.io/react/docs/react-component.html#componentwillunmount)
 
 ---
 
