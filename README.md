@@ -153,18 +153,18 @@ This primer is meant to get you rapidly ready to start working with a React appl
 
 Don't be afraid of React either.  It may *seem* complex but is quite simple with a very small API of a dozen "essential" methods:
 
-1. [render](http://facebook.github.io/react/docs/component-specs.html#render)
+1. [render](https://facebook.github.io/react/docs/react-component.html#render)
 2. [getInitialState](http://facebook.github.io/react/docs/component-specs.html#getinitialstate)
-3. [getDefaultProps](http://facebook.github.io/react/docs/component-specs.html#getdefaultprops)
-4. [propTypes](http://facebook.github.io/react/docs/component-specs.html#proptypes)
-5. [mixins](http://facebook.github.io/react/docs/component-specs.html#mixins)
-6. [componentWillMount](http://facebook.github.io/react/docs/component-specs.html#mounting-componentwillmount)
-7. [componentDidMount](http://facebook.github.io/react/docs/component-specs.html#mounting-componentdidmount)
-8. [componentWillReceiveProps](http://facebook.github.io/react/docs/component-specs.html#updating-componentwillreceiveprops)
-9. [shouldComponentUpdate](http://facebook.github.io/react/docs/component-specs.html#updating-shouldcomponentupdate)
-10. [componentWillUpdate](http://facebook.github.io/react/docs/component-specs.html#updating-componentwillupdate)
-11. [componentDidUpdate](http://facebook.github.io/react/docs/component-specs.html#updating-componentdidupdate)
-12. [componentWillUnmount](http://facebook.github.io/react/docs/component-specs.html#unmounting-componentwillunmount)
+3. [getDefaultProps](https://facebook.github.io/react/docs/react-without-es6.html#declaring-prop-types-and-default-props)
+4. [propTypes](https://facebook.github.io/react/docs/react-component.html#proptypes)
+5. [mixins](https://facebook.github.io/react/docs/react-without-es6.html#mixins)
+6. [componentWillMount](https://facebook.github.io/react/docs/react-component.html#componentwillmount)
+7. [componentDidMount](https://facebook.github.io/react/docs/react-component.html#componentdidmount)
+8. [componentWillReceiveProps](https://facebook.github.io/react/docs/react-component.html#componentwillreceiveprops)
+9. [shouldComponentUpdate](https://facebook.github.io/react/docs/react-component.html#shouldcomponentupdate)
+10. [componentWillUpdate](https://facebook.github.io/react/docs/react-component.html#componentwillupdate)
+11. [componentDidUpdate](https://facebook.github.io/react/docs/react-component.html#componentdidupdate)
+12. [componentWillUnmount](https://facebook.github.io/react/docs/react-component.html#componentwillunmount)
 
 ---
 
@@ -405,7 +405,7 @@ Read more: [Currying](http://javascriptissexy.com/javascript-apply-call-and-bind
 
 Read more: [Understand Javascript's "this" with Clarity and Master It](http://javascriptissexy.com/understand-javascripts-this-with-clarity-and-master-it/)
 
-Read more: [React Autobinding](http://facebook.github.io/react/docs/interactivity-and-dynamic-uis.html#under-the-hood-autobinding-and-event-delegation)
+Read more: [React Autobinding](https://facebook.github.io/react/docs/react-without-es6.html#autobinding)
 
 Read more: [bind(): React component methods may only be bound to the component instance](https://groups.google.com/forum/#!topic/reactjs/Xv9_kVoJJOw)
 
@@ -495,7 +495,7 @@ If no `text` prop is passed, we give it a default value of `N/A`. If defined, `g
 
 [JS Bin](http://jsbin.com/kipejudici/1/edit?html,js,output)
 
-Read more: [Default Prop Values](https://facebook.github.io/react/docs/reusable-components.html#default-prop-values)
+Read more: [Default Prop Values](https://facebook.github.io/react/docs/react-without-es6.html#declaring-prop-types-and-default-props)
 
 #### propTypes
 
@@ -547,7 +547,7 @@ var LikeListItem = React.createClass({
 
 `getDefaultProps` was removed: since the property is required, there is no reason to provide a default value for it.
 
-Read more: [Prop Validation](https://facebook.github.io/react/docs/reusable-components.html#prop-validation)
+Read more: [Prop Validation](https://facebook.github.io/react/docs/typechecking-with-proptypes.html)
 
 #### refs
 
@@ -648,7 +648,7 @@ Children are placed between a component's opening and ending tags, like regular 
 
 [JS Bin](http://jsbin.com/nafoqitazi/1/edit?html,js,output)
 
-Read more: [Type of the Children props](http://facebook.github.io/react/tips/children-props-type.html)
+Read more: [Children in JSX](https://facebook.github.io/react/docs/jsx-in-depth.html#children-in-jsx)
 
 #### className
 
@@ -794,7 +794,7 @@ Key Point:
 >
 > Using props, passed down from parent, to generate state in getInitialState often leads to duplication of "source of truth", i.e. where the real data is. Whenever possible, compute values on-the-fly to ensure that they don't get out of sync later on and cause maintenance trouble.
 
-Read more: [Props in getInitialState Is an Anti-Pattern](https://facebook.github.io/react/tips/props-in-getInitialState-as-anti-pattern.html), please review this to see acceptable usage patterns.
+Read more: [Props in getInitialState Is an Anti-Pattern](http://stackoverflow.com/questions/28785106/reactjs-why-is-passing-the-component-initial-state-a-prop-an-anti-pattern)
 
 Read more: [State](https://facebook.github.io/react/docs/interactivity-and-dynamic-uis.html)
 
@@ -812,7 +812,7 @@ Read more: [Component Specs and Lifecycle Events](https://facebook.github.io/rea
 
 > Invoked once, both on the client and server, immediately before the initial rendering occurs. If you call `setState` within this method, `render()` will see the updated state and will be executed only once despite the state change.
 
-Read more: [componentWillMount](https://facebook.github.io/react/docs/component-specs.html#mounting-componentwillmount)
+Read more: [componentWillMount](https://facebook.github.io/react/docs/react-component.html#componentwillmount)
 
 #### Mounting: componentDidMount
 
@@ -822,7 +822,7 @@ Read more: [componentWillMount](https://facebook.github.io/react/docs/component-
 >
 > If you want to integrate with other JavaScript frameworks, set timers using setTimeout or setInterval, or send AJAX requests, perform those operations in this method.
 
-Read more: [componentDidMount](https://facebook.github.io/react/docs/component-specs.html#mounting-componentdidmount)
+Read more: [componentDidMount](https://facebook.github.io/react/docs/react-component.html#componentdidmount)
 
 #### Updating: componentWillReceiveProps
 
@@ -835,7 +835,7 @@ Read more: [componentDidMount](https://facebook.github.io/react/docs/component-s
 >  **NOTE:**
 > There is no analogous method `componentWillReceiveState`. An incoming prop transition may cause a state change, but the opposite is not true. If you need to perform operations in response to a state change, use `componentWillUpdate`.
 
-Read more: [componentWillReceiveProps](https://facebook.github.io/react/docs/component-specs.html#updating-componentwillreceiveprops)
+Read more: [componentWillReceiveProps](https://facebook.github.io/react/docs/react-component.html#componentwillreceiveprops)
 
 #### Updating: shouldComponentUpdate
 
@@ -863,7 +863,7 @@ Read more: [componentWillReceiveProps](https://facebook.github.io/react/docs/com
 > You cannot use `this.setState()` in this method. If you need to update state in response to a prop change, use `componentWillReceiveProps` instead.
 
 
-Read more: [componentWillUpdate](https://facebook.github.io/react/docs/component-specs.html#updating-componentwillupdate)
+Read more: [componentWillUpdate](https://facebook.github.io/react/docs/react-component.html#componentwillupdate)
 
 #### Updating: componentDidUpdate
 
@@ -873,7 +873,7 @@ Read more: [componentWillUpdate](https://facebook.github.io/react/docs/component
 >
 > Use this as an opportunity to operate on the DOM when the component has been updated.
 
-Read more: [componentDidUpdate](https://facebook.github.io/react/docs/component-specs.html#updating-componentdidupdate)
+Read more: [componentDidUpdate](https://facebook.github.io/react/docs/react-component.html#componentdidupdate)
 
 #### Unmounting: componentWillUnmount
 
@@ -883,7 +883,7 @@ Read more: [componentDidUpdate](https://facebook.github.io/react/docs/component-
 >
 > Perform any necessary cleanup in this method, such as invalidating timers or cleaning up any DOM elements that were created in componentDidMount.
 
-Read more: [componentWillUnmount](https://facebook.github.io/react/docs/component-specs.html#unmounting-componentwillunmount)
+Read more: [componentWillUnmount](https://facebook.github.io/react/docs/react-component.html#componentwillunmount)
 
 ---
 
@@ -1152,11 +1152,11 @@ render: function() {
 
 `key` just needs to be set in the outermost component.
 
-Read more: [Dynamic Children](https://facebook.github.io/react/docs/multiple-components.html#dynamic-children)
+Read more: [Recursing on Children](https://facebook.github.io/react/docs/reconciliation.html#recursing-on-children)
 
 Read more: [Reconciliation](https://facebook.github.io/react/docs/reconciliation.html)
 
-Read more: [Trade-offs](http://facebook.github.io/react/docs/reconciliation.html#trade-offs)
+Read more: [Trade-offs](https://facebook.github.io/react/docs/reconciliation.html#tradeoffs)
 
 Read more: [Marko vs. React: Performance Benchmark](https://news.ycombinator.com/item?id=9066065)
 
